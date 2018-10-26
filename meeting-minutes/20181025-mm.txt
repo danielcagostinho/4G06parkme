@@ -1,0 +1,26 @@
+Meeting Notes
+2018/10/26
+Notetaker: Daniel Agostinho
+Members present: all
+
+Agenda
+- Review what we discussed with Dr. Wassyng today in meeting:
+  - Questions:
+    - Clarify behavior
+      -high level overview of what will do
+      - both non-functional and functional parts
+      - context diagrams are normally used to describe behavior
+    - Working with TA's
+      - get to know the TA's well
+      - workflow: TAs -> Prof
+      - in case we don't want to include something in assignment or document, always talk to TAs
+      - if Prof recommends something, at the end of the day, its our project, we can choose to do what we want
+      - group conflict: self mediate first, then prof
+    - Business facing vs user facing
+      - not out of scope to have both users and Business
+      - prof recommends to do both
+- Send Dr. Wassyng our available times that we can meet
+- Elaborate more on the Requirements document and break up the sections
+
+Next Meeting: Monday, October 27, 2018 7pm (tentative)
+- Getting general guidelines done and assign tasks
