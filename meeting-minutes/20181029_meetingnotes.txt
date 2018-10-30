@@ -1,0 +1,26 @@
+Meeting Notes
+2018/10/29
+Notetaker: Kathryn Brownlee
+Members Present: all
+
+Agenda:
+- Discuss work break down and questions for Dr. Wassyng.
+	-Questions:
+		- Clarify what montirored and controlled variables
+		- Document Format?
+
+- Who is working on what?
+	- Functional Decomp Last
+	- 1st 3 sections (Introduction, Scope, Behaviour Overview): Ben
+	- Use Case and Context Diagrams: Kathryn
+	- Montiored/Controlled Variables: Michael
+	- Functional Requirements: everyone (Daniel)
+	- Non-functional Requirements: everyone (Anthony)
+
+- Meet the TA's still?
+
+- Individual Components to be done by Friday optimistically.
+- Goal is to finish requirements by Saturday 
+
+- Next Meeting: November 2nd, 2018
+- Look over individual work and shore up anything else.
