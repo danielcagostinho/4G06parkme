@@ -1,0 +1,17 @@
+Meeting Notes
+2018/10/30
+Notetaker: Daniel Agostinho
+Members Present: all
+
+Agenda:
+- Meeting with Dr. Wassyng in ITB
+
+- Don't bolt-on safety to end of requirements Document
+- create the requirements and the system with safety in mind the whole Wassyng
+
+- Don't use "navigation" terminology
+- navigation: include it in likely to change section
+  - include a lot of detail but only on what might change, do not promise it if we are not likely to do it.
+  - if we do not include the navigation, that's ok as long as we get a finished product out that we will promise in november POC
+- Our TA's are Nick and Josh
+  - if we email them, they will proofread our requirements.
