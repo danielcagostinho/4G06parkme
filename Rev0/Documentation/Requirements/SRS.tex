@@ -42,27 +42,27 @@ The consumer will find use in knowing that parking spots are open for a store th
 \section{Constants}
 
 \begin{itemize}
-	\item PARKING\_SPOT\_RESPONSE\_TIME= 500ms 
+	\item \hypertarget{RESPONSETIME}{PARKING\_SPOT\_RESPONSE\_TIME}= 500ms 
 	\begin{itemize}
 		\item How long it takes for the availability of a parking spot to update on the application.
 	\end{itemize}
 
-	\item PARKING\_SPOT\_EXPIRATION\_TIME\_WARNING= 10 minutes
+	\item \hypertarget{EXPTIME}{PARKING\_SPOT\_EXPIRATION\_TIME\_WARNING}= 10 minutes
 	\begin{itemize}
 		\item How long before the application will notify the user their parking spot is about to expire.
 	\end{itemize}
 
-	\item MAX\_ANALYTICS\_DATA= 50gb
+	\item \hypertarget{ANALYTICSDATA}{MAX\_ANALYTICS\_DATA}= 50gb
 	\begin{itemize}
 		\item How much analytics data will be recorded before older data will be deleted.
 	\end{itemize}
 
-	\item MAX\_CONCURRENT\_USERS= 1000 users
+	\item \hypertarget{CONCUSERS}{MAX\_CONCURRENT\_USERS}= 1000 users
 	\begin{itemize}
 		\item How many concurrent users our system will support.
 	\end{itemize}
 
-	\item DETECTION\_ERROR\_RATE= 0.01%
+	\item \hypertarget{DETERR}{DETECTION\_ERROR\_RATE}= 0.01%
 	\begin{itemize}
 		\item Max errors in detection in percentage the system should maintain before.
 	\end{itemize}
@@ -166,7 +166,7 @@ For the following requirements, let LC denote the requirements that are likely t
 		
 		\item APR3: The system must allow the user to select a parking lot that is supported by ParkMe.
 	
-		\item APR4: [LC] The system must provide navigation to the parking lot selected.
+		\item \hypertarget{APRa}{APR4}: [LC] The system must provide navigation to the parking lot selected.
 		\begin{itemize}
 			\item This requirement might not be included in future revisions.
 		\end{itemize}
@@ -179,19 +179,19 @@ For the following requirements, let LC denote the requirements that are likely t
 		
 		\item APR8: The system must not show any vacant accessibility parking spots as available if the user has not specified accessible parking.
 		
-		\item APR9: [LC] The system must show if there is a time limit associated with a parking space.
+		\item \hypertarget{APRb}{APR9}: [LC] The system must show if there is a time limit associated with a parking space.
 		\begin{itemize}
 			\item This requirement might not be included in future revisions.
 		\end{itemize}
 	
-		\item APR10: [LC] The user must be warned if their time limited parking space will expire in PARKING\_SPACE\_EXPIRATION\_TIME\_WARNING.
+		\item APR10: [LC] The user must be warned if their time limited parking space will expire in \hyperlink{EXPTIME}{PARKING\_SPOT\_EXPIRATION\_TIME\_WARNING}.
 		\begin{itemize}
-			\item This requirement is dependent on if APR9 still holds.
+			\item This requirement is dependent on if \hyperlink{APRb}{APR9} still holds.
 		\end{itemize}
 		
 		\item APR11: [LC] When the user is navigating to the parking lot, the system must update the user’s position on the map and provide navigation instructions.
 		\begin{itemize}
-			\item This requirement is dependent on if APR4 still holds.
+			\item This requirement is dependent on if \hyperlink{APRa}{APR4} still holds.
 		\end{itemize}
 		
 		\item APR12: The system must notify the user when the parking lot does not have any vacant spots.
@@ -221,7 +221,7 @@ For the following requirements, let LC denote the requirements that are likely t
 	\end{itemize}
 	\item BUR2:  The application should provide the business users with information on each specific parking space by location and type.
 	\item BUR3: The application should provide business users with trends about the parking lot.
-	\item BUR4: [LC] The system will record up to MAX\_ANALYTICS\_DATA worth of analytics data while it is online.
+	\item BUR4: [LC] The system will record up to \hyperlink{ANALYTICSDATA}{MAX\_ANALYTICS\_DATA} worth of analytics data while it is online.
 	\begin{itemize}
 		\item The amount of data that will be used could easily change based on other requirements
 	\end{itemize}
@@ -252,28 +252,28 @@ For the following requirements, let LC denote the requirements that are likely t
 
 \subsubsection{Performance Requirements}
 \begin{itemize}
-	\item PR1: [LC] Users should be able to use the mobile application with low response time. Any communication done between client and server should be completed within PARKING\_SPACE\_RESPONSE\_TIME.
+	\item PR1: [LC] Users should be able to use the mobile application with low response time. Any communication done between client and server should be completed within \hyperlink{RESPONSETIME}{PARKING\_SPOT\_RESPONSE\_TIME}.
 	\begin{itemize}
 		\item The application need to receive a response and update to provide accurate information (parking spot is actually available and was not taken).
-		\item This is likely to change as PARKING\_SPACE\_RESPONSE\_TIME is likely to change.
+		\item This is likely to change as \hyperlink{RESPONSETIME}{PARKING\_SPOT\_RESPONSE\_TIME} is likely to change.
 	\end{itemize}
 
-	\item PR2: [LC] Servers should be able to sustain MAX\_CONCURRENT\_USERS.
+	\item PR2: [LC] Servers should be able to sustain \hyperlink{CONCUSERS}{MAX\_CONCURRENT\_USERS}.
 	\begin{itemize}
 		\item Depending on parking lot sizes and if a single server will host multiple parking lots, it needs to be able to receive and respond to requests without delay
 		\item The supported amount of concurrent users can change with increased budget and better server capabilities
 	\end{itemize}
 
-	\item UR3: [LC] Parking space availability detection should have a error rare less than DETECTION\_ERROR\_RATE
+	\item UR3: [LC] Parking space availability detection should have a error rare less than \hyperlink{DETERR}{DETECTION\_ERROR\_RATE}
 	\begin{itemize}
 		\item inimal false positives (reading a spot is occupied when it’s not or vice versa)
-		\item This is likely to change as DETECTION\_ERROR\_RATE is likely to change.
+		\item This is likely to change as \hyperlink{DETERR}{DETECTION\_ERROR\_RATE} is likely to change.
 	\end{itemize}
 
-	\item PR3: [LC] Parking space availability detection should have a error rare less than DETECTION\_ERROR\_RATE
+	\item PR3: [LC] Parking space availability detection should have a error rare less than \hyperlink{DETERR}{DETECTION\_ERROR\_RATE}
 	\begin{itemize}
 		\item inimal false positives (reading a spot is occupied when it’s not or vice versa)
-		\item This is likely to change as DETECTION\_ERROR\_RATE is likely to change.
+		\item This is likely to change as \hyperlink{DETERR}{DETECTION\_ERROR\_RATE} is likely to change.
 	\end{itemize}
 \end{itemize}
 
