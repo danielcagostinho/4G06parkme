@@ -1,0 +1,441 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.18)  4 NOV 2018 19:01
+entering extended mode
+**./SRS.tex
+(SRS.tex
+LaTeX2e <2018-04-01> patch level 5
+("C:\Users\Daniel\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\article.cls"
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+("C:\Users\Daniel\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\size10.clo"
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+("C:\Users\Daniel\AppData\Local\Programs\MiKTeX 2.9\tex\latex\geometry\geometry
+.sty"
+Package: geometry 2018/04/16 v5.8 Page Geometry
+
+("C:\Users\Daniel\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\keyval.s
+ty"
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+("C:\Users\Daniel\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.
+sty"
+Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
+)
+("C:\Users\Daniel\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\ifvtex
+.sty"
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+("C:\Users\Daniel\AppData\Local\Programs\MiKTeX 2.9\tex\generic\ifxetex\ifxetex
+.sty"
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count88
+\Gm@cntv=\count89
+\c@Gm@tempcnt=\count90
+\Gm@bindingoffset=\dimen103
+\Gm@wd@mp=\dimen104
+\Gm@odd@mp=\dimen105
+\Gm@even@mp=\dimen106
+\Gm@layoutwidth=\dimen107
+\Gm@layoutheight=\dimen108
+\Gm@layouthoffset=\dimen109
+\Gm@layoutvoffset=\dimen110
+\Gm@dimlist=\toks15
+
+("C:\Users\Daniel\AppData\Local\Programs\MiKTeX 2.9\tex\latex\geometry\geometry
+.cfg"))
+("C:\Users\Daniel\AppData\Local\Programs\MiKTeX 2.9\tex\latex\setspace\setspace
+.sty"
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
+("C:\Users\Daniel\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\graphicx
+.sty"
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Users\Daniel\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\graphics
+.sty"
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Users\Daniel\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\trig.sty
+"
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+("C:\Users\Daniel\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics-cfg\grap
+hics.cfg"
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 99.
+
+("C:\Users\Daniel\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics-def\pdft
+ex.def"
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen111
+\Gin@req@width=\dimen112
+)
+("C:\Users\Daniel\AppData\Local\Programs\MiKTeX 2.9\tex\latex\tools\array.sty"
+Package: array 2018/04/30 v2.4h Tabular extension package (FMi)
+\col@sep=\dimen113
+\ar@mcellbox=\box26
+\extrarowheight=\dimen114
+\NC@list=\toks16
+\extratabsurround=\skip43
+\backup@length=\skip44
+\ar@cellbox=\box27
+) (SRS.aux)
+\openout1 = `SRS.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(108.405pt, 397.485pt, 108.405pt)
+* v-part:(T,H,B)=(108.405pt, 578.15999pt, 108.405pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=397.485pt
+* \textheight=578.15999pt
+* \oddsidemargin=36.13501pt
+* \evensidemargin=36.13501pt
+* \topmargin=-0.86499pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+
+("C:\Users\Daniel\AppData\Local\Programs\MiKTeX 2.9\tex\context\base\supp-pdf.m
+kii"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count91
+\scratchdimen=\dimen115
+\scratchbox=\box28
+\nofMPsegments=\count92
+\nofMParguments=\count93
+\everyMPshowfont=\toks17
+\MPscratchCnt=\count94
+\MPscratchDim=\dimen116
+\MPnumerator=\count95
+\makeMPintoPDFobject=\count96
+\everyMPtoPDFconversion=\toks18
+)
+("C:\Users\Daniel\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\epstopdf
+-base.sty"
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+("C:\Users\Daniel\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\infwar
+err.sty"
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+("C:\Users\Daniel\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\grfext.s
+ty"
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+
+("C:\Users\Daniel\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\kvdefi
+nekeys.sty"
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+
+("C:\Users\Daniel\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\ltxcmd
+s.sty"
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)))
+("C:\Users\Daniel\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\kvoption
+s.sty"
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+
+("C:\Users\Daniel\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\kvsetk
+eys.sty"
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+
+("C:\Users\Daniel\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\etexcm
+ds.sty"
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+
+("C:\Users\Daniel\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\ifluat
+ex.sty"
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+("C:\Users\Daniel\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\pdftex
+cmds.sty"
+Package: pdftexcmds 2018/09/10 v0.29 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+)
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 14.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 14.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 14.
+ [1
+
+{C:/Users/Daniel/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] (SRS.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 2.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 2.
+)
+\tf@toc=\write3
+\openout3 = `SRS.toc'.
+
+ [2] [3]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 43.
+
+("C:\Users\Daniel\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 43.
+
+[4]
+<./images/context-diagram.png, id=20, 460.72125pt x 231.86626pt>
+File: ./images/context-diagram.png Graphic file (type png)
+<use ./images/context-diagram.png>
+Package pdftex.def Info: ./images/context-diagram.png  used on input line 72.
+(pdftex.def)             Requested size: 460.72012pt x 231.86568pt.
+
+Overfull \hbox (63.23512pt too wide) in paragraph at lines 72--74
+ [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 84--84
+[]|\OT1/cmr/m/n/10 Physical In-ter-pre-
+ []
+
+
+Underfull \hbox (badness 3977) in paragraph at lines 86--87
+\OT1/cmr/m/n/10 Iden-ti-fier has de-
+ []
+
+
+Overfull \hbox (3.58774pt too wide) in paragraph at lines 88--88
+[]|\OT1/cmr/m/n/10 Vehicle[]Detection[]Time| 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 88--89
+[]|\OT1/cmr/m/n/10 The amount of
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 88--89
+\OT1/cmr/m/n/10 time that has
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 88--89
+\OT1/cmr/m/n/10 passed since an
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 88--89
+\OT1/cmr/m/n/10 ob-ject has been
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 88--89
+\OT1/cmr/m/n/10 de-tected by the
+ []
+
+
+Underfull \hbox (badness 3942) in paragraph at lines 90--92
+\OT1/cmr/m/n/10 i-tude: -90,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 92--92
+[]|\OT1/cmr/m/n/10 Longitude, Lat-i-
+ []
+
+
+Underfull \hbox (badness 1436) in paragraph at lines 92--93
+\OT1/cmr/m/n/10 data of the users
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 94--94
+[]|\OT1/cmr/m/n/10 Vector2
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 94--94
+\OT1/cmr/m/n/10 (Num-ber,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 94--94
+[]|\OT1/cmr/m/n/10 Does not
+ []
+
+
+Overfull \hbox (2.42114pt too wide) in paragraph at lines 96--96
+[]|\OT1/cmr/m/n/10 User[]Application[]Input| 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 96--96
+[]|\OT1/cmr/m/n/10 Does not
+ []
+
+
+Underfull \hbox (badness 3088) in paragraph at lines 96--97
+[]|\OT1/cmr/m/n/10 The user's var-ied
+ []
+
+
+Overfull \hbox (49.02713pt too wide) in paragraph at lines 82--98
+[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 106--106
+[]|\OT1/cmr/m/n/10 Physical In-ter-pre-
+ []
+
+
+Underfull \hbox (badness 1178) in paragraph at lines 108--109
+\OT1/cmr/m/n/10 guide the user to
+ []
+
+
+Overfull \hbox (12.50458pt too wide) in paragraph at lines 110--110
+[]|\OT1/cmr/m/n/10 Parking[]Spot[]Availability| 
+ []
+
+
+Underfull \hbox (badness 1158) in paragraph at lines 112--112
+[]|\OT1/cmr/m/n/10 List of Sta-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 112--112
+[]|\OT1/cmr/m/n/10 List of
+ []
+
+
+Overfull \hbox (49.02713pt too wide) in paragraph at lines 104--116
+[] 
+ []
+
+<./images/fdd.png, id=22, 733.99219pt x 444.91219pt>
+File: ./images/fdd.png Graphic file (type png)
+<use ./images/fdd.png>
+Package pdftex.def Info: ./images/fdd.png  used on input line 124.
+(pdftex.def)             Requested size: 397.49225pt x 240.94145pt.
+[5 <./images/context-diagram.png>] [6]
+<./images/uc1.png, id=30, 617.30624pt x 413.29407pt>
+File: ./images/uc1.png Graphic file (type png)
+<use ./images/uc1.png>
+Package pdftex.def Info: ./images/uc1.png  used on input line 130.
+(pdftex.def)             Requested size: 397.4954pt x 266.12802pt.
+ [7 <./images/fdd.png>]
+<./images/uc2.png, id=36, 617.30624pt x 301.125pt>
+File: ./images/uc2.png Graphic file (type png)
+<use ./images/uc2.png>
+Package pdftex.def Info: ./images/uc2.png  used on input line 134.
+(pdftex.def)             Requested size: 397.4954pt x 193.90019pt.
+<./images/uc3.png, id=37, 612.03656pt x 295.85532pt>
+File: ./images/uc3.png Graphic file (type png)
+<use ./images/uc3.png>
+Package pdftex.def Info: ./images/uc3.png  used on input line 138.
+(pdftex.def)             Requested size: 397.48285pt x 192.14114pt.
+ [8 <./images/uc1.png> <./images/uc2.png>]
+<./images/uc4.png, id=43, 603.0028pt x 357.58594pt>
+File: ./images/uc4.png Graphic file (type png)
+<use ./images/uc4.png>
+Package pdftex.def Info: ./images/uc4.png  used on input line 142.
+(pdftex.def)             Requested size: 397.47702pt x 235.70734pt.
+ [9 <./images/uc3.png> <./images/uc4.png>] [10]
+[11] [12] [13]
+<./images/mp.png, id=62, 505.13719pt x 396.7322pt>
+File: ./images/mp.png Graphic file (type png)
+<use ./images/mp.png>
+Package pdftex.def Info: ./images/mp.png  used on input line 319.
+(pdftex.def)             Requested size: 397.48933pt x 312.1861pt.
+
+Overfull \hbox (47.00436pt too wide) in paragraph at lines 319--320
+ [] 
+ []
+
+[14 <./images/mp.png>] [15] (SRS.aux) ) 
+Here is how much of TeX's memory you used:
+ 2070 strings out of 492970
+ 31532 string characters out of 3126149
+ 106786 words of memory out of 3000000
+ 5921 multiletter control sequences out of 15000+200000
+ 7895 words of font info for 28 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 41i,10n,32p,764b,299s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Users/Daniel/AppData/Local/Programs/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Daniel/AppData/L
+ocal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Da
+niel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb
+><C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts
+/cm/cmr12.pfb><C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
+blic/amsfonts/cm/cmr17.pfb><C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.9/f
+onts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on SRS.pdf (15 pages, 585205 bytes).
+PDF statistics:
+ 90 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 36 words of extra memory for PDF output out of 10000 (max. 10000000)
+
