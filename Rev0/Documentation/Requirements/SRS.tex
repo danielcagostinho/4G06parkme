@@ -2,11 +2,13 @@
 \usepackage[margin=1.5in]{geometry}
 \usepackage{setspace}
 \usepackage{graphicx}
+\usepackage{hyperref}
 \usepackage{array}
+
 \onehalfspacing
 %opening
 \title{ParkMe: Software Requirements Specification}
-\author{Daniel Agostinho\\agostd - 001414323 \and Michael Bitzos\\bitzosm - 001405050 \and Kathryn Brownlee\\brownlks - 001408416  \and Anthony Chang\\changa7 - 001413615 \and Ben Petkovsek\\petkovb - 001417104}
+\author{Daniel Agostinho\\agostd - 001414323\\ Group 5 \and Michael Bitzos\\bitzosm - 001405050\\ Group 5 \and Kathryn Brownlee\\brownlks - 001408416\\ Group 5  \and Anthony Chang\\changa7 - 001413615\\ Group 5 \and Ben Petkovsek\\petkovb - 001417104\\ Group 5}
 
 
 \begin{document}
@@ -19,23 +21,23 @@
 \section{Introduction}
 At one point or another everyone who drives has encountered this scenario; you plan to go to a mall for the day so you drive all the way there only to discover that the parking lot is seemingly full. You must frustratingly drive around the parking area to try and find a single spot, if you even find one. This problem has existed for as long as vehicles have, and while some rudimentary and limited solutions exist such as a parking structure noting how many open spots exist when you enter, there are no solutions that an average consumer can use to solve the problem preemptively. Imagine if there was a way that you could know exactly how many spots were open in a parking lot at a given time and where they were, before you even left your house. 
 
-On the other hand, imagine being a business owner and having the ability to see trends in how many visitors arrived on a given day, how long the average visitor stayed, or even if a vehicle has been parked in a paid spot for longer than they should. Park Me is a mobile application and parking availability system that aims to provide valuable information not only to customers, but also businesses.
+On the other hand, imagine being a business owner and having the ability to see trends in how many visitors arrived on a given day, how long the average visitor stayed, or even if a vehicle has been parked in a paid spot for longer than they should. ParkMe is a mobile application and parking availability system that aims to provide valuable information not only to customers, but also businesses.
 
 
 \subsection{Behaviour Overview}
-To solve the problems mentioned above, Park Me will implement several general systems. The first and most important of these is the ability to monitor the occupancy of parking spots in a given parking area through a series of physical sensors. This data will then be used by the mobile application to update the customer on the number of available spots in the lot, as well as the location of those spots. Specific data on information such as accessible parking, expectant mothers, paid parking...etc will also be displayed, and will utilize preferences set by the user. 
+To solve the problems mentioned above, ParkMe will implement several general systems. The first and most important of these is the ability to monitor the occupancy of parking spots in a given parking area through a series of physical sensors. This data will then be used by the mobile application to update the customer on the number of available spots in the lot, as well as the location of those spots. Specific data on information such as accessible parking, expectant mothers, paid parking...etc will also be displayed, and will utilize preferences set by the user. 
 
 Ideally, the application will also include functionality to navigate the user to a parking spot/row/area, but this integration will depend on the accuracy and availability of GPS systems and the complexity of those systems. In addition, a secondary section of the application which will only be available to verified business owners will include various statistics and trends based on the data gathered by the system, allowing those owners to better tailor their experience to the customers, and increasing returns as well.
 
 
 
 \subsection{Scope}
-Park Me will allow customer users to receive up-to-date information on the availability of parking spots in a desired lot. They will be able to know where their desired parking spot is, and may also be able to get navigation to the spot. Additionally, they will be able to mark where they parked.  The business users will be able to access a separate interface where they can view information and statistics that can be made from the parking data. These may include things such as average occupancy rates for parking spots, overall number of visits and departures based on time/day...etc.
+ParkMe will allow customer users to receive up-to-date information on the availability of parking spots in a desired lot. They will be able to know where their desired parking spot is, and may also be able to get navigation to the spot. Additionally, they will be able to mark where they parked.  The business users will be able to access a separate interface where they can view information and statistics that can be made from the parking data. These may include things such as average occupancy rates for parking spots, overall number of visits and departures based on time/day...etc.
 
 \subsubsection{Stakeholders}
 There are two main stakeholders who will be interested in our product, the consumers, and businesses. The consumers are the everyday people who use the application for parking availability. The businesses can constitute two groups, but are handled in the same way. One of these groups is the small business, who owns a smaller lot and is interested in customer information and trends. The second group is the large business. This group is composed of entities such as the owner of an entire mall, rather than the individual businesses inside of the mall who wouldn’t be able to glean any useful information from the parking trends. Making sure that both of these groups find our system useful is imperative for its success.
 
-The consumer will find use in knowing that parking spots are open for a store they wish to visit, and will have less frustration physically finding a spot. This is good for both the consumer and the business, as it will ensure that not being able to find a parking spot will not deter a potential customer.The business will find use in being able to recognize trends in their customer attendance, allowing them to make changes which improve their own potential goals as well as improving the experience for the customer. In this way, Park Me satisfies both major stakeholders and the relationship between them is strengthened as well.
+The consumer will find use in knowing that parking spots are open for a store they wish to visit, and will have less frustration physically finding a spot. This is good for both the consumer and the business, as it will ensure that not being able to find a parking spot will not deter a potential customer.The business will find use in being able to recognize trends in their customer attendance, allowing them to make changes which improve their own potential goals as well as improving the experience for the customer. In this way, ParkMe satisfies both major stakeholders and the relationship between them is strengthened as well.
 
 \section{Constants}
 
