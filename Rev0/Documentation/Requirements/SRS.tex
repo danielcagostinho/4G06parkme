@@ -161,14 +161,14 @@ For the following requirements, let LC denote the requirements that are likely t
 		
 		\item APR2: [LC] The system should show a view of all available parking lots supported by ParkMe.
 		\begin{itemize}
-			\item This requirement might not be included in future revisions. 
+			\item The feasibility of this requirement will be determined later in the development process. 
 		\end{itemize}
 		
 		\item APR3: The system must allow the user to select a parking lot that is supported by ParkMe.
 	
 		\item \hypertarget{APRa}{APR4}: [LC] The system must provide navigation to the parking lot selected.
 		\begin{itemize}
-			\item This requirement might not be included in future revisions.
+			\item The feasibility of this requirement will be determined later in the development process.
 		\end{itemize}
 		
 		\item APR5: The system must keep track of the location where the user parked their vehicle in the parking lot.
@@ -181,7 +181,7 @@ For the following requirements, let LC denote the requirements that are likely t
 		
 		\item \hypertarget{APRb}{APR9}: [LC] The system must show if there is a time limit associated with a parking space.
 		\begin{itemize}
-			\item This requirement might not be included in future revisions.
+			\item The feasibility of this requirement will be determined later in the development process.
 		\end{itemize}
 	
 		\item APR10: [LC] The user must be warned if their time limited parking space will expire in \hyperlink{EXPTIME}{PARKING\_SPOT\_EXPIRATION\_TIME\_WARNING}.
@@ -223,7 +223,7 @@ For the following requirements, let LC denote the requirements that are likely t
 	\item BUR3: The application should provide business users with trends about the parking lot.
 	\item BUR4: [LC] The system will record up to \hyperlink{ANALYTICSDATA}{MAX\_ANALYTICS\_DATA} worth of analytics data while it is online.
 	\begin{itemize}
-		\item The amount of data that will be used could easily change based on other requirements
+		\item The amount of data that will be used could easily change based on other requirements.
 	\end{itemize}
 \end{itemize}
 
@@ -260,46 +260,40 @@ For the following requirements, let LC denote the requirements that are likely t
 
 	\item PR2: [LC] Servers should be able to sustain \hyperlink{CONCUSERS}{MAX\_CONCURRENT\_USERS}.
 	\begin{itemize}
-		\item Depending on parking lot sizes and if a single server will host multiple parking lots, it needs to be able to receive and respond to requests without delay
-		\item The supported amount of concurrent users can change with increased budget and better server capabilities
+		\item Depending on parking lot sizes and if a single server will host multiple parking lots, it needs to be able to receive and respond to requests without delay.
+		\item The supported amount of concurrent users can change with increased budget and better server capabilities.
 	\end{itemize}
 
-	\item UR3: [LC] Parking space availability detection should have a error rare less than \hyperlink{DETERR}{DETECTION\_ERROR\_RATE}
+	\item PR3: [LC] Parking space availability detection should have a error rare less than. \hyperlink{DETERR}{DETECTION\_ERROR\_RATE}.
 	\begin{itemize}
-		\item inimal false positives (reading a spot is occupied when it’s not or vice versa)
-		\item This is likely to change as \hyperlink{DETERR}{DETECTION\_ERROR\_RATE} is likely to change.
-	\end{itemize}
-
-	\item PR3: [LC] Parking space availability detection should have a error rare less than \hyperlink{DETERR}{DETECTION\_ERROR\_RATE}
-	\begin{itemize}
-		\item inimal false positives (reading a spot is occupied when it’s not or vice versa)
+		\item inimal false positives (reading a spot is occupied when it’s not or vice versa).
 		\item This is likely to change as \hyperlink{DETERR}{DETECTION\_ERROR\_RATE} is likely to change.
 	\end{itemize}
 \end{itemize}
 
 \subsubsection{Security Requirements}
 \begin{itemize}
-	\item SR1: Communication between the android application and the server should be done through a secure connection
+	\item SR1: Communication between the android application and the server should be done through a secure connection.
 	\begin{itemize}
-		\item Private information should be kept private. Safeguard against middleman attacks
+		\item Private information should be kept private. Safeguard against middleman attacks.
 	\end{itemize}
 	
-	\item SR2: Gathered statistics should be anonymous
+	\item SR2: Gathered statistics should be anonymous.
 	\begin{itemize}
-		\item Privacy is a major concern especially since most people do not wish to be tracked. In the event of a data breach, this would also limit the amount of damage done
+		\item Privacy is a major concern especially since most people do not wish to be tracked. In the event of a data breach, this would also limit the amount of damage done.
 	\end{itemize}
 		
 \end{itemize}
 \subsubsection{Operational Requirements}
 \begin{itemize}
-	\item OR1: Users phone must have enough storage to save data
+	\item OR1: Users phone must have enough storage to save data.
 	\begin{itemize}
 		\item User must be able to install and run the application.
 	\end{itemize}
 	
-	\item OR2: GPS data is needed for navigational support
+	\item OR2: GPS data is needed for navigational support.
 	\begin{itemize}
-		\item In order to provide navigational support, the location of the user is needed
+		\item In order to provide navigational support, the location of the user is needed.
 	\end{itemize}
 	
 \end{itemize}
@@ -314,7 +308,7 @@ For the following requirements, let LC denote the requirements that are likely t
 
 \subsubsection{Maintainability and Portability Requirements}
 \begin{itemize}
-	\item MPR1: Application will only run on android devices version 5.0 or newer
+	\item MPR1: Application will only run on android devices version 5.0 or newer.
 	\begin{itemize}
 		\item This is to ensure the application supports most android devices.
 		\begin{center}
@@ -329,7 +323,7 @@ For the following requirements, let LC denote the requirements that are likely t
 		\item The application is targeted to users age 16+ (or driving age). Users should not see any offensive messages or images. If ads are present, they should be curated first to enforce this.
 	\end{itemize}
 	
-	\item CPR2: The product will comply with current Canadian cultural standards
+	\item CPR2: The product will comply with current Canadian cultural standards.
 \end{itemize}
 \subsubsection{Legal Requirements}
 \begin{itemize}
