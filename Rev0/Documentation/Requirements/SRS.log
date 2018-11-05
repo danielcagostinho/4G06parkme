@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.18)  4 NOV 2018 19:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.10.18)  4 NOV 2018 19:16
 entering extended mode
 **./SRS.tex
 (SRS.tex
@@ -382,23 +382,23 @@ File: ./images/fdd.png Graphic file (type png)
 Package pdftex.def Info: ./images/fdd.png  used on input line 124.
 (pdftex.def)             Requested size: 397.49225pt x 240.94145pt.
 [5 <./images/context-diagram.png>] [6]
-<./images/uc1.png, id=30, 617.30624pt x 413.29407pt>
+<./images/uc1.png, id=30, 618.81187pt x 444.15938pt>
 File: ./images/uc1.png Graphic file (type png)
 <use ./images/uc1.png>
 Package pdftex.def Info: ./images/uc1.png  used on input line 130.
-(pdftex.def)             Requested size: 397.4954pt x 266.12802pt.
+(pdftex.def)             Requested size: 397.5018pt x 285.31151pt.
  [7 <./images/fdd.png>]
 <./images/uc2.png, id=36, 617.30624pt x 301.125pt>
 File: ./images/uc2.png Graphic file (type png)
 <use ./images/uc2.png>
 Package pdftex.def Info: ./images/uc2.png  used on input line 134.
 (pdftex.def)             Requested size: 397.4954pt x 193.90019pt.
-<./images/uc3.png, id=37, 612.03656pt x 295.85532pt>
+ [8 <./images/uc1.png> <./images/uc2.png>]
+<./images/uc3.png, id=42, 612.03656pt x 295.85532pt>
 File: ./images/uc3.png Graphic file (type png)
 <use ./images/uc3.png>
 Package pdftex.def Info: ./images/uc3.png  used on input line 138.
 (pdftex.def)             Requested size: 397.48285pt x 192.14114pt.
- [8 <./images/uc1.png> <./images/uc2.png>]
 <./images/uc4.png, id=43, 603.0028pt x 357.58594pt>
 File: ./images/uc4.png Graphic file (type png)
 <use ./images/uc4.png>
@@ -416,26 +416,33 @@ Overfull \hbox (47.00436pt too wide) in paragraph at lines 319--320
  [] 
  []
 
-[14 <./images/mp.png>] [15] (SRS.aux) ) 
+[14 <./images/mp.png>]
+Overfull \hbox (63.62425pt too wide) in paragraph at lines 351--353
+\OT1/cmr/m/n/10 2. Google, Dis-tri-bu-tion Dash-board, An-droid De-vel-op-ers, 
+\OT1/cmr/m/it/10 https://developer.android.com/about/dashboards/
+ []
+
+[15] (SRS.aux) ) 
 Here is how much of TeX's memory you used:
- 2070 strings out of 492970
- 31532 string characters out of 3126149
+ 2072 strings out of 492970
+ 31553 string characters out of 3126149
  106786 words of memory out of 3000000
- 5921 multiletter control sequences out of 15000+200000
- 7895 words of font info for 28 fonts, out of 3000000 for 9000
+ 5922 multiletter control sequences out of 15000+200000
+ 8241 words of font info for 29 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,10n,32p,764b,299s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Users/Daniel/AppData/Local/Programs/
-MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Daniel/AppData/L
-ocal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Da
-niel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb
-><C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts
-/cm/cmr12.pfb><C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
-blic/amsfonts/cm/cmr17.pfb><C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on SRS.pdf (15 pages, 585205 bytes).
+<C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
+public/amsfonts/cm/cmbx10.pfb><C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Daniel/AppData/Local/Prog
+rams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Daniel/AppDa
+ta/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users
+/Daniel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.
+pfb><C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmsy10.pfb><C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.9/fonts/type
+1/public/amsfonts/cm/cmti10.pfb>
+Output written on SRS.pdf (15 pages, 598312 bytes).
 PDF statistics:
- 90 PDF objects out of 1000 (max. 8388607)
+ 94 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  36 words of extra memory for PDF output out of 10000 (max. 10000000)
 

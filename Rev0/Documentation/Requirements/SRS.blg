@@ -1,0 +1,9 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: SRS.aux
+The style file: ieeetr.bst
+I found no \citation commands---while reading file SRS.aux
+Database file #1: references.bib
+I was expecting a `,' or a `}'---line 8 of file references.bib
+ : @misc{android 
+ :               developers_2018,
+I'm skipping whatever remains of this entry
+(There were 2 error messages)
