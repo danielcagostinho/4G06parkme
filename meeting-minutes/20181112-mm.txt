@@ -1,0 +1,13 @@
+Meeting Notes
+2018/11/12
+Notetaker: Michael Bitzos
+Members Not Present: None
+
+Questions for Proof Of Concept Deliverable:
+
+What do you expect for the PoC? Presentation? Documentation?
+What is the deadline? Is it still the same?
+What kind of features of do you think we should highlight in our PoC?
+Do you expect a working product in the general sense for PoC?
+
+
