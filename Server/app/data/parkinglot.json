@@ -1,0 +1,16 @@
+{
+    "parkingSpaces": [
+        {
+            "id": 1,
+            "occupied": false
+        },
+        {
+            "id": 2,
+            "occupied": true
+        },
+        {
+            "id": 3,
+            "occupied": false
+        }
+    ]
+}
