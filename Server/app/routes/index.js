@@ -6,7 +6,7 @@ module.exports = (app, db) => {
             if (err) {
                 return console.log("Error in finding collection:" + err);
             } else {
-                res.send(docs);
+                res.send({parkingSpaces:docs});
             }
         })
 
