@@ -117,27 +117,20 @@ public class MainActivity extends AppCompatActivity {
                                             String y = loc.getString("yPos");
                                             Integer avail = jsonobject.getInt("spotStatus");
                                             System.out.println(x + ", " + y + ": " + avail);
-                                            if (x.equals("0") && y.equals("0") && avail !=0) {
+                                            int drawMode = (avail != 1) ? R.drawable.full : R.drawable.open;
+                                            if (x.equals("0") & y.equals("0")) {
                                                 ImageView img = (ImageView) findViewById(R.id.imageView11);
-                                                img.setImageResource(R.drawable.full);
-                                                //System.out.println("check1");
-                                            } else {
-                                                ImageView img = (ImageView) findViewById(R.id.imageView11);
-                                                img.setImageResource(R.drawable.open);
+                                                img.setImageResource(drawMode);
+                                                System.out.println("check1");
                                             }
-                                            if (x.equals("0") && y.equals("1") && avail !=0) {
+                                            else if (x.equals("0") & y.equals("1")) {
                                                 ImageView img = (ImageView) findViewById(R.id.imageView12);
-                                                img.setImageResource(R.drawable.full);
-                                            } else {
-                                                ImageView img = (ImageView) findViewById(R.id.imageView12);
-                                                img.setImageResource(R.drawable.open);
-                                            }
-                                            if (x.equals("0") && y.equals("2") && avail !=0) {
+                                                img.setImageResource(drawMode);
+                                                System.out.println("check3");
+                                            } else if (x.equals("0") & y.equals("2")) {
                                                 ImageView img = (ImageView) findViewById(R.id.imageView21);
-                                                img.setImageResource(R.drawable.full);
-                                            } else {
-                                                ImageView img = (ImageView) findViewById(R.id.imageView21);
-                                                img.setImageResource(R.drawable.open);
+                                                img.setImageResource(drawMode);
+                                                System.out.println("check5");
                                             }
                                         }
 
