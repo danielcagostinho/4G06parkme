@@ -10,7 +10,7 @@ MongoClient.connect(db.url, (err, db) =>{
     if (err) {
         return console.log("Error: " + err);
     } else {
-        db = db.db("user");
+        db = db.db("spots");
         
         require('./app/routes')(app, db);
         app.listen(port, () => {

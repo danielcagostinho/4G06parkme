@@ -113,11 +113,11 @@ public class MainActivity extends AppCompatActivity {
                                         for (int j = 0; j < jsonArr.length(); j++) {
                                             JSONObject jsonobject = jsonArr.getJSONObject(j);
                                             JSONObject loc = jsonobject.getJSONObject("location");
-                                            String x = loc.getString("x");
-                                            String y = loc.getString("y");
-                                            Boolean avail = jsonobject.getBoolean("available");
+                                            String x = loc.getString("xPos");
+                                            String y = loc.getString("yPos");
+                                            Integer avail = jsonobject.getInt("spotStatus");
                                             System.out.println(x + ", " + y + ": " + avail);
-                                            if (x.equals("1") && y.equals("1") && !avail) {
+                                            if (x.equals("0") && y.equals("0") && avail !=0) {
                                                 ImageView img = (ImageView) findViewById(R.id.imageView11);
                                                 img.setImageResource(R.drawable.full);
                                                 //System.out.println("check1");
@@ -125,14 +125,14 @@ public class MainActivity extends AppCompatActivity {
                                                 ImageView img = (ImageView) findViewById(R.id.imageView11);
                                                 img.setImageResource(R.drawable.open);
                                             }
-                                            if (x.equals("2") && y.equals("1") && !avail) {
+                                            if (x.equals("0") && y.equals("1") && avail !=0) {
                                                 ImageView img = (ImageView) findViewById(R.id.imageView12);
                                                 img.setImageResource(R.drawable.full);
                                             } else {
                                                 ImageView img = (ImageView) findViewById(R.id.imageView12);
                                                 img.setImageResource(R.drawable.open);
                                             }
-                                            if (x.equals("1") && y.equals("2") && !avail) {
+                                            if (x.equals("0") && y.equals("2") && avail !=0) {
                                                 ImageView img = (ImageView) findViewById(R.id.imageView21);
                                                 img.setImageResource(R.drawable.full);
                                             } else {
