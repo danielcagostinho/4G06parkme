@@ -1,0 +1,57 @@
+{
+    "parking_lots": [
+        {
+            "_id": "1",
+            "location": {
+                "longitude": 118,
+                "latitude": 112
+            },
+            "address": {
+                "street": "123 Happy Street",
+                "city": "Hamilton",
+                "postal_code": "L82 1E2",
+                "province": "ON",
+                "Country": "Canada"
+            },
+            "parking_spaces": [
+                {
+                    "id": "1",
+                    "occupancy": false,
+                    "position": {
+                        "x": 1,
+                        "y": 2,
+                        "z" : 0
+                    },
+                    "logs": [
+                        {
+                            "id" : 1,
+                            "time": "1548038091220",
+                            "occupany": true
+                        },
+                        {
+                            "id": 2,
+                            "time": "1548038099000",
+                            "occupany": false
+                        }
+                    ]
+                },
+                {
+                    "id": "2",
+                    "occupancy": false,
+                    "position": {
+                        "x": 2,
+                        "y": 2,
+                        "z" : 0
+                    },
+                    "logs": [
+                        {
+                            "id" : 1,
+                            "time": "1548038091220",
+                            "occupany": false
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
