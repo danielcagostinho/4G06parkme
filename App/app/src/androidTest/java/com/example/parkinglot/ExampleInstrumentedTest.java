@@ -1,4 +1,4 @@
-package com.example.ksbro.testapp;
+package com.example.parkinglot;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.ksbro.testapp", appContext.getPackageName());
+        assertEquals("com.example.parkinglot", appContext.getPackageName());
     }
 }

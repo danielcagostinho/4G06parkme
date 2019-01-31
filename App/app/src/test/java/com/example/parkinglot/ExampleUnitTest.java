@@ -1,4 +1,4 @@
-package com.example.ksbro.testapp;
+package com.example.parkinglot;
 
 import org.junit.Test;
 

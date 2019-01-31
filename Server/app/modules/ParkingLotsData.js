@@ -8,19 +8,17 @@ Math.radians = function(degrees) {
 };
 
 // returns of the distance between user and parking lot is within a radius
-var radiusCheck = function(center, parkinglot, radius) {
+var radiusCheck = function(lat, long, parkinglot, radius) {
 
-    var lat1 = center.lat
-    var long1 = center.long
 
     var lat2 = parkinglot.location.lat
     var long2 = parkinglot.location.long
 
     var R = 6371e3; // metres
-    var φ1 = Math.radians(lat1)
+    var φ1 = Math.radians(lat)
     var φ2 = Math.radians(lat2)
-    var Δφ = Math.radians(lat2-lat1)
-    var Δλ = Math.radians(long2-long1)
+    var Δφ = Math.radians(lat2-lat)
+    var Δλ = Math.radians(long2-long)
 
     // math stuff
     var a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
@@ -28,10 +26,7 @@ var radiusCheck = function(center, parkinglot, radius) {
             Math.sin(Δλ/2) * Math.sin(Δλ/2)
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
 
-    var d = R * c
-    console.log("Center: (",lat1,",",long1,")");
-    console.log("Parking Lot: (",lat2,",",long2,")");
-    console.log("Distance: ", d);
+    var d =  R * c/1000
     return d <= radius
 }
 
@@ -58,9 +53,23 @@ module.exports=  {
     },
 
     // Gets all parking lots within radius (in km)
-    GetAllParkingLotsWithinRadius(center, radius) {
+    GetAllParkingLotsWithinRadius(lat, long, radius) {
         return parkingLots.filter(parkinglot => {
-            return radiusCheck(center, parkinglot, radius)
+            return radiusCheck(lat, long, parkinglot, radius)
+        }).map(lot => {
+            var clone = Object.assign({}, lot)
+            var total = lot.parking_spaces.length
+            var available = lot.parking_spaces.reduce((prev, curr) => {
+                if (curr.occupancy) {
+                    prev++
+                }
+                return prev
+            }, 0)
+            clone["parking_spaces"] = {
+                total,
+                available
+            }
+            return clone
         })
     },
     

@@ -35,10 +35,16 @@ const ParkingLotsData = require("./ParkingLotsData")
 var GetTotalParks = (parkingspace, map) => {
     var hourly = map.hourly
     var daily = map.daily
+
+    const minimumHoursParked = 0.5;
     parkingspace.logs.forEach(log => {
         if (log.occupancy) {
-            var hour = new Date(parseInt(log.time)).getHours()
-            var day = new Date(parseInt(log.time)).getDay()
+            var date = new Date(parseInt(log.time))
+            var hour = date.getHours()
+            var day = date.getDay()
+
+            lastParked = log.time
+
             // dont add if not in original map
             if (hourly[hour] != undefined)
                 hourly[hour]++
@@ -66,6 +72,7 @@ var BuildDailyMap = () => {
         map[i] = 0
     return map
 }
+
 module.exports = {
 
     init() {
