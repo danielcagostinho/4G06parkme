@@ -68,4 +68,14 @@
         android:layout_toEndOf="@+id/name"
         android:text="100km" />
 
+    <TextView
+        android:id="@+id/percentage"
+        android:layout_width="52dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="6dp"
+        android:layout_toEndOf="@+id/textView2"
+        android:text="100%" />
+
 </RelativeLayout>
