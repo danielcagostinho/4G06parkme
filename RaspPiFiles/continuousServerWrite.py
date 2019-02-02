@@ -17,9 +17,9 @@ ser = serial.Serial('COM6',9600,timeout=None)
 file = open ("dataFile.txt", "w")
 spotState = False;
 while True:
-    
+
     timestamp = datetime.datetime.now()
-    
+
     data = ser.readline()
     
     data = data.decode().replace("b'","")
@@ -37,7 +37,7 @@ while True:
         #print('Spot to be changed')
         #print(singleSpot)
         #if (int(event[0]) > int(singleSpot['lastUpdated'])):
-        
+
         if (event[1] == "1"):
             spotState = True;
         else:
@@ -51,6 +51,3 @@ while True:
         #UpdatedDocument = db.spots.find_one({'spot': int(event[1])})
         #print('The updated document:')
         #pprint(UpdatedDocument)
-    
-
-
