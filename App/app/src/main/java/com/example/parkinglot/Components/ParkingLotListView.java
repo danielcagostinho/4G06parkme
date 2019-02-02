@@ -15,6 +15,8 @@ import android.widget.TextView;
 import com.example.parkinglot.MapsActivity;
 import com.example.parkinglot.R;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -29,6 +31,7 @@ public class ParkingLotListView extends ArrayAdapter<ParkingLotItem> implements 
         TextView available;
         TextView total;
         TextView distance;
+        TextView time;
         TextView percentage;
     }
 
@@ -72,7 +75,7 @@ public class ParkingLotListView extends ArrayAdapter<ParkingLotItem> implements 
             viewHolder.total =  convertView.findViewById(R.id.total);
             viewHolder.distance =  convertView.findViewById(R.id.distance);
             viewHolder.percentage = convertView.findViewById(R.id.percentage);
-
+            viewHolder.time = convertView.findViewById(R.id.time);
             result=convertView;
 
             convertView.setTag(viewHolder);
@@ -87,21 +90,21 @@ public class ParkingLotListView extends ArrayAdapter<ParkingLotItem> implements 
         viewHolder.name.setText(parkingLot.name);
         viewHolder.available.setText(Integer.toString(parkingLot.availableParkingSpaces));
         viewHolder.total.setText(Integer.toString(parkingLot.totalParkingSpaces));
-        viewHolder.distance.setText(parkingLot.distance);
+        viewHolder.distance.setText(parkingLot.getDistance());
+        viewHolder.time.setText(parkingLot.getTime());
 
-        int percentage = (parkingLot.totalParkingSpaces != 0) ? (Math.round((parkingLot.availableParkingSpaces * 100f) / parkingLot.totalParkingSpaces)) : 100 ;
-        percentage  = 100 - percentage; // find inverse
+        int percentage = (int) (parkingLot.percentage * 100);
         viewHolder.percentage.setText(Integer.toString(percentage) + "%");
 
         int textColor = Color.GREEN;
-        if (percentage == 0) {
+
+        if (percentage ==0 ){
             textColor = Color.RED;
             viewHolder.percentage.setText("FULL");
-        } else if( percentage <= 25) {
+        } else if (percentage <= 25) {
             textColor = Color.argb(255,255,144,0);    // orange
-        } else if (percentage <= 50) {
+        } else if(percentage <= 50) {
             textColor = Color.YELLOW;
-            viewHolder.percentage.setShadowLayer(1, 0, 0, Color.BLACK);
         }
 
         viewHolder.percentage.setTextColor(textColor);
