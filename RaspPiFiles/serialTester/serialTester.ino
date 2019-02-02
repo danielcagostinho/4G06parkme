@@ -1,3 +1,5 @@
+
+
 #include <Ultrasonic.h>
 
 
@@ -61,17 +63,17 @@ void loop()
   int distance1=100, distance2=100, distance3=100, distance4=100;
   
   if (loopdist == true){
+    Serial.println("5c4946c9ac8f790000f001cf, 1"); // Sensor 1
+    Serial.println("5c4be566bc01840000b851d3, 1"); // Sensor 2
+    Serial.println("5c534fd3a2b1de00000ed7a3, 0"); // Sensor 3
+    Serial.println("5c53504ea2b1de00000ed7a4, 0"); // Sensor 4
     loopdist = false;
-    Serial.println("5c4946c9ac8f790000f001cf,1");
-    Serial.println("5c4be566bc01840000b851d3,1");
-    Serial.println("5c534fd3a2b1de00000ed7a3,0");
-    Serial.println("5c53504ea2b1de00000ed7a4,0");
   } else {
     Serial.println("5c4946c9ac8f790000f001cf,0");
     Serial.println("5c4be566bc01840000b851d3,0");
     Serial.println("5c534fd3a2b1de00000ed7a3,1");
     Serial.println("5c53504ea2b1de00000ed7a4,1");
-    loopdist = true;
+    loopdist = false;
   }
   
 //
