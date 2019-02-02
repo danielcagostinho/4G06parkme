@@ -15,6 +15,7 @@ collection = db.get_collection('ParkingLots')
 id1 = '5c49470d78dea5feb9d02a2c'
 ser = serial.Serial('COM6',9600,timeout=None)
 file = open ("dataFile.txt", "w")
+spotState = False;
 while True:
     
     timestamp = datetime.datetime.now()
@@ -36,7 +37,12 @@ while True:
         #print('Spot to be changed')
         #print(singleSpot)
         #if (int(event[0]) > int(singleSpot['lastUpdated'])):
-        result = collection.update_one({"_id":ObjectId(id1),"parking_spaces.id": ObjectId(event[0])}, {"$set": {"parking_spaces.$.occupancy": event[1]}})
+        
+        if (event[1] == "1"):
+            spotState = True;
+        else:
+            spotState = False;
+        result = collection.update_one({"_id":ObjectId(id1),"parking_spaces.id": ObjectId(event[0])}, {"$set": {"parking_spaces.$.occupancy": spotState}})
         print("spot status update: " + str(result.modified_count))
         #result = db.spots.update_one({'spot': int(event[0])}, {'$set': {'lastUpdated' : int(event[1])}})
         #print("last updated update: " + str(result.modified_count))
