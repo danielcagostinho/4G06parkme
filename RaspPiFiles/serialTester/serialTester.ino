@@ -62,10 +62,15 @@ void loop()
   
   if (loopdist == true){
     loopdist = false;
-    Serial.println("5c4946c9ac8f790000f001cf, 1");
-
+    Serial.println("5c4946c9ac8f790000f001cf,1");
+    Serial.println("5c4be566bc01840000b851d3,1");
+    Serial.println("5c534fd3a2b1de00000ed7a3,0");
+    Serial.println("5c53504ea2b1de00000ed7a4,0");
   } else {
-    Serial.println("5c4946c9ac8f790000f001cf, 0");
+    Serial.println("5c4946c9ac8f790000f001cf,0");
+    Serial.println("5c4be566bc01840000b851d3,0");
+    Serial.println("5c534fd3a2b1de00000ed7a3,1");
+    Serial.println("5c53504ea2b1de00000ed7a4,1");
     loopdist = true;
   }
   
@@ -73,34 +78,34 @@ void loop()
 //  //Check first sensor
 //  if (distance1 <= threshold && read1 == false) { // if it is within range and the previous state was unoccupied
 //    read1 = true; // set state to occupied 
-//    Serial.println("5c4946c9ac8f790000f001cf, 1");
-//  } else if(distance1 > threshold && read1 == true) { // if it is not within range and the previous state was occupied
+//    Serial.println("5c4946c9ac8f790000f001cf,1");
+//  } else if(distance1 > threshold && read1 == true) { // if it is not within range and the previous state was occupiedM
 //    read1 = false;
-//    Serial.println("5c4946c9ac8f790000f001cf, 0");
+//    Serial.println("5c4946c9ac8f790000f001cf,0");
 //  }
 //  //Check second sensor
 //  if (distance2 <= threshold && read2 == false) { // if it is within range and the previous state was unoccupied
 //    read2 = true; // set state to occupied 
-//    Serial.println("5c4be566bc01840000b851d3, 1");
+//    Serial.println("5c4be566bc01840000b851d3,1");
 //  } else if(distance2 > threshold && read2 == true) { // if it is not within range and the previous state was occupied
 //    read2 = false;
-//    Serial.println("5c4be566bc01840000b851d3, 0");
+//    Serial.println("5c4be566bc01840000b851d3,0");
 //    }
 //  //Check first sensor
 //  if (distance3 <= threshold && read3 == false) { // if it is within range and the previous state was unoccupied
 //    read3 = true; // set state to occupied 
-//    Serial.println("5c534fd3a2b1de00000ed7a3, 1");
+//    Serial.println("5c534fd3a2b1de00000ed7a3,1");
 //  } else if(distance3 > threshold && read3 == true) { // if it is not within range and the previous state was occupied
 //    read3 = false;
-//    Serial.println("5c534fd3a2b1de00000ed7a3, 0");
+//    Serial.println("5c534fd3a2b1de00000ed7a3,0");
 //  }
 //  //Check first sensor
 //  if (distance4 <= threshold && read4 == false) { // if it is within range and the previous state was unoccupied
 //    read4 = true; // set state to occupied 
-//    Serial.println("5c53504ea2b1de00000ed7a4, 1");
+//    Serial.println("5c53504ea2b1de00000ed7a4,1");
 //  } else if(distance4 > threshold && read4 == true) { // if it is not within range and the previous state was occupied
 //    read4 = false;
-//    Serial.println("5c53504ea2b1de00000ed7a4, 0");
+//    Serial.println("5c53504ea2b1de00000ed7a4,0");
 //  }
-    delay(5000);
+    delay(10000);
 }

@@ -13,7 +13,7 @@ db=client.ParkMe
 
 collection = db.get_collection('ParkingLots')
 id1 = '5c49470d78dea5feb9d02a2c'
-ser = serial.Serial('COM6',9600,timeout=None)
+ser = serial.Serial('COM3',9600,timeout=None)
 file = open ("dataFile.txt", "w")
 spotState = False;
 while True:
@@ -27,23 +27,27 @@ while True:
     #file.write((timestamp.strftime("%Y%m%d%H%M%S") + ","+data))
     #data = timestamp.strftime("%Y%m%d%H%M%S") + ","+data;
     #file.flush()
-    print ("RAW: " + data)
+    print ("RAW: " + data, flush=True)
     event = data.split(",")
-    print(event)
+    
     event[1].replace("\r\n","")
+    print(event, flush=True)
     if (event[0] != ""):
-        print(event)
+        print(event, flush=True)
         #singleSpot = db.spots.find_one({'spot': int(event[0])})
         #print('Spot to be changed')
         #print(singleSpot)
         #if (int(event[0]) > int(singleSpot['lastUpdated'])):
-        
-        if (event[1] == "1"):
+        print( "exact string: " + event[1], flush=True)
+        if ("1" in str(event[1])):
             spotState = True;
         else:
             spotState = False;
+        print(spotState, flush=True)
+        #result = collection.update_one({"_id":ObjectId(id1),"parking_spaces.id": ObjectId(event[0])}, {"$set": {"parking_spaces.$.occupancy": spotState}})
         result = collection.update_one({"_id":ObjectId(id1),"parking_spaces.id": ObjectId(event[0])}, {"$set": {"parking_spaces.$.occupancy": spotState}})
-        print("spot status update: " + str(result.modified_count))
+
+        print("spot status update: " + str(result.modified_count), flush=True)
         #result = db.spots.update_one({'spot': int(event[0])}, {'$set': {'lastUpdated' : int(event[1])}})
         #print("last updated update: " + str(result.modified_count))
         #print('Number of documents modified : ' + str(result.modified_count))
