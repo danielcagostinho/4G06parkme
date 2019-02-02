@@ -12,16 +12,15 @@ public class ParkingLotItem {
     public int totalParkingSpaces;
 
 
-    public float percentage;
+    public float percentage;    // how full a parking lot is
 
     public LatLng latlong;
 
     DirectionsRoute route;
 
-    public ParkingLotItem(String name, int availableParkingSpaces, int totalParkingSpaces,LatLng latlong, float percentage) {
+    public ParkingLotItem(String name, int availableParkingSpaces, LatLng latlong, float percentage) {
         this.name = name;
         this.availableParkingSpaces = availableParkingSpaces;
-        this.totalParkingSpaces = totalParkingSpaces;
         this.latlong = latlong;
         this.percentage = percentage;
     }

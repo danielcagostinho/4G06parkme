@@ -17,46 +17,13 @@
 
 
     <TextView
-        android:id="@+id/available"
-        android:layout_width="45dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/name"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="6dp"
-        android:text="0"
-        android:textColor="@android:color/black" />
-
-
-    <TextView
-        android:id="@+id/total"
-        android:layout_width="33dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/name"
-        android:layout_marginStart="-19dp"
-        android:layout_marginTop="7dp"
-        android:layout_toEndOf="@+id/available"
-        android:text="13"
-        android:textColor="@android:color/black" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/name"
-        android:layout_alignStart="@+id/available"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="6dp"
-        android:text="/" />
-
-    <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/total"
-        android:layout_marginStart="-2dp"
-        android:layout_marginTop="-1dp"
-        android:layout_toEndOf="@+id/total"
+        android:layout_below="@+id/name"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="3dp"
+        android:layout_toEndOf="@+id/available"
         android:text="Parking Spots Available"
         android:textColor="@color/colorAccent" />
 
@@ -64,7 +31,7 @@
         android:id="@+id/distance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
+        android:layout_marginStart="6dp"
         android:layout_toEndOf="@+id/name"
         android:text="100km" />
 
@@ -78,12 +45,32 @@
 
     <TextView
         android:id="@+id/percentage"
-        android:layout_width="52dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/name"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="3dp"
         android:layout_toEndOf="@+id/textView2"
         android:text="100%" />
+
+    <TextView
+        android:id="@+id/available"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="3dp"
+        android:text="0" />
+
+    <TextView
+        android:id="@+id/full"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/time"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="3dp"
+        android:layout_toEndOf="@+id/percentage"
+        android:text="full" />
 
 </RelativeLayout>

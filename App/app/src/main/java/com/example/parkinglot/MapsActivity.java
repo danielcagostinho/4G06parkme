@@ -2,7 +2,6 @@ package com.example.parkinglot;
 
 import android.Manifest;
 import android.app.Activity;
-import android.arch.core.util.Function;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
@@ -28,8 +27,6 @@ import retrofit2.Response;
 import com.example.parkinglot.Components.ParkingLotItem;
 import com.example.parkinglot.Components.ParkingLotListView;
 
-
-import com.google.gson.JsonObject;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.api.directions.v5.models.DirectionsResponse;
@@ -50,7 +47,6 @@ import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.mapboxsdk.plugins.places.autocomplete.PlaceAutocomplete;
 import com.mapbox.mapboxsdk.plugins.places.autocomplete.model.PlaceOptions;
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory;
-import com.mapbox.mapboxsdk.style.layers.PropertyValue;
 import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 import com.mapbox.services.android.navigation.ui.v5.NavigationLauncher;
@@ -66,7 +62,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-import static com.mapbox.mapboxsdk.style.layers.PropertyFactory.iconImage;
 
 public class MapsActivity extends AppCompatActivity implements
         OnMapReadyCallback,
@@ -179,9 +174,6 @@ public class MapsActivity extends AppCompatActivity implements
 
         style.addImage(("free"), BitmapFactory.decodeResource(
                 getResources(), R.drawable.parking_lot_marker_free));
-
-        style.addImage(("busy1"), BitmapFactory.decodeResource(
-                getResources(), R.drawable.parking_lot_marker_busy1));
 
         style.addImage(("busy2"), BitmapFactory.decodeResource(
                 getResources(), R.drawable.parking_lot_marker_busy2));
@@ -415,13 +407,12 @@ public class MapsActivity extends AppCompatActivity implements
                             JSONObject parkingSpaces = lot.getJSONObject("parking_spaces");
 
                             // get percentage of available spots left
-                            float percentage = (parkingSpaces.getInt("available") * 1.0f) / (parkingSpaces.getInt("total") * 1.0f);
+                            float percentage = 1f - (parkingSpaces.getInt("available") * 1.0f) / (parkingSpaces.getInt("total") * 1.0f);
 
                             // add parking lots to list
                             ParkingLotItem parkingLot = new ParkingLotItem(
                                     addressName,
-                                    parkingSpaces.getInt("available"),
-                                    parkingSpaces.getInt("total"), latLng, percentage);
+                                    parkingSpaces.getInt("available"), latLng, percentage);
 
                             parkingLotItems.add(parkingLot);
 
@@ -493,12 +484,10 @@ public class MapsActivity extends AppCompatActivity implements
 
     // gets the icon of the parking lot marker on maps
     private String getParkingLotIcon(float percentage) {
-        if (percentage == 0f)
+        if (percentage >= 0.9f)
             return "full";
-        else if (percentage <= 0.25f)
+        else if (percentage >= 0.50f)
             return "busy2";
-        else if (percentage <=0.5f)
-            return "busy1";
         return "free";
     }
 
