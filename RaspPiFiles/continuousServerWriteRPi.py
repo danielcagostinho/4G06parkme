@@ -10,10 +10,11 @@ from pprint import pprint
 from bson.objectid import ObjectId
 client = MongoClient('mongodb+srv://admin:0urtnknM5IpkGQcV@4g06parkme-4gwxq.mongodb.net/test?retryWrites=true')
 db=client.ParkMe
-
+rpi-serial-port = '/dev/ttyACM0';
+serial-port-pc = 'COM3';
 collection = db.get_collection('ParkingLots')
 id1 = '5c49470d78dea5feb9d02a2c'
-ser = serial.Serial('/dev/ttyACM0',9600,timeout=None)
+ser = serial.Serial(rpi-serial-port,9600,timeout=None)
 file = open ("dataFile.txt", "w")
 while True:
     

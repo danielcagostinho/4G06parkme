@@ -30,7 +30,7 @@ bool read3 = false;
 bool read4 = false;
 
 // Threshold Distance
-int threshold = 5; // Will sense at a range of 120cm
+int threshold = 100; // Will sense at a range of 120cm
 
 Ultrasonic sensor1(TxPin1, RxPin1);
 Ultrasonic sensor2(TxPin2, RxPin2);
