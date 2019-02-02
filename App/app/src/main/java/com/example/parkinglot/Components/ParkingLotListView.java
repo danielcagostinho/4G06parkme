@@ -1,6 +1,7 @@
 package com.example.parkinglot.Components;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.MainThread;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,6 +29,7 @@ public class ParkingLotListView extends ArrayAdapter<ParkingLotItem> implements 
         TextView available;
         TextView total;
         TextView distance;
+        TextView percentage;
     }
 
     public ParkingLotListView(ArrayList<ParkingLotItem> data, Context context) {
@@ -69,6 +71,7 @@ public class ParkingLotListView extends ArrayAdapter<ParkingLotItem> implements 
             viewHolder.available =  convertView.findViewById(R.id.available);
             viewHolder.total =  convertView.findViewById(R.id.total);
             viewHolder.distance =  convertView.findViewById(R.id.distance);
+            viewHolder.percentage = convertView.findViewById(R.id.percentage);
 
             result=convertView;
 
@@ -86,8 +89,22 @@ public class ParkingLotListView extends ArrayAdapter<ParkingLotItem> implements 
         viewHolder.total.setText(Integer.toString(parkingLot.totalParkingSpaces));
         viewHolder.distance.setText(parkingLot.distance);
 
-        // Return the completed view to render on screen
-        Log.d(MapsActivity.TAG, "getView...");
+        int percentage = (parkingLot.totalParkingSpaces != 0) ? (Math.round((parkingLot.availableParkingSpaces * 100f) / parkingLot.totalParkingSpaces)) : 100 ;
+        percentage  = 100 - percentage; // find inverse
+        viewHolder.percentage.setText(Integer.toString(percentage) + "%");
+
+        int textColor = Color.GREEN;
+        if (percentage == 0) {
+            textColor = Color.RED;
+            viewHolder.percentage.setText("FULL");
+        } else if( percentage <= 25) {
+            textColor = Color.argb(255,255,144,0);    // orange
+        } else if (percentage <= 50) {
+            textColor = Color.YELLOW;
+            viewHolder.percentage.setShadowLayer(1, 0, 0, Color.BLACK);
+        }
+
+        viewHolder.percentage.setTextColor(textColor);
         return convertView;
     }
 }

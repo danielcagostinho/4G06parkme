@@ -16,6 +16,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.example.parkinglot.Components.ParkingLotItem;
 import com.example.parkinglot.Components.ParkingLotListView;
+import com.example.parkinglot.Navigator.RouteAbsolver;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -26,7 +27,6 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
@@ -44,31 +44,35 @@ import java.util.List;
 public class MapsActivity extends FragmentActivity implements
         OnMapReadyCallback, GoogleMap.OnCameraIdleListener, GoogleMap.OnCameraMoveStartedListener {
 
-    private GoogleMap mMap;
     private boolean movingMap =false;
 
     final private float MAX_ZOOM_OUT = 12f;
+
     private PlaceAutocompleteFragment autocompleteFragment;
     private FusedLocationProviderClient locationClient;
+    private Requestor requestor;
+    private ParkingLotListView adapter;
+    private RouteAbsolver routeAbsolver;
 
-    public static String TAG = "Parking";
+    private ArrayList<ParkingLotItem> parkingLots;  // parking lots with in area
+    private Marker destinationMarker;               // marker of destination
+    private List<Marker> parkingLotMarkers;         //all parking lot parkingLotMarkers on map
+    private ListView listView;                      // list view of parking lots
+    private LatLng userPosition;
 
-    private List<Marker> markers;
 
-    Requestor requestor;
-
-
-    ArrayList<ParkingLotItem> parkingLots;
-    ListView listView;
-    private static ParkingLotListView adapter;
+    public static String TAG = "Parking";           // logging tag
+    public static GoogleMap mMap;                   // google map compontnet
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        markers = new ArrayList<Marker>();
+
+        parkingLotMarkers = new ArrayList<>();
 
         requestor = new Requestor(this);
 
+        routeAbsolver = new RouteAbsolver();
 
         locationClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -81,6 +85,8 @@ public class MapsActivity extends FragmentActivity implements
 
         autoCompleteListener();
         setUpParkingLotList();
+
+
     }
 
     private void setUpParkingLotList() {
@@ -101,10 +107,14 @@ public class MapsActivity extends FragmentActivity implements
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                // move to parking lot
                 ParkingLotItem parkingLot = parkingLots.get(position);
-                Log.d(TAG, "Clicked on a parking lot: " + parkingLot.name);
-            }
+                LatLng parkingLotPosition = parkingLot.latlong;
+                moveCamera(parkingLot.latlong);
 
+                // Start downloading json data from Google Directions API
+//                routeAbsolver.Navigate(mMap, userPosition, parkingLotPosition);
+            }
         });
     }
 
@@ -118,8 +128,12 @@ public class MapsActivity extends FragmentActivity implements
             @Override
             public void onPlaceSelected(Place place) {
 
+                // remove old one first
+                if (destinationMarker != null)
+                    destinationMarker.remove();
+
                 // create marker at that positon
-                mMap.addMarker(new MarkerOptions().position(place.getLatLng()).title(place.getName().toString()));
+                destinationMarker = mMap.addMarker(new MarkerOptions().position(place.getLatLng()).title(place.getName().toString()));
 
                 moveCamera(place.getLatLng());
             }
@@ -134,7 +148,7 @@ public class MapsActivity extends FragmentActivity implements
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
+     * This is where we can add parkingLotMarkers or lines, add listeners or move the camera. In this case,
      * we just add a marker near Sydney, Australia.
      * If Google Play services is not installed on the device, the user will be prompted to install
      * it inside the SupportMapFragment. This method will only be triggered once the user has
@@ -149,9 +163,28 @@ public class MapsActivity extends FragmentActivity implements
         mMap.getUiSettings().setCompassEnabled(true);
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
         mMap.getUiSettings().setAllGesturesEnabled(true);
-        Log.d(TAG, "onMapReady...");
-        getLocationAndNearbyLots(true);
 
+        getLocationAndNearbyLots(true);
+    }
+
+
+    @Override
+    public void onCameraIdle() {
+        // only try if we actually moved
+        if (movingMap) {
+
+            // update current location
+            getLocationAndNearbyLots(false);
+            movingMap = false;
+        }
+
+    }
+
+    @Override
+    public void onCameraMoveStarted(int reason) {
+        if (reason == GoogleMap.OnCameraMoveStartedListener.REASON_GESTURE || reason == GoogleMap.OnCameraMoveStartedListener.REASON_DEVELOPER_ANIMATION) {
+            movingMap = true;
+        }
     }
 
     private void getLocationAndNearbyLots(final boolean moveCamera) {
@@ -161,13 +194,14 @@ public class MapsActivity extends FragmentActivity implements
                 @Override
                 public void onSuccess(Location location) {
 
-                    final LatLng currentLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+                    // set position
+                    userPosition = new LatLng(location.getLatitude(), location.getLongitude());
 
                     if (moveCamera)
-                        moveCamera(currentLatLng);
+                        moveCamera(userPosition);
 
                     // set bias for search
-                    autocompleteFragment.setBoundsBias(new LatLngBounds(currentLatLng, currentLatLng));
+                    autocompleteFragment.setBoundsBias(new LatLngBounds(userPosition, userPosition));
 
                     float zoomLevel = mMap.getCameraPosition().zoom;
 
@@ -188,15 +222,15 @@ public class MapsActivity extends FragmentActivity implements
                         @Override
                         public void onResponse(String res) {
 
-                            // remove all existing markers first
+                            // remove all existing parkingLotMarkers first
                             purgeMarkers();
                             try {
                                 JSONObject response = new JSONObject(res);
-                                JSONArray parkingLots = response.getJSONArray("parking_lots");
+                                JSONArray parkingLotsArray = response.getJSONArray("parking_lots");
                                 ArrayList<ParkingLotItem> parkingLotItems = new ArrayList<>();
                                 // add a marker
-                                for(int i =0; i< parkingLots.length();i++) {
-                                    JSONObject lot = (JSONObject) parkingLots.get(i);
+                                for(int i = 0; i< parkingLotsArray.length(); i++) {
+                                    JSONObject lot = (JSONObject) parkingLotsArray.get(i);
                                     JSONObject location = lot.getJSONObject("location");
                                     String addressName = lot.getJSONObject("address").get("street").toString();
                                     double latitude =  (double) location.get("lat");
@@ -209,7 +243,7 @@ public class MapsActivity extends FragmentActivity implements
                                     JSONObject parkingSpaces = lot.getJSONObject("parking_spaces");
 
                                     // calculate distance
-                                    float distance = getDistance(currentLatLng, latLng);
+                                    float distance = getDistance(userPosition, latLng);
                                     String distanceString= "";
 
                                     // km or m
@@ -221,24 +255,25 @@ public class MapsActivity extends FragmentActivity implements
                                     distanceString = "(" + distanceString + ")";
 
                                     // add parking lots to list
-                                    parkingLotItems.add(new ParkingLotItem(addressName, parkingSpaces.getInt("available"), parkingSpaces.getInt("total"), distanceString ));
-                                    Log.d(TAG, "Added Parking lots");
+                                    ParkingLotItem parkingLot= new ParkingLotItem(
+                                            addressName,
+                                            parkingSpaces.getInt("available"),
+                                            parkingSpaces.getInt("total"),
+                                            distanceString, latLng );
 
+                                    parkingLotItems.add(parkingLot);
 
-                                    // change color of marker based on availability
-                                    float color = BitmapDescriptorFactory.HUE_RED;
+                                    // add to global
+                                    parkingLots.add(parkingLot);
+
+                                    // get percentage of availability
                                     float percentage = (parkingSpaces.getInt("available") * 1.0f) / (parkingSpaces.getInt("total") * 1.0f);
 
-                                    if (percentage >= 0.75f) {
-                                        color = BitmapDescriptorFactory.HUE_RED;
-                                    } else if (percentage >=0.5f) {
-                                        color = BitmapDescriptorFactory.HUE_ORANGE;
-                                    } else {
-                                        color = BitmapDescriptorFactory.HUE_GREEN;
-                                    }
-                                    Marker marker = mMap.addMarker(new MarkerOptions().position(latLng).title(addressName).icon(BitmapDescriptorFactory
-                                            .defaultMarker(color)));
-                                    markers.add(marker);
+                                    Marker marker = mMap.addMarker(
+                                            new MarkerOptions().position(latLng).title(addressName)
+                                                    .icon(BitmapDescriptorFactory.fromResource(getParkingLotIcon(percentage))));
+
+                                    parkingLotMarkers.add(marker);
 
                                     // update list
                                     adapter= new ParkingLotListView(parkingLotItems,getApplicationContext());
@@ -246,8 +281,11 @@ public class MapsActivity extends FragmentActivity implements
                                 }
 
                             } catch (JSONException e) {
-                                Log.d(TAG, "onResponse: " + e);
+                                Log.d(TAG, "onResponse JSON Error: " + e);
+                            } catch (Exception e) {
+                                Log.d(TAG, "onResponse Exception: " + e);
                             }
+
                         }
                     }, new Response.ErrorListener() {
                         @Override
@@ -266,39 +304,19 @@ public class MapsActivity extends FragmentActivity implements
     // moves the camera to a latlng
     private void moveCamera(LatLng latLng) {
         // move and zoom
-        float zoomLevel = 16.0f; // goes up to 21
+        float zoomLevel = 15.0f; // goes up to 21
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoomLevel));
     }
 
-    // removes all markers
+    // removes all parkingLotMarkers
     private void purgeMarkers() {
-        for(Marker marker: markers)
+        for(Marker marker: parkingLotMarkers)
           marker.remove();
-        markers.clear();
+        parkingLotMarkers.clear();
     }
 
 
-    @Override
-    public void onCameraIdle() {
-        // only try if we actually moved
-        if (movingMap) {
-            Log.d(TAG, "onCameraIdle...");
-
-            // update current location
-            getLocationAndNearbyLots(false);
-            movingMap = false;
-        }
-
-    }
-
-    @Override
-    public void onCameraMoveStarted(int reason) {
-        if (reason == GoogleMap.OnCameraMoveStartedListener.REASON_GESTURE || reason == GoogleMap.OnCameraMoveStartedListener.REASON_DEVELOPER_ANIMATION) {
-            movingMap = true;
-            Log.d(TAG, "onCameraMoveStarted: Moving not tapping");
-        }
-    }
 
     // returns the distance betwen two lat/long points
     private float getDistance(LatLng a, LatLng b) {
@@ -308,5 +326,20 @@ public class MapsActivity extends FragmentActivity implements
 
         // convert to km
         return results[0] / 1000f;
+    }
+
+    // gets the icon of the parking lot marker on maps
+    private int getParkingLotIcon(float percentage) {
+        int icon;
+        if (percentage == 1f) {
+            icon = R.drawable.parking_lot_marker_full;
+        }else if (percentage >= 0.75) {
+            icon = R.drawable.parking_lot_marker_busy2;
+        } else if (percentage >=0.5f) {
+            icon = R.drawable.parking_lot_marker_busy1;
+        } else {
+            icon = R.drawable.parking_lot_marker_free;
+        }
+        return icon;
     }
 }
