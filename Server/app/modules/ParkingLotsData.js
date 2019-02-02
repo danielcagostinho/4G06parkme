@@ -60,7 +60,7 @@ module.exports=  {
             var clone = Object.assign({}, lot)
             var total = lot.parking_spaces.length
             var available = lot.parking_spaces.reduce((prev, curr) => {
-                if (curr.occupancy) {
+                if (!curr.occupancy) {
                     prev++
                 }
                 return prev

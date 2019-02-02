@@ -2,6 +2,7 @@ package com.example.parkinglot.Components;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.annotation.ColorRes;
 import android.support.annotation.MainThread;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,7 +30,6 @@ public class ParkingLotListView extends ArrayAdapter<ParkingLotItem> implements 
     private static class ViewHolder {
         TextView name;
         TextView available;
-        TextView total;
         TextView distance;
         TextView time;
         TextView percentage;
@@ -72,7 +72,6 @@ public class ParkingLotListView extends ArrayAdapter<ParkingLotItem> implements 
             convertView = inflater.inflate(R.layout.parking_lot_row_item, parent, false);
             viewHolder.name = convertView.findViewById(R.id.name);
             viewHolder.available =  convertView.findViewById(R.id.available);
-            viewHolder.total =  convertView.findViewById(R.id.total);
             viewHolder.distance =  convertView.findViewById(R.id.distance);
             viewHolder.percentage = convertView.findViewById(R.id.percentage);
             viewHolder.time = convertView.findViewById(R.id.time);
@@ -89,22 +88,27 @@ public class ParkingLotListView extends ArrayAdapter<ParkingLotItem> implements 
 
         viewHolder.name.setText(parkingLot.name);
         viewHolder.available.setText(Integer.toString(parkingLot.availableParkingSpaces));
-        viewHolder.total.setText(Integer.toString(parkingLot.totalParkingSpaces));
         viewHolder.distance.setText(parkingLot.getDistance());
         viewHolder.time.setText(parkingLot.getTime());
 
         int percentage = (int) (parkingLot.percentage * 100);
         viewHolder.percentage.setText(Integer.toString(percentage) + "%");
 
-        int textColor = Color.GREEN;
 
-        if (percentage ==0 ){
+
+        // "full" text
+        TextView  tv = convertView.findViewById(R.id.full);
+        tv.setVisibility(View.VISIBLE);
+
+        int textColor = Color.GREEN;
+        if (percentage == 100) {
+            textColor = Color.RED;
+            tv.setVisibility(View.INVISIBLE);
+        } else if (percentage >= 90 ){
             textColor = Color.RED;
             viewHolder.percentage.setText("FULL");
-        } else if (percentage <= 25) {
+        } else if (percentage >= 50) {
             textColor = Color.argb(255,255,144,0);    // orange
-        } else if(percentage <= 50) {
-            textColor = Color.YELLOW;
         }
 
         viewHolder.percentage.setTextColor(textColor);
