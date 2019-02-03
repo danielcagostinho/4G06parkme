@@ -19,9 +19,9 @@ spotState = False;
 while True:
 
     timestamp = datetime.datetime.now()
-
+    print(timestamp, flush=True)
     data = ser.readline()
-    
+
     data = data.decode().replace("b'","")
     data = data.replace("\r\n'","")
     #file.write((timestamp.strftime("%Y%m%d%H%M%S") + ","+data))
@@ -29,7 +29,7 @@ while True:
     #file.flush()
     print ("RAW: " + data, flush=True)
     event = data.split(",")
-    
+
     event[1].replace("\r\n","")
     print(event, flush=True)
     if (event[0] != ""):
@@ -45,10 +45,9 @@ while True:
             spotState = False;
         print(spotState, flush=True)
         #result = collection.update_one({"_id":ObjectId(id1),"parking_spaces.id": ObjectId(event[0])}, {"$set": {"parking_spaces.$.occupancy": spotState}})
-        result = collection.update_one({"_id":ObjectId(id1),"parking_spaces.id": ObjectId(event[0])}, {"$set": {"parking_spaces.$.occupancy": spotState}})
+        result = collection.update_one({"_id":ObjectId(id1),"parking_spaces.id": ObjectId(event[0])}, {"$set": {"parking_spaces.$.occupancy": spotState}}, {"$push": {"parking_spaces.$.logs": eventTime}})
 
         print("spot status update: " + str(result.modified_count), flush=True)
-        #result = db.spots.update_one({'spot': int(event[0])}, {'$set': {'lastUpdated' : int(event[1])}})
         #print("last updated update: " + str(result.modified_count))
         #print('Number of documents modified : ' + str(result.modified_count))
 
