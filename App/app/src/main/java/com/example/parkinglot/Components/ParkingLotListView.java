@@ -144,6 +144,8 @@ public class ParkingLotListView extends ArrayAdapter<ParkingLotItem> implements 
             while(keys.hasNext()) {
                 String key = keys.next();
                 int val = hourly.getInt(key);
+                if (val < 9 || val > 16)
+                    continue;
                 double percentVal = (val*1.0)/total;
                 points.add( new DataPoint(Integer.parseInt(key), percentVal));
             }

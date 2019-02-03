@@ -50,6 +50,15 @@
             mapbox:backgroundTint="@color/mapboxWhite"
             mapbox:srcCompat="@android:drawable/ic_search_category_default" />
 
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/anthonyBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:clickable="true"
+            tools:srcCompat="@android:drawable/btn_star_big_on" />
+
     </com.mapbox.mapboxsdk.maps.MapView>
 
     <ListView

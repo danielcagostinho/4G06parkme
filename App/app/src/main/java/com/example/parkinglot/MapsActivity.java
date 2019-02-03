@@ -113,6 +113,12 @@ public class MapsActivity extends AppCompatActivity implements
         mapView.getMapAsync(this);
         requestor = new Requestor(getApplicationContext());
 
+        FloatingActionButton btn = findViewById(R.id.anthonyBtn);
+        btn.setOnClickListener((View view) -> {
+            Intent intent = new Intent(this, ParkingSpotActivity.class);
+            startActivity(intent);
+        });
+
     }
 
 
