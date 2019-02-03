@@ -3,7 +3,11 @@ package com.example.parkinglot.Components;
 import com.mapbox.api.directions.v5.models.DirectionsRoute;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 
+import org.json.JSONObject;
+
 public class ParkingLotItem {
+
+    public String id;
 
     public String name;
 
@@ -18,11 +22,15 @@ public class ParkingLotItem {
 
     DirectionsRoute route;
 
-    public ParkingLotItem(String name, int availableParkingSpaces, LatLng latlong, float percentage) {
+    public JSONObject analytics;
+
+    public ParkingLotItem(String id, String name, int availableParkingSpaces, LatLng latlong, float percentage, JSONObject analytics) {
+        this.id = id;
         this.name = name;
         this.availableParkingSpaces = availableParkingSpaces;
         this.latlong = latlong;
         this.percentage = percentage;
+        this.analytics = analytics;
     }
 
 

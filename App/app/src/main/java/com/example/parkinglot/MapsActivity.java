@@ -36,8 +36,6 @@ import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.FeatureCollection;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
-import com.mapbox.mapboxsdk.camera.CameraPosition;
-import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.location.LocationComponent;
 import com.mapbox.mapboxsdk.maps.MapView;
@@ -76,7 +74,7 @@ public class MapsActivity extends AppCompatActivity implements
     private boolean movingMap = false;
     private boolean initialized = false;
 
-    private ParkingLotListView adapter;
+    private ParkingLotListView parkingLotListView;
 
     private ArrayList<ParkingLotItem> parkingLots;  // parking lots with in area
     private ListView listView;                      // list view of parking lots
@@ -114,9 +112,11 @@ public class MapsActivity extends AppCompatActivity implements
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
         requestor = new Requestor(getApplicationContext());
+
     }
 
 
+    // Set up map and style
     @Override
     public void onMapReady(@NonNull final MapboxMap mapBoxMap) {
         this.mapBoxMap = mapBoxMap;
@@ -124,40 +124,20 @@ public class MapsActivity extends AppCompatActivity implements
         mapBoxMap.addOnCameraMoveStartedListener(this);
         mapBoxMap.getUiSettings().setRotateGesturesEnabled(false);
 
-        // SET UP STYLE: NEED
-        mapBoxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
+        mapBoxMap.setStyle(Style.MAPBOX_STREETS, (Style style) -> {
 
-            // do everything once map is loaded
-            @Override
-            public void onStyleLoaded(@NonNull Style style) {
-
-                setSymbolLayers(style);
-
-                enableLocationComponent(style);
-
-                initSearchFab();
-
-                mapBoxMap.addOnMapClickListener(MapsActivity.this);
-                navigationButton = findViewById(R.id.navigationBtn);
-                navigationButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (currentRoute == null)
-                            return;
-                        NavigationLauncherOptions options = NavigationLauncherOptions.builder()
-                                .directionsRoute(currentRoute)
-                                .build();
-                        // Call this method with Context from within an Activity
-                        NavigationLauncher.startNavigation(MapsActivity.this, options);
-                    }
-                });
-            }});
-
-
+            setSymbolLayers(style);
+            enableLocationComponent(style);
+            initSearchFab();
+            mapBoxMap.addOnMapClickListener(MapsActivity.this);
+            setUpNavigationButton();
+        });
     }
 
+    // sets up graphic layer for map
     private void setSymbolLayers(@NonNull  Style style) {
 
+        // destination markers
         style.addImage(("destination"), BitmapFactory.decodeResource(
                 getResources(), R.drawable.map_default_map_marker));
 
@@ -169,6 +149,7 @@ public class MapsActivity extends AppCompatActivity implements
                         PropertyFactory.iconAllowOverlap(true)
                 ));
 
+        // parking lot icons
         style.addImage(("full"), BitmapFactory.decodeResource(
                 getResources(), R.drawable.parking_lot_marker_full));
 
@@ -180,49 +161,69 @@ public class MapsActivity extends AppCompatActivity implements
 
         style.addLayer(new SymbolLayer("parking-layer", parkingLayerID)
                 .withProperties(
-                        PropertyFactory.iconImage("{icon}"),
+                        PropertyFactory.iconImage("{icon}"),            // they tell which icon is going to be displayed
                         PropertyFactory.iconIgnorePlacement(true),
                         PropertyFactory.iconAllowOverlap(true)
                 ));
     }
 
+    // initializes the search widget
     @SuppressWarnings( {"MissingPermission"})
     private void initSearchFab() {
-        findViewById(R.id.searchBtn).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.searchBtn).setOnClickListener((View view) -> {
 
-            @Override
-            public void onClick(View view) {
+            // get user country for better search
+            Location userLocation = locationComponent.getLastKnownLocation();
+            String userCountry  = getApplication().getResources().getConfiguration().locale.getCountry();
 
-                // get user country for better search
-                Location userLocation = locationComponent.getLastKnownLocation();
-                String userCountry  = getApplication().getResources().getConfiguration().locale.getCountry();
-                Intent intent = new PlaceAutocomplete.IntentBuilder()
-                        .accessToken(Mapbox.getAccessToken())
-                        .placeOptions(PlaceOptions.builder()
-                                .backgroundColor(Color.parseColor("#EEEEEE"))
-                                .limit(10)
-                                .proximity(Point.fromLngLat(userLocation.getLongitude(), userLocation.getLatitude()))
-                                .country(userCountry)
-                                .build(PlaceOptions.MODE_FULLSCREEN))
-                        .build(MapsActivity.this);
-                startActivityForResult(intent, SEARCH_RESPONSE);
-            }
+            // opens new activity upon clicking
+            Intent intent = new PlaceAutocomplete.IntentBuilder()
+                    .accessToken(Mapbox.getAccessToken())
+                    .placeOptions(PlaceOptions.builder()
+                            .backgroundColor(Color.parseColor("#EEEEEE"))
+                            .limit(10)
+                            .proximity(Point.fromLngLat(userLocation.getLongitude(), userLocation.getLatitude()))
+                            .country(userCountry)
+                            .build(PlaceOptions.MODE_FULLSCREEN))
+                    .build(MapsActivity.this);
+            startActivityForResult(intent, SEARCH_RESPONSE);
+
+        });
+    }
+
+    // sets up navigate button
+    private void setUpNavigationButton() {
+        navigationButton = findViewById(R.id.navigationBtn);
+        navigationButton.setOnClickListener((View v) -> {
+            if (currentRoute == null)
+                return;
+            NavigationLauncherOptions options = NavigationLauncherOptions.builder()
+                    .directionsRoute(currentRoute)
+                    .build();
+
+            NavigationLauncher.startNavigation(MapsActivity.this, options);
         });
     }
 
     @SuppressWarnings( {"MissingPermission"})
     @Override
     public boolean onMapClick(@NonNull LatLng point) {
+
+        // check for feature clicks
         PointF screenPoint = mapBoxMap.getProjection().toScreenLocation(point);
         List<Feature> parkingIcons = mapBoxMap.queryRenderedFeatures(screenPoint, parkingLayerID);
         List<Feature> destinationIcons = mapBoxMap.queryRenderedFeatures(screenPoint, destinationLayerID);
+
         if (!parkingIcons.isEmpty()) {
+
+            // user clicked on a parking spot
             Feature selectedFeature = parkingIcons.get(0);
             int index = selectedFeature.getNumberProperty("index").intValue();
             ParkingLotItem  lot = parkingLots.get(index);
 
-            // get the route
-            getAndDrawRoute(Point.fromLngLat(lot.latlong.getLongitude(), lot.latlong.getLatitude()));
+            listView.smoothScrollToPosition(index);
+            // draw the route
+//            getAndDrawRoute(Point.fromLngLat(lot.latlong.getLongitude(), lot.latlong.getLatitude()));
         } else if (!destinationIcons.isEmpty()) {
 
             // if we clicked on destination, remove marker
@@ -230,10 +231,9 @@ public class MapsActivity extends AppCompatActivity implements
             navigationButton.setEnabled(false);
             currentRoute = null;
             navigationMapRoute.removeRoute();
-            Log.d(TAG, "Removed markers!");
         } else {
 
-            // add marker at user clicker
+            // add marker at user clicker else where
             Point destinationPoint = Point.fromLngLat(point.getLongitude(), point.getLatitude());
 
             addDestinationMarker(destinationPoint);
@@ -250,13 +250,16 @@ public class MapsActivity extends AppCompatActivity implements
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        // on return from search
         if (resultCode == Activity.RESULT_OK && requestCode == SEARCH_RESPONSE) {
 
+            // add destination marker and draw route
             CarmenFeature selectedCarmenFeature = PlaceAutocomplete.getPlace(data);
             Point location = (Point) selectedCarmenFeature.geometry();
             addDestinationMarker(location);
             getAndDrawRoute(location);
-            moveCamera(location);
+            CameraTranslator.moveCamera(mapBoxMap, location);
         }
     }
 
@@ -267,15 +270,17 @@ public class MapsActivity extends AppCompatActivity implements
         // only try if we actually moved
         if (movingMap && initialized) {
             // update current location
-            getLocationAndNearbyLots(false);
+            getNearbyParkingLots();
             movingMap = false;
         }
     }
 
+    // user has started moving the map
     @Override
     public void onCameraMoveStarted(int reason) {
         movingMap = true;
     }
+
 
     // sets up parking lot list
     @SuppressWarnings( {"MissingPermission"})
@@ -283,56 +288,54 @@ public class MapsActivity extends AppCompatActivity implements
         listView= findViewById(R.id.list);
         parkingLots = new ArrayList<>();
 
-        adapter= new ParkingLotListView(parkingLots,getApplicationContext());
-        listView.setAdapter(adapter);
+        parkingLotListView = new ParkingLotListView(parkingLots,getApplicationContext());
+        listView.setAdapter(parkingLotListView);
 
         // set empty view
         TextView empty= findViewById(R.id.empty);
         listView.setEmptyView(empty);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener( (AdapterView<?> parent, View view, int position, long id) -> {
+            // move to parking lot
+            ParkingLotItem parkingLot = parkingLots.get(position);
+            LatLng parkingLotPosition = parkingLot.latlong;
+            CameraTranslator.moveCamera(mapBoxMap, parkingLot.latlong);
 
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // move to parking lot
-                ParkingLotItem parkingLot = parkingLots.get(position);
-                LatLng parkingLotPosition = parkingLot.latlong;
-                moveCamera(parkingLot.latlong);
-
-                currentRoute = parkingLot.getRoute();
-                drawRoute(currentRoute);
-            }
+            currentRoute = parkingLot.getRoute();
+            drawRoute(currentRoute);
         });
     }
 
+    // enable location with map, ask for location permissions if not already
     @SuppressWarnings( {"MissingPermission"})
     private void enableLocationComponent(@NonNull Style loadedMapStyle) {
         FloatingActionButton userGPSButton = findViewById(R.id.userLocationBtn);
+
         // Check if permissions are enabled and if not request
         if (PermissionsManager.areLocationPermissionsGranted(this)) {
 
             // Activate the MapboxMap LocationComponent to show user location
-            // Adding in LocationComponentOptions is also an optional parameter
             locationComponent = mapBoxMap.getLocationComponent();
             locationComponent.activateLocationComponent(this, loadedMapStyle);
             locationComponent.setLocationComponentEnabled(true);
 
             // Set the component's camera mode
-//            locationComponent.setCameraMode(CameraMode.TRACKING);
             Location userLocation = locationComponent.getLastKnownLocation();
+
+            // show the GPS button
             userGPSButton.show();
 
             // move to user location on click
-            userGPSButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Location userLocation = locationComponent.getLastKnownLocation();
-                    moveCamera(userLocation);
-                }
+            userGPSButton.setOnClickListener((View view) -> {
+                    CameraTranslator.moveCamera(mapBoxMap, userLocation);
             });
-            moveCamera(userLocation);
+
+            // move to user
+            CameraTranslator.moveCamera(mapBoxMap, userLocation);
             initialized = true;
         } else {
+
+            // if not enabled location
             permissionsManager = new PermissionsManager(this);
             permissionsManager.requestLocationPermissions(this);
             userGPSButton.setEnabled(true);
@@ -340,16 +343,19 @@ public class MapsActivity extends AppCompatActivity implements
         }
     }
 
+    // required for permissions
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         permissionsManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
+    // required for permissions
     @Override
     public void onExplanationNeeded(List<String> permissionsToExplain) {
         // do nothing
     }
 
+    // required for permissions
     @Override
     public void onPermissionResult(boolean granted) {
         if (granted) {
@@ -359,17 +365,15 @@ public class MapsActivity extends AppCompatActivity implements
         }
     }
 
-    private void getLocationAndNearbyLots(final boolean moveCamera) {
-//        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+    // gets the nearby parking lots
+    private void getNearbyParkingLots() {
+
+        // check for permissions first
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
+            // get user location once
             Location location = locationComponent.getLastKnownLocation();
-            // set position
             LatLng userPosition = new LatLng(location.getLatitude(), location.getLongitude());
-
-            if (moveCamera)
-                moveCamera(userPosition);
-
             double zoomLevel = mapBoxMap.getCameraPosition().zoom;
 
             // dont bother if we are so far zoomed out
@@ -381,52 +385,59 @@ public class MapsActivity extends AppCompatActivity implements
             // calculate distance between end points of screen for search radius
             LatLng left = mapBoxMap.getProjection().getVisibleRegion().farLeft;
             LatLng right = mapBoxMap.getProjection().getVisibleRegion().farRight;
-            float radius = getDistance(left, right);
+            double radius = left.distanceTo(right);
 
 
             // get parking lots relative to maps position
-            requestor.GetParkingLots(userPosition, radius, new com.android.volley.Response.Listener<String>() {
-
-                @Override
-                public void onResponse(String res) {
+            requestor.GetParkingLots(userPosition, radius, (String res) -> {
                     try {
+
+                        // get res
                         JSONObject response = new JSONObject(res);
                         JSONArray parkingLotsArray = response.getJSONArray("parking_lots");
                         ArrayList<ParkingLotItem> parkingLotItems = new ArrayList<>();
-                        // add a marker
-                        for (int i = 0; i < parkingLotsArray.length(); i++) {
-                            JSONObject lot = (JSONObject) parkingLotsArray.get(i);
-                            JSONObject location = lot.getJSONObject("location");
-                            String addressName = lot.getJSONObject("address").get("street").toString();
-                            double latitude = (double) location.get("lat");
-                            double longitude = (double) location.get("long");
-                            LatLng latLng = new LatLng(latitude, longitude);
 
+                        // loop through each lot
+                        for (int i = 0; i < parkingLotsArray.length(); i++) {
+
+                            JSONObject lot = (JSONObject) parkingLotsArray.get(i);
+                            JSONObject parkingLotLocation = lot.getJSONObject("location");
+                            JSONObject analytics = lot.getJSONObject("analytics");
+                            String addressName = lot.getJSONObject("address").get("street").toString();
+                            String id = lot.getString("_id");
+                            double latitude = (double) parkingLotLocation.get("lat");
+                            double longitude = (double) parkingLotLocation.get("long");
+
+                            LatLng latLng = new LatLng(latitude, longitude);
 
                             // get parking space data
                             JSONObject parkingSpaces = lot.getJSONObject("parking_spaces");
 
-                            // get percentage of available spots left
+                            // get percentage of parking spots full
                             float percentage = 1f - (parkingSpaces.getInt("available") * 1.0f) / (parkingSpaces.getInt("total") * 1.0f);
 
                             // add parking lots to list
                             ParkingLotItem parkingLot = new ParkingLotItem(
+                                    id,
                                     addressName,
-                                    parkingSpaces.getInt("available"), latLng, percentage);
-
+                                    parkingSpaces.getInt("available"),
+                                    latLng,
+                                    percentage,
+                                    analytics);
                             parkingLotItems.add(parkingLot);
 
                             // add to global
                             parkingLots.add(parkingLot);
 
-
+                            // Get the route for each parking space
                             getRoute(Point.fromLngLat(longitude, latitude),
                                     (DirectionsRoute route) -> {
 
+                                        // add route as reference
                                         parkingLot.setRoute(route);
                                         // update list
-                                        adapter = new ParkingLotListView(parkingLotItems, getApplicationContext());
-                                        listView.setAdapter(adapter);
+                                        parkingLotListView = new ParkingLotListView(parkingLotItems, getApplicationContext());
+                                        listView.setAdapter(parkingLotListView);
                                     },     // set parking route
                                     () -> {parkingLot.setRoute(null);});                          // set to nothing
                         }
@@ -437,49 +448,13 @@ public class MapsActivity extends AppCompatActivity implements
                     } catch (Exception e) {
                         Log.d(TAG, "onResponse Exception: " + e);
                     }
-
-                }
-            }, new com.android.volley.Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
+            }, (VolleyError error) -> {
                     // do nothing
-                    Log.d(TAG, "onErrorResponse: " + error.toString());
-                }
+                    Log.d(TAG, "Volley Error: " + error.toString());
             });
         } else {
             Log.e(TAG, "Permission denied");
         }
-    }
-
-    // moves the camera to a latlng
-    private void moveCamera(LatLng latLng) {
-        // move and zoom
-        float zoomLevel = 14.0f; // goes up to 21
-
-        CameraPosition position = new CameraPosition.Builder()
-                .target(latLng) // Sets the new camera position
-                .zoom(zoomLevel) // Sets the zoom
-                .build(); // Creates a CameraPosition from the builder
-
-        mapBoxMap.animateCamera(CameraUpdateFactory
-                .newCameraPosition(position), 2000);
-    }
-
-    private void moveCamera(Point point) {
-        moveCamera(new LatLng(point.latitude(), point.longitude()));
-    }
-
-    private void moveCamera(Location location) {
-        moveCamera(new LatLng(location.getLatitude(), location.getLongitude()));
-    }
-
-    // returns the distance betwen two lat/long points
-    private float getDistance(LatLng a, LatLng b) {
-
-        double result = a.distanceTo(b);
-
-        // convert to km
-        return (float) (result / 1000f);
     }
 
     // gets the icon of the parking lot marker on maps
@@ -491,6 +466,8 @@ public class MapsActivity extends AppCompatActivity implements
         return "free";
     }
 
+    // gets the route from the user location to destination
+    // Allows for custom onResponse event (onRouteObtain) and onError
     @SuppressWarnings({"MissingPermission"})
     private void getRoute(Point destination, Consumer<DirectionsRoute> onRouteObtain, Runnable onError) {
 
@@ -516,12 +493,14 @@ public class MapsActivity extends AppCompatActivity implements
                         return;
                     }
 
-                    // call consumer
+                    // call consumer provided
                     onRouteObtain.accept(response.body().routes().get(0));
                 }
 
                 @Override
                 public void onFailure(Call<DirectionsResponse> call, Throwable throwable) {
+
+                    // call on error provided
                     onError.run();
                 }
             });
@@ -530,15 +509,21 @@ public class MapsActivity extends AppCompatActivity implements
 
     // draws the route and enabled nav button
     private void drawRoute(DirectionsRoute route) {
+
+        // if no route specified
         if (route == null) {
             Log.d(TAG, "No route available");
             return;
         }
+
+        // remove old route (only can have one)
         if (navigationMapRoute != null) {
             navigationMapRoute.removeRoute();
         } else {
             navigationMapRoute = new NavigationMapRoute(null, mapView, mapBoxMap, R.style.NavigationMapRoute);
         }
+
+        // enable the navigation button
         navigationMapRoute.addRoute(route);
         navigationButton.setEnabled(true);
     }
@@ -548,11 +533,10 @@ public class MapsActivity extends AppCompatActivity implements
         getRoute(point, (DirectionsRoute route) -> {
             currentRoute = route;
             drawRoute(route);
-        }, () -> {
-            navigationButton.setEnabled(false);
-        });
+        }, () -> navigationButton.setEnabled(false));
     }
-    // adds user input/searched destination marker
+
+    // adds user inputted/searched destination marker
     private void addDestinationMarker(Point destination) {
         Style style = mapBoxMap.getStyle();
         Feature lot = Feature.fromGeometry(Point.fromLngLat(destination.longitude(), destination.latitude()));
@@ -562,6 +546,7 @@ public class MapsActivity extends AppCompatActivity implements
             style.addSource(destinationGeoJsonSource);
 
         } else {
+
             // update data
             destinationGeoJsonSource.setGeoJson(lot);
         }

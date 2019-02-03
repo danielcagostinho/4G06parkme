@@ -15,10 +15,18 @@ import android.widget.TextView;
 
 import com.example.parkinglot.MapsActivity;
 import com.example.parkinglot.R;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.BarGraphSeries;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 public class ParkingLotListView extends ArrayAdapter<ParkingLotItem> implements View.OnClickListener{
@@ -33,6 +41,7 @@ public class ParkingLotListView extends ArrayAdapter<ParkingLotItem> implements 
         TextView distance;
         TextView time;
         TextView percentage;
+        GraphView graph;
     }
 
     public ParkingLotListView(ArrayList<ParkingLotItem> data, Context context) {
@@ -45,11 +54,6 @@ public class ParkingLotListView extends ArrayAdapter<ParkingLotItem> implements 
     @Override
     public void onClick(View v) {
 
-//        int position=(Integer) v.getTag();
-//        Object object= getItem(position);
-//        ParkingLotItem dataModel=(ParkingLotItem)object;
-
-        // do something on click
 
     }
 
@@ -75,6 +79,13 @@ public class ParkingLotListView extends ArrayAdapter<ParkingLotItem> implements 
             viewHolder.distance =  convertView.findViewById(R.id.distance);
             viewHolder.percentage = convertView.findViewById(R.id.percentage);
             viewHolder.time = convertView.findViewById(R.id.time);
+            viewHolder.graph = convertView.findViewById(R.id.graph);
+
+            convertView.findViewById(R.id.parkingLotBtn).setOnClickListener((View view) -> {
+                goToParkingLot(parkingLot.id);
+            });
+
+
             result=convertView;
 
             convertView.setTag(viewHolder);
@@ -112,6 +123,40 @@ public class ParkingLotListView extends ArrayAdapter<ParkingLotItem> implements 
         }
 
         viewHolder.percentage.setTextColor(textColor);
+
+        drawAnalyticsGraph(viewHolder.graph, parkingLot.analytics);
+
         return convertView;
+    }
+
+    // draws analytics graphics
+    private void drawAnalyticsGraph(GraphView graph, JSONObject analytics) {
+        try {
+            JSONObject hourly  = analytics.getJSONObject("hourly");
+            Iterator<String> keys = hourly.keys();
+
+            int total = analytics.getInt("total");
+
+            List<DataPoint> points = new ArrayList<>();
+
+            while(keys.hasNext()) {
+                String key = keys.next();
+                int val = hourly.getInt(key);
+                double percentVal = (val*1.0)/total;
+                points.add( new DataPoint(Integer.parseInt(key), percentVal));
+            }
+
+            BarGraphSeries<DataPoint> series = new BarGraphSeries<>(points.toArray(new DataPoint[0]));
+            graph.addSeries(series);
+        } catch (JSONException e){
+            // draw no points
+            graph.addSeries(new BarGraphSeries());
+        }
+    }
+
+    // navigates to parking lot map
+    private void goToParkingLot(String id) {
+        Log.d(MapsActivity.TAG, "goToParkingLot: " + id);
+        // KAT PUT CODE HERE
     }
 }

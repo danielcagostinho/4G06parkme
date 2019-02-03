@@ -1,4 +1,5 @@
 var parkingLots= require("../data/parkinglots")
+var AnalyticsController = require("../modules/AnalyticsController")
 
 var currentHash = ""
 
@@ -69,6 +70,8 @@ module.exports=  {
                 total,
                 available
             }
+            var analytics = AnalyticsController.GetParkingLotAnalyticsNoID(lot)
+            clone = Object.assign(clone, analytics)
             return clone
         })
     },

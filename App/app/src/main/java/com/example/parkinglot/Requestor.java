@@ -35,7 +35,7 @@ public class Requestor {
     }
 
     // Gets all parking lots in an area
-    public void GetParkingLots(LatLng currentPosition, float radius, Response.Listener<String> success, Response.ErrorListener failure) {
+    public void GetParkingLots(LatLng currentPosition, double radius, Response.Listener<String> success, Response.ErrorListener failure) {
         makeGETRequest(String.format("parkinglots/radius?latitude=%s&longitude=%s&radius=%s",currentPosition.getLatitude(),currentPosition.getLongitude(),radius), success, failure);
     }
 }

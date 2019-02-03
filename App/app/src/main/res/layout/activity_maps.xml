@@ -65,4 +65,5 @@
         android:gravity="center"
         android:text="There are no available parking lots in this area."
         android:textColor="@color/colorAccent" />
+
 </LinearLayout>
