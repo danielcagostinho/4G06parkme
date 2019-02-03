@@ -2,11 +2,16 @@ package com.example.parkinglot;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.res.Resources;
+import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 public class ParkingSpotActivity extends AppCompatActivity {
@@ -59,6 +64,7 @@ public class ParkingSpotActivity extends AppCompatActivity {
         alert.setPositiveButton("Save Spot", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                ViewCompat.setBackgroundTintList(view, ContextCompat.getColorStateList(ParkingSpotActivity.this, android.R.color.holo_orange_light));
                 Toast.makeText(ParkingSpotActivity.this, "Spot Saved", Toast.LENGTH_SHORT).show();
             }
         });
@@ -69,5 +75,11 @@ public class ParkingSpotActivity extends AppCompatActivity {
             }
         });
         alert.create().show();
+    }
+
+    public void updateColor(View view){
+        int mID = getResources().getIdentifier("s5c57245fd347320000f51d0a", "id", getBaseContext().getPackageName());
+        Button mButton = findViewById(mID);
+        ViewCompat.setBackgroundTintList(mButton, ContextCompat.getColorStateList(this, android.R.color.holo_purple));
     }
 }
