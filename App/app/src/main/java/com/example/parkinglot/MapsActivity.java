@@ -69,7 +69,7 @@ public class MapsActivity extends AppCompatActivity implements
         PermissionsListener {
 
 
-    final private float MAX_ZOOM_OUT = 12f;
+    final private float MAX_ZOOM_OUT = 10f;
     final private int SEARCH_RESPONSE = 1;
     private boolean movingMap = false;
     private boolean initialized = false;
@@ -137,6 +137,7 @@ public class MapsActivity extends AppCompatActivity implements
             initSearchFab();
             mapBoxMap.addOnMapClickListener(MapsActivity.this);
             setUpNavigationButton();
+            getNearbyParkingLots();
         });
     }
 
@@ -227,9 +228,13 @@ public class MapsActivity extends AppCompatActivity implements
             int index = selectedFeature.getNumberProperty("index").intValue();
             ParkingLotItem  lot = parkingLots.get(index);
 
-            listView.smoothScrollToPosition(index);
             // draw the route
-//            getAndDrawRoute(Point.fromLngLat(lot.latlong.getLongitude(), lot.latlong.getLatitude()));
+
+            Point pos = Point.fromLngLat(lot.latlong.getLongitude(), lot.latlong.getLatitude());
+            CameraTranslator.moveCamera(mapBoxMap, pos);
+            currentRoute = lot.getRoute();
+            drawRoute(currentRoute);
+            listView.smoothScrollToPosition(index);
         } else if (!destinationIcons.isEmpty()) {
 
             // if we clicked on destination, remove marker
@@ -284,7 +289,9 @@ public class MapsActivity extends AppCompatActivity implements
     // user has started moving the map
     @Override
     public void onCameraMoveStarted(int reason) {
-        movingMap = true;
+        // only move the map if we move it
+        if (reason == MapboxMap.OnCameraMoveStartedListener.REASON_API_GESTURE)
+            movingMap = true;
     }
 
 
@@ -301,15 +308,13 @@ public class MapsActivity extends AppCompatActivity implements
         TextView empty= findViewById(R.id.empty);
         listView.setEmptyView(empty);
 
-        listView.setOnItemClickListener( (AdapterView<?> parent, View view, int position, long id) -> {
-            // move to parking lot
-            ParkingLotItem parkingLot = parkingLots.get(position);
-            LatLng parkingLotPosition = parkingLot.latlong;
-            CameraTranslator.moveCamera(mapBoxMap, parkingLot.latlong);
-
-            currentRoute = parkingLot.getRoute();
-            drawRoute(currentRoute);
-        });
+//        listView.setOnItemClickListener( (AdapterView<?> parent, View view, int position, long id) -> {
+//            Log.d(TAG, "Clicking!!");
+//            // move to parking lot
+//            ParkingLotItem parkingLot = parkingLots.get(position);
+//            LatLng parkingLotPosition = parkingLot.latlong;
+//            CameraTranslator.moveCamera(mapBoxMap, parkingLot.latlong);
+//        });
     }
 
     // enable location with map, ask for location permissions if not already
@@ -373,7 +378,6 @@ public class MapsActivity extends AppCompatActivity implements
 
     // gets the nearby parking lots
     private void getNearbyParkingLots() {
-
         // check for permissions first
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
@@ -445,7 +449,9 @@ public class MapsActivity extends AppCompatActivity implements
                                         parkingLotListView = new ParkingLotListView(parkingLotItems, getApplicationContext());
                                         listView.setAdapter(parkingLotListView);
                                     },     // set parking route
-                                    () -> {parkingLot.setRoute(null);});                          // set to nothing
+                                    () -> {
+                                        parkingLot.setRoute(null);
+                            });                          // set to nothing
                         }
                         addParkingLotMarkers(parkingLotItems);
 

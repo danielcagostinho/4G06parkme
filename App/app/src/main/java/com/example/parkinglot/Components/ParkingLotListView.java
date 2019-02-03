@@ -13,14 +13,21 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.parkinglot.MapsActivity;
 import com.example.parkinglot.ParkingSpotActivity;
 import com.example.parkinglot.R;
+import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GridLabelRenderer;
+import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.DataPointInterface;
 import com.jjoe64.graphview.series.LineGraphSeries;
+import com.jjoe64.graphview.series.OnDataPointTapListener;
+import com.jjoe64.graphview.series.Series;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class ParkingLotListView extends ArrayAdapter<ParkingLotItem> implements View.OnClickListener{
 
@@ -55,8 +63,6 @@ public class ParkingLotListView extends ArrayAdapter<ParkingLotItem> implements 
 
     @Override
     public void onClick(View v) {
-
-
     }
 
     private int lastPosition = -1;
@@ -107,8 +113,6 @@ public class ParkingLotListView extends ArrayAdapter<ParkingLotItem> implements 
         int percentage = (int) (parkingLot.percentage * 100);
         viewHolder.percentage.setText(Integer.toString(percentage) + "%");
 
-
-
         // "full" text
         TextView  tv = convertView.findViewById(R.id.full);
         tv.setVisibility(View.VISIBLE);
@@ -126,13 +130,13 @@ public class ParkingLotListView extends ArrayAdapter<ParkingLotItem> implements 
 
         viewHolder.percentage.setTextColor(textColor);
 
-        drawAnalyticsGraph(viewHolder.graph, parkingLot.analytics);
+        drawHourlyAnalyticsGraph(viewHolder.graph, parkingLot.analytics);
 
         return convertView;
     }
 
     // draws analytics graphics
-    private void drawAnalyticsGraph(GraphView graph, JSONObject analytics) {
+    private void drawHourlyAnalyticsGraph(GraphView graph, JSONObject analytics) {
         try {
             JSONObject hourly  = analytics.getJSONObject("hourly");
             Iterator<String> keys = hourly.keys();
@@ -143,15 +147,102 @@ public class ParkingLotListView extends ArrayAdapter<ParkingLotItem> implements 
 
             while(keys.hasNext()) {
                 String key = keys.next();
+                int hour = Integer.parseInt(key);
                 int val = hourly.getInt(key);
-                if (val < 9 || val > 16)
+
+                // peak times for parking lot
+                if (hour < 8 || hour > 18)
                     continue;
                 double percentVal = (val*1.0)/total;
-                points.add( new DataPoint(Integer.parseInt(key), percentVal));
+                points.add( new DataPoint(hour, percentVal));
             }
+            graph.getViewport().setMinX(8);
+            graph.getViewport().setMaxX(18);
 
             BarGraphSeries<DataPoint> series = new BarGraphSeries<>(points.toArray(new DataPoint[0]));
             graph.addSeries(series);
+            graph.getGridLabelRenderer().setVerticalLabelsVisible(false);
+            graph.getGridLabelRenderer().setTextSize(25f);
+            graph.getViewport().setXAxisBoundsManual(true);
+
+            graph.setTitle("Hourly Statistics");
+
+            graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
+                @Override
+                public String formatLabel(double value, boolean isValueX) {
+                    if (isValueX) {
+
+                        //  show normal x values
+                        String post ="";
+                        if (value == 18) {
+                            post = "PM";
+                        }
+                        if (value == 8) {
+                            post = "AM";
+                        }
+                        if (value > 12) {
+                            value -=12;
+                        }
+                        return super.formatLabel(value, isValueX) + post;
+                    } else {
+                        // show currency for y values
+                        return super.formatLabel(value, isValueX);
+                    }
+                }
+            });
+
+            // toggle between views
+            graph.setOnClickListener((View w) -> {
+                Log.d(MapsActivity.TAG, "Click on dat mat ");
+                graph.removeAllSeries();
+                drawDailyAnalyticsGraph(graph, analytics);
+            });
+
+        } catch (JSONException e){
+            // draw no points
+            graph.addSeries(new BarGraphSeries());
+
+        }
+    }
+
+    private void drawDailyAnalyticsGraph(GraphView graph, JSONObject analytics) {
+        try {
+            JSONObject daily  = analytics.getJSONObject("daily");
+            Iterator<String> keys = daily.keys();
+
+            int total = analytics.getInt("total");
+
+            List<DataPoint> points = new ArrayList<>();
+
+            while(keys.hasNext()) {
+                String key = keys.next();
+                int day = Integer.parseInt(key);
+                int val = daily.getInt(key);
+
+                double percentVal = (val*1.0)/total;
+                points.add( new DataPoint(day, percentVal));
+            }
+            graph.getViewport().setMinX(0);
+            graph.getViewport().setMaxX(6);
+            BarGraphSeries<DataPoint> series = new BarGraphSeries<>(points.toArray(new DataPoint[0]));
+            graph.addSeries(series);
+            graph.getGridLabelRenderer().setVerticalLabelsVisible(false);
+            graph.getViewport().setXAxisBoundsManual(true);
+            graph.getGridLabelRenderer().setTextSize(25f);
+
+            StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
+            staticLabelsFormatter.setHorizontalLabels(new String[]{ "Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"});
+            graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
+
+            graph.setTitle("Daily Statistics");
+
+            // toggle between views
+            graph.setOnClickListener((View w) -> {
+                Log.d(MapsActivity.TAG, "Click on dat mat ");
+                graph.removeAllSeries();
+                drawHourlyAnalyticsGraph(graph, analytics);
+            });
+
         } catch (JSONException e){
             // draw no points
             graph.addSeries(new BarGraphSeries());
