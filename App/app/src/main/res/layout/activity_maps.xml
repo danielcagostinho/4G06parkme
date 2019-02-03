@@ -1,31 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:mapbox="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
 
-    <fragment
-        android:id="@+id/place_autocomplete_fragment"
-        android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+    <com.mapbox.mapboxsdk.maps.MapView
+        android:id="@+id/mapView"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        tools:layout="@layout/place_autocomplete_fragment" />
+        android:layout_height="363dp"
+        mapbox:mapbox_cameraTargetLat="40.73581"
+        mapbox:mapbox_cameraTargetLng="-73.99155"
+        mapbox:mapbox_cameraZoom="11">
 
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="280dp"
-        android:layout_marginTop="5dp"
-        tools:context="com.viralandroid.googlemapsandroidapi.MapsActivity" />
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/userLocationBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="80dp"
+            android:clickable="true"
+            android:foregroundTint="@color/colorAccent"
+            android:tint="@color/colorAccent"
+            mapbox:backgroundTint="@color/mapboxWhite"
+            mapbox:srcCompat="@android:drawable/ic_menu_mylocation" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/navigationBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:clickable="true"
+            mapbox:backgroundTint="@color/mapboxBlue"
+            mapbox:srcCompat="@drawable/ic_navigation" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/searchBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:clickable="true"
+            mapbox:backgroundTint="@color/mapboxWhite"
+            mapbox:srcCompat="@android:drawable/ic_search_category_default" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/anthonyBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:clickable="true"
+            tools:srcCompat="@android:drawable/btn_star_big_on" />
+
+    </com.mapbox.mapboxsdk.maps.MapView>
 
     <ListView
         android:id="@+id/list"
-        android:layout_width="wrap_content"
-        android:layout_height="344dp" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <TextView
         android:id="@+id/empty"
@@ -35,4 +74,5 @@
         android:gravity="center"
         android:text="There are no available parking lots in this area."
         android:textColor="@color/colorAccent" />
+
 </LinearLayout>

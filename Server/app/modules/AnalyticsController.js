@@ -1,6 +1,5 @@
 const ParkingLotsData = require("./ParkingLotsData")
 
-
 // Gets all parking Space usage analytics
  var GetParkingSpaceUsage = (parkingSpace) => {
         var totalDuration =0
@@ -80,6 +79,12 @@ module.exports = {
     
     GetParkingLotAnalytics(parkinglotID) {
         var parkinglot = ParkingLotsData.GetParkingLot(parkinglotID)
+        return this.GetParkingLotAnalyticsNoID(parkinglot)
+
+
+    },
+
+    GetParkingLotAnalyticsNoID(parkinglot) {
         var totalMap = {
             hourly: BuildHourlyMap(),
             daily: BuildDailyMap(),
@@ -91,7 +96,6 @@ module.exports = {
         return {
             analytics: totalMap
         }
-
     },
 
     GetParkingSpaceAnalytics(parkingLotID, parkingSpaceID) {

@@ -1,4 +1,5 @@
 var parkingLots= require("../data/parkinglots")
+var AnalyticsController = require("../modules/AnalyticsController")
 
 var currentHash = ""
 
@@ -30,9 +31,32 @@ var radiusCheck = function(lat, long, parkinglot, radius) {
     return d <= radius
 }
 
-// TODO actually have this find best parking space
-var getBestParkingSpace = function(parkinglot, usersettings) {
-    return parkinglot.parking_spaces[0]
+// returns the closest parking space
+var getBestParkingSpace = function(parkinglot, preference, accessible) {
+
+    var currentBestSpot = {}
+    var currentClosestDistance = Infinity
+    var entrance = parkinglot.entrance
+    for(space of parkinglot.parking_spaces) {
+        
+        // ignore occupant spots
+        if (space.occupancy)
+            continue
+
+        // if they are not looking for accessible parking spaces skip
+        if (space.accessible && !accessible)
+            continue 
+        // use pythagorean lmao
+        var diffX = Math.abs(entrance.x - space.position.x)
+        var diffY = Math.abs(entrance.y - space.position.y)
+        var distance = Math.sqrt(Math.pow(diffX,2) + Math.pow(diffY,2))
+        // set new best
+        if (distance < currentClosestDistance) {
+            currentBestSpot = space
+            currentClosestDistance = distance
+        }
+    }
+    return currentBestSpot.id
 } 
 module.exports=  {
     
@@ -60,7 +84,7 @@ module.exports=  {
             var clone = Object.assign({}, lot)
             var total = lot.parking_spaces.length
             var available = lot.parking_spaces.reduce((prev, curr) => {
-                if (curr.occupancy) {
+                if (!curr.occupancy) {
                     prev++
                 }
                 return prev
@@ -69,6 +93,8 @@ module.exports=  {
                 total,
                 available
             }
+            var analytics = AnalyticsController.GetParkingLotAnalyticsNoID(lot)
+            clone = Object.assign(clone, analytics)
             return clone
         })
     },
@@ -92,7 +118,7 @@ module.exports=  {
     },
 
     // returns the best parking space based on user settings
-    GetBestParkingSpace(parkinglotid, usersettings) {
-        return getBestParkingSpace(this.GetParkingLot(parkinglotid, usersettings))
+    GetBestParkingSpace(parkinglotid, preference, accessible) {
+        return getBestParkingSpace(this.GetParkingLot(parkinglotid), preference, accessible)
     }
 }
