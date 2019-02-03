@@ -109,7 +109,7 @@ module.exports=  {
 
     // returns all parking spaces in a parking lot
     GetAllParkingSpaces(parkinglotid) {
-        return this.GetParkingLot(parkinglotid).parking_spaces.map(space => space.id)
+        return this.GetParkingLot(parkinglotid).parking_spaces
     },
 
     // returns all parking spaces in a parking lot
