@@ -1,0 +1,128 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'org.jetbrains.dokka-android'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+ext {
+    libVersion = '1.5.0'
+    libGroup = 'com.otaliastudios'
+    libName = 'ZoomLayout'
+    libDescription = 'A View container that supports zooming and panning of View hierarchies, images and more.'
+    libArtifactId = 'zoomlayout'
+    githubUrl = "https://github.com/natario1/${libName}"
+    githubGit = "https://github.com/natario1/${libName}.git"
+}
+
+
+// Required by bintray
+// archivesBaseName is required if artifactId is different from gradle module name
+// or you can add baseName to each archive task (sources, javadoc, aar)
+version = '1.5.0'
+group = 'com.otaliastudios'
+archivesBaseName = 'zoomlayout'
+
+android {
+
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName libVersion
+    }
+}
+
+dependencies {
+    api "androidx.annotation:annotation:1.0.1"
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.3.1"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.3.1"
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
+}
+
+task dokkaJar(type: Jar, dependsOn: dokka) {
+    classifier = 'javadoc'
+    from dokka.outputDirectory
+}
+
+artifacts {
+    archives dokkaJar
+    archives sourcesJar
+}
+
+install.repositories.mavenInstaller.pom.project {
+    name libName
+    description libDescription
+    url githubUrl
+    groupId libGroup
+    artifactId libArtifactId
+    version libVersion
+    packaging 'aar'
+
+    scm {
+        connection githubGit
+        url githubUrl
+    }
+    licenses {
+        license {
+            name 'The Apache Software License, Version 2.0'
+            url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+        }
+    }
+    developers {
+        developer {
+            id = 'natario'
+            name 'Mattia Iavarione'
+        }
+    }
+}
+
+def bintrayUser
+def bintrayKey
+def hasBintray = false
+if (System.getenv('TRAVIS') == 'true') {
+    if (System.getenv('TRAVIS_SECURE_ENV_VARS') == 'true') {
+        bintrayUser = System.getenv("BINTRAY_USER")
+        bintrayKey = System.getenv("BINTRAY_KEY")
+        hasBintray = true
+    }
+} else {
+    Properties props = new Properties()
+    props.load(project.rootProject.file('local.properties').newDataInputStream())
+    bintrayUser = props.getProperty('bintray.user')
+    bintrayKey = props.get('bintray.key')
+    hasBintray = true
+}
+
+if (hasBintray) {
+    bintray {
+        // https://github.com/bintray/gradle-bintray-plugin
+        user = bintrayUser
+        key = bintrayKey
+        configurations = ['archives']
+        publish = true
+        override = true
+        pkg {
+            repo = 'android'
+            name = libName
+            licenses = ['Apache-2.0']
+            vcsUrl = githubGit
+            desc = libDescription
+            version {
+                name = libVersion
+                desc = libName + ' v' + libVersion
+                released = new Date()
+                vcsTag = 'v' + libVersion
+            }
+        }
+    }
+}
+
+// To deploy ./gradlew bintrayUpload
