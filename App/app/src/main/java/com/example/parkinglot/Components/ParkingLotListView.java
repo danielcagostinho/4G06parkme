@@ -1,6 +1,7 @@
 package com.example.parkinglot.Components;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.ColorRes;
 import android.support.annotation.MainThread;
@@ -14,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.parkinglot.MapsActivity;
+import com.example.parkinglot.ParkingSpotActivity;
 import com.example.parkinglot.R;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.BarGraphSeries;
@@ -157,6 +159,7 @@ public class ParkingLotListView extends ArrayAdapter<ParkingLotItem> implements 
     // navigates to parking lot map
     private void goToParkingLot(String id) {
         Log.d(MapsActivity.TAG, "goToParkingLot: " + id);
-        // KAT PUT CODE HERE
+        Intent intent = new Intent(mContext, ParkingSpotActivity.class);
+        mContext.startActivity(intent);
     }
 }

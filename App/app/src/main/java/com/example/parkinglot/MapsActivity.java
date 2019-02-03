@@ -389,7 +389,7 @@ public class MapsActivity extends AppCompatActivity implements
 
 
             // get parking lots relative to maps position
-            requestor.GetParkingLots(userPosition, radius, (String res) -> {
+            requestor.GetParkingLots(mapBoxMap.getCameraPosition().target, radius, (String res) -> {
                     try {
 
                         // get res

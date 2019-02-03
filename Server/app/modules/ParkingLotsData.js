@@ -33,7 +33,7 @@ var radiusCheck = function(lat, long, parkinglot, radius) {
 
 // TODO actually have this find best parking space
 var getBestParkingSpace = function(parkinglot, usersettings) {
-    return parkinglot.parking_spaces[0]
+    return parkinglot.parking_spaces[0].id
 } 
 module.exports=  {
     
