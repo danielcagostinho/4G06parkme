@@ -21,7 +21,7 @@ public class CameraTranslator {
                 .build(); // Creates a CameraPosition from the builder
 
         mapBoxMap.animateCamera(CameraUpdateFactory
-                .newCameraPosition(position), 2000);
+                .newCameraPosition(position), 500);
     }
 
     public static void moveCamera(MapboxMap mapBoxMap, Point point) {

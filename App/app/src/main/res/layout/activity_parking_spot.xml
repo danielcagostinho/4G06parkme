@@ -16,10 +16,16 @@
         android:scrollbars="horizontal|vertical"
         app:hasClickableChildren="true"
         app:horizontalPanEnabled="true"
+        app:overScrollHorizontal="false"
+        app:overScrollVertical="false"
+        app:overPinchable="false"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:maxZoom="6.0"
+        app:minZoom="1.0"
         app:verticalPanEnabled="true"
         app:zoomEnabled="true"
-        app:maxZoom="6.0"
-        app:minZoom="1.0">
+        android:background="@color/md_grey_500">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -28,176 +34,192 @@
 
             <!--Left Group 1-->
             <Button
-                android:id="@+id/spot01"
+                android:id="@+id/s5c4946c9ac8f790000f001cf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
                 android:layout_marginTop="50dp"
-                android:layout_marginStart="25dp"
-                android:onClick="showDialog"
-                android:backgroundTint="#99FF0000"/>
+                android:backgroundTint="#99FF0000"
+                android:onClick="updateColor" />
+
             <Button
-                android:id="@+id/spot02"
+                android:id="@+id/s5c4be566bc01840000b851d3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/spot01"
+                android:layout_below="@id/s5c4946c9ac8f790000f001cf"
                 android:layout_marginStart="25dp"
-                android:onClick="showDialog"
-                android:backgroundTint="#99FF0000"/>
+                android:backgroundTint="#99FF0000"
+                android:onClick="showDialog" />
+
             <Button
-                android:id="@+id/spot03"
+                android:id="@+id/s5c534fd3a2b1de00000ed7a3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/spot02"
+                android:layout_below="@id/s5c4be566bc01840000b851d3"
                 android:layout_marginStart="25dp"
-                android:onClick="showDialog"
-                android:backgroundTint="#99008000"/>
+                android:backgroundTint="#99008000"
+                android:onClick="showDialog" />
+
             <Button
                 android:id="@+id/spot04"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/spot03"
+                android:layout_below="@id/s5c534fd3a2b1de00000ed7a3"
                 android:layout_marginStart="25dp"
-                android:onClick="showDialog"
-                android:backgroundTint="#99008000"/>
+                android:backgroundTint="#99008000"
+                android:onClick="showDialog" />
+
             <Button
                 android:id="@+id/spot05"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/spot04"
                 android:layout_marginStart="25dp"
-                android:onClick="showDialog"
-                android:backgroundTint="#99FF0000"/>
+                android:backgroundTint="#99FF0000"
+                android:onClick="showDialog" />
 
             <!--Left Group 2-->
             <Button
-                android:id="@+id/spot06"
+                android:id="@+id/s5c53504ea2b1de00000ed7a4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/spot01"
                 android:layout_marginTop="50dp"
-                android:onClick="showDialog"
-                android:backgroundTint="#99008000"/>
+                android:layout_toEndOf="@id/s5c4946c9ac8f790000f001cf"
+                android:backgroundTint="#99008000"
+                android:onClick="showDialog" />
+
             <Button
-                android:id="@+id/spot07"
+                android:id="@+id/s5c535099a2b1de00000ed7a5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/spot06"
-                android:layout_toEndOf="@id/spot02"
-                android:onClick="showDialog"
-                android:backgroundTint="#99FF0000"/>
+                android:layout_below="@id/s5c53504ea2b1de00000ed7a4"
+                android:layout_toEndOf="@id/s5c4be566bc01840000b851d3"
+                android:backgroundTint="#99FF0000"
+                android:onClick="showDialog" />
+
             <Button
                 android:id="@+id/spot08"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/spot07"
-                android:layout_toEndOf="@id/spot03"
-                android:onClick="showDialog"
-                android:backgroundTint="#99008000"/>
+                android:layout_below="@id/s5c535099a2b1de00000ed7a5"
+                android:layout_toEndOf="@id/s5c534fd3a2b1de00000ed7a3"
+                android:backgroundTint="#99008000"
+                android:onClick="showDialog" />
+
             <Button
                 android:id="@+id/spot09"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/spot08"
                 android:layout_toEndOf="@id/spot04"
-                android:onClick="showDialog"
-                android:backgroundTint="#99008000"/>
+                android:backgroundTint="#99008000"
+                android:onClick="showDialog" />
+
             <Button
                 android:id="@+id/spot10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/spot09"
                 android:layout_toEndOf="@id/spot05"
-                android:onClick="showDialog"
-                android:backgroundTint="#99FF0000"/>
+                android:backgroundTint="#99FF0000"
+                android:onClick="showDialog" />
 
             <!--Right Group 1-->
             <Button
-                android:id="@+id/spot11"
+                android:id="@+id/s5c5350eca2b1de00000ed7a6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
                 android:layout_marginTop="50dp"
-                android:layout_toEndOf="@id/spot06"
-                android:layout_marginStart="100dp"
-                android:onClick="showDialog"
-                android:backgroundTint="#99FF0000"/>
+                android:layout_toEndOf="@id/s5c53504ea2b1de00000ed7a4"
+                android:backgroundTint="#99FF0000"
+                android:onClick="showDialog" />
+
             <Button
-                android:id="@+id/spot12"
+                android:id="@+id/s5c57245fd347320000f51d0a"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/spot11"
-                android:layout_toEndOf="@id/spot07"
+                android:layout_below="@id/s5c5350eca2b1de00000ed7a6"
                 android:layout_marginStart="100dp"
-                android:onClick="showDialog"
-                android:backgroundTint="#99FF0000"/>
+                android:layout_toEndOf="@id/s5c535099a2b1de00000ed7a5"
+                android:backgroundTint="#99FF0000"
+                android:onClick="showDialog" />
+
             <Button
                 android:id="@+id/spot13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/spot12"
-                android:layout_toEndOf="@id/spot08"
+                android:layout_below="@id/s5c57245fd347320000f51d0a"
                 android:layout_marginStart="100dp"
-                android:onClick="showDialog"
-                android:backgroundTint="#99008000"/>
+                android:layout_toEndOf="@id/spot08"
+                android:backgroundTint="#99008000"
+                android:onClick="showDialog" />
+
             <Button
                 android:id="@+id/spot14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/spot13"
-                android:layout_toEndOf="@id/spot09"
                 android:layout_marginStart="100dp"
-                android:onClick="showDialog"
-                android:backgroundTint="#99008000"/>
+                android:layout_toEndOf="@id/spot09"
+                android:backgroundTint="#99008000"
+                android:onClick="showDialog" />
+
             <Button
                 android:id="@+id/spot15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/spot14"
-                android:layout_toEndOf="@id/spot10"
                 android:layout_marginStart="100dp"
-                android:onClick="showDialog"
-                android:backgroundTint="#99FF0000"/>
+                android:layout_toEndOf="@id/spot10"
+                android:backgroundTint="#99FF0000"
+                android:onClick="showDialog" />
 
             <!--Left Group 2-->
             <Button
                 android:id="@+id/spot16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/spot11"
                 android:layout_marginTop="50dp"
-                android:onClick="showDialog"
-                android:backgroundTint="#99008000"/>
+                android:layout_toEndOf="@id/s5c5350eca2b1de00000ed7a6"
+                android:backgroundTint="#99008000"
+                android:onClick="showDialog" />
+
             <Button
                 android:id="@+id/spot17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/spot16"
-                android:layout_toEndOf="@id/spot12"
-                android:onClick="showDialog"
-                android:backgroundTint="#99FF0000"/>
+                android:layout_toEndOf="@id/s5c57245fd347320000f51d0a"
+                android:backgroundTint="#99FF0000"
+                android:onClick="showDialog" />
+
             <Button
                 android:id="@+id/spot18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/spot17"
                 android:layout_toEndOf="@id/spot13"
-                android:onClick="showDialog"
-                android:backgroundTint="#99008000"/>
+                android:backgroundTint="#99008000"
+                android:onClick="showDialog" />
+
             <Button
                 android:id="@+id/spot19"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/spot18"
                 android:layout_toEndOf="@id/spot14"
-                android:onClick="showDialog"
-                android:backgroundTint="#99008000"/>
+                android:backgroundTint="#99008000"
+                android:onClick="showDialog" />
+
             <Button
                 android:id="@+id/spot20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/spot19"
                 android:layout_toEndOf="@id/spot15"
-                android:onClick="showDialog"
-                android:backgroundTint="#99FF0000"/>
+                android:backgroundTint="#99FF0000"
+                android:onClick="showDialog" />
 
         </RelativeLayout>
 

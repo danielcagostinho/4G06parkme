@@ -6,7 +6,7 @@ module.exports = (app) => {
     })
 
     app.get('/api/parkinglot/:id/parkingspaces/best', (req, res) => {
-        res.send({parkingspaces: ParkingLotData.GetBestParkingSpace(req.params.id, req.query.user_settings)});
+        res.send({id: ParkingLotData.GetBestParkingSpace(req.params.id, req.query.preference, req.query.accessible)});
     })
 
     app.get('/api/parkinglot/:id/parkingspaces/:parkingspaceid', (req, res) => {

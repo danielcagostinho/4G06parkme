@@ -31,9 +31,32 @@ var radiusCheck = function(lat, long, parkinglot, radius) {
     return d <= radius
 }
 
-// TODO actually have this find best parking space
-var getBestParkingSpace = function(parkinglot, usersettings) {
-    return parkinglot.parking_spaces[0].id
+// returns the closest parking space
+var getBestParkingSpace = function(parkinglot, preference, accessible) {
+
+    var currentBestSpot = {}
+    var currentClosestDistance = Infinity
+    var entrance = parkinglot.entrance
+    for(space of parkinglot.parking_spaces) {
+        
+        // ignore occupant spots
+        if (space.occupancy)
+            continue
+
+        // if they are not looking for accessible parking spaces skip
+        if (space.accessible && !accessible)
+            continue 
+        // use pythagorean lmao
+        var diffX = Math.abs(entrance.x - space.position.x)
+        var diffY = Math.abs(entrance.y - space.position.y)
+        var distance = Math.sqrt(Math.pow(diffX,2) + Math.pow(diffY,2))
+        // set new best
+        if (distance < currentClosestDistance) {
+            currentBestSpot = space
+            currentClosestDistance = distance
+        }
+    }
+    return currentBestSpot.id
 } 
 module.exports=  {
     
@@ -86,7 +109,7 @@ module.exports=  {
 
     // returns all parking spaces in a parking lot
     GetAllParkingSpaces(parkinglotid) {
-        return this.GetParkingLot(parkinglotid).parking_spaces.map(space => space.id)
+        return this.GetParkingLot(parkinglotid).parking_spaces
     },
 
     // returns all parking spaces in a parking lot
@@ -95,7 +118,7 @@ module.exports=  {
     },
 
     // returns the best parking space based on user settings
-    GetBestParkingSpace(parkinglotid, usersettings) {
-        return getBestParkingSpace(this.GetParkingLot(parkinglotid, usersettings))
+    GetBestParkingSpace(parkinglotid, preference, accessible) {
+        return getBestParkingSpace(this.GetParkingLot(parkinglotid), preference, accessible)
     }
 }
