@@ -1,6 +1,8 @@
 package com.example.parkinglot;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 
 import com.android.volley.Request;
@@ -11,10 +13,10 @@ import com.android.volley.toolbox.Volley;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 
 
+
 public class Requestor {
 
-    final String REQUEST_BASE = "http://192.168.1.161:8000/api/";
-
+    final String REQUEST_BASE = "http://10.0.0.2:8000/api/";
 
     RequestQueue queue;
 
@@ -37,5 +39,14 @@ public class Requestor {
     // Gets all parking lots in an area
     public void GetParkingLots(LatLng currentPosition, double radius, Response.Listener<String> success, Response.ErrorListener failure) {
         makeGETRequest(String.format("parkinglots/radius?latitude=%s&longitude=%s&radius=%s",currentPosition.getLatitude(),currentPosition.getLongitude(),radius), success, failure);
+    }
+    public void getClosestSpot(Context context, SharedPreferences sharedPreferences, Response.Listener<String> success, Response.ErrorListener failure){
+        SharedPreferences mSharedPreference= PreferenceManager.getDefaultSharedPreferences(context);
+        String access= Boolean.toString(mSharedPreference.getBoolean("access_switch", false));
+        String prox = mSharedPreference.getString("spot_pref", "0");
+        makeGETRequest(String.format("parkinglots/best?accessible=%s&preference=%s", access, prox ),success, failure);
+    }
+    public void getLotInfo(Context context, String lot, Response.Listener<String> success, Response.ErrorListener failure){
+        makeGETRequest(String.format("parkinglots/best?accessible=%s&preference=%s", lot),success, failure);
     }
 }

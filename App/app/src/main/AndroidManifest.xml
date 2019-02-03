@@ -14,7 +14,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ParkingSpotActivity"></activity>
+        <activity
+            android:name=".Components.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".MapsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.parkinglot.MapsActivity" />
+        </activity>
+        <activity android:name=".ParkingSpotActivity"
+            android:parentActivityName=".MapsActivity"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

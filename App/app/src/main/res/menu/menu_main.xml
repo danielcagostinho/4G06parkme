@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,11 +9,11 @@
         app:showAsAction="never"
         android:onClick="launch_settings"/>
 
-    <!--item
+    <item
         android:id="@+id/action_savedcar"
         android:icon="@drawable/baseline_directions_car_white_24dp"
         android:title="@string/action_savedcar"
         app:showAsAction="always"
         android:onClick="launch_parklot"
-        /-->
+        />
 </menu>

@@ -13,7 +13,10 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -27,6 +30,7 @@ import retrofit2.Response;
 import com.example.parkinglot.Components.ParkingLotItem;
 import com.example.parkinglot.Components.ParkingLotListView;
 
+import com.example.parkinglot.Components.SettingsActivity;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.api.directions.v5.models.DirectionsResponse;
@@ -68,6 +72,7 @@ public class MapsActivity extends AppCompatActivity implements
         MapboxMap.OnMapClickListener,
         PermissionsListener {
 
+    private static final String LOG_TAG = MapsActivity.class.getSimpleName();
 
     final private float MAX_ZOOM_OUT = 12f;
     final private int SEARCH_RESPONSE = 1;
@@ -102,12 +107,40 @@ public class MapsActivity extends AppCompatActivity implements
     private String parkingLayerID = "parking-layer";
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+        if(id == R.id.action_savedcar){
+
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         PlaceAutocomplete.clearRecentHistory(this);
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token));
         setContentView(R.layout.activity_maps);
         setUpParkingLotList();
+        //Toolbar toolbar = findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
@@ -370,7 +403,17 @@ public class MapsActivity extends AppCompatActivity implements
             // do nothing
         }
     }
+    public void launch_settings(MenuItem item) {
+        Log.d(LOG_TAG, "Settings clicked!");
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
+    public void launch_parklot(MenuItem item) {
+        Log.d(LOG_TAG, "Lot CLicked clicked!");
+        Intent intent = new Intent(this, ParkingSpotActivity.class);
+        startActivity(intent);
 
+    }
     // gets the nearby parking lots
     private void getNearbyParkingLots() {
 
