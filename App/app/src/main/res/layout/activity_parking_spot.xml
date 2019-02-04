@@ -25,7 +25,8 @@
         app:minZoom="1.0"
         app:verticalPanEnabled="true"
         app:zoomEnabled="true"
-        android:background="@color/md_grey_500">
+        app:alignment="center"
+        android:background="@color/md_grey_800">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -38,7 +39,7 @@
                 android:layout_width="225dp"
                 android:layout_height="100dp"
                 android:layout_marginStart="135dp"
-                android:layout_marginTop="58dp"
+                android:layout_marginTop="200dp"
                 android:backgroundTint="#99FF0000"
                 android:onClick="showDialog"
                 android:text="1,1"/>
@@ -88,7 +89,7 @@
                 android:id="@+id/s5c57245fd347320000f51d0a"
                 android:layout_width="225dp"
                 android:layout_height="100dp"
-                android:layout_marginTop="58dp"
+                android:layout_marginTop="200dp"
                 android:layout_toEndOf="@id/s5c4946c9ac8f790000f001cf"
                 android:backgroundTint="#99008000"
                 android:onClick="showDialog"
@@ -140,7 +141,7 @@
                 android:layout_width="225dp"
                 android:layout_height="90dp"
                 android:layout_marginStart="205dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="205dp"
                 android:layout_toEndOf="@id/s5c57245fd347320000f51d0a"
                 android:backgroundTint="#99FF0000"
                 android:onClick="showDialog"
@@ -195,7 +196,7 @@
                 android:id="@+id/spot16"
                 android:layout_width="220dp"
                 android:layout_height="90dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="205dp"
                 android:layout_toEndOf="@id/spot11"
                 android:backgroundTint="#99008000"
                 android:onClick="showDialog"
