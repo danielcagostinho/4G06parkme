@@ -25,7 +25,8 @@
         app:minZoom="1.0"
         app:verticalPanEnabled="true"
         app:zoomEnabled="true"
-        android:background="@color/md_grey_500">
+        app:alignment="center"
+        android:background="@color/md_grey_800">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -35,191 +36,212 @@
             <!--Left Group 1-->
             <Button
                 android:id="@+id/s5c4946c9ac8f790000f001cf"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="50dp"
+                android:layout_width="225dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="135dp"
+                android:layout_marginTop="200dp"
                 android:backgroundTint="#99FF0000"
-                android:onClick="updateColor" />
+                android:onClick="showDialog"
+                android:text="1,1"/>
+
 
             <Button
                 android:id="@+id/s5c4be566bc01840000b851d3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="225dp"
+                android:layout_height="100dp"
                 android:layout_below="@id/s5c4946c9ac8f790000f001cf"
-                android:layout_marginStart="25dp"
+                android:layout_marginStart="135dp"
                 android:backgroundTint="#99FF0000"
-                android:onClick="showDialog" />
-
-            <Button
-                android:id="@+id/s5c534fd3a2b1de00000ed7a3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/s5c4be566bc01840000b851d3"
-                android:layout_marginStart="25dp"
-                android:backgroundTint="#99008000"
-                android:onClick="showDialog" />
-
-            <Button
-                android:id="@+id/spot04"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/s5c534fd3a2b1de00000ed7a3"
-                android:layout_marginStart="25dp"
-                android:backgroundTint="#99008000"
-                android:onClick="showDialog" />
-
-            <Button
-                android:id="@+id/spot05"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/spot04"
-                android:layout_marginStart="25dp"
-                android:backgroundTint="#99FF0000"
-                android:onClick="showDialog" />
-
-            <!--Left Group 2-->
-            <Button
-                android:id="@+id/s5c53504ea2b1de00000ed7a4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:layout_toEndOf="@id/s5c4946c9ac8f790000f001cf"
-                android:backgroundTint="#99008000"
-                android:onClick="showDialog" />
+                android:onClick="showDialog"
+                android:text="1,2"/>
 
             <Button
                 android:id="@+id/s5c535099a2b1de00000ed7a5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/s5c53504ea2b1de00000ed7a4"
-                android:layout_toEndOf="@id/s5c4be566bc01840000b851d3"
-                android:backgroundTint="#99FF0000"
-                android:onClick="showDialog" />
+                android:layout_width="225dp"
+                android:layout_height="100dp"
+                android:layout_below="@id/s5c4be566bc01840000b851d3"
+                android:layout_marginStart="135dp"
+                android:backgroundTint="#99008000"
+                android:onClick="showDialog"
+                android:text="1,3"/>
 
             <Button
-                android:id="@+id/spot08"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/spot04"
+                android:layout_width="225dp"
+                android:layout_height="90dp"
                 android:layout_below="@id/s5c535099a2b1de00000ed7a5"
-                android:layout_toEndOf="@id/s5c534fd3a2b1de00000ed7a3"
+                android:layout_marginStart="135dp"
                 android:backgroundTint="#99008000"
-                android:onClick="showDialog" />
+                android:onClick="showDialog"
+                android:text="1,4"/>
 
             <Button
-                android:id="@+id/spot09"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/spot08"
-                android:layout_toEndOf="@id/spot04"
-                android:backgroundTint="#99008000"
-                android:onClick="showDialog" />
-
-            <Button
-                android:id="@+id/spot10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/spot09"
-                android:layout_toEndOf="@id/spot05"
+                android:id="@+id/spot05"
+                android:layout_width="225dp"
+                android:layout_height="90dp"
+                android:layout_below="@id/spot04"
+                android:layout_marginStart="135dp"
                 android:backgroundTint="#99FF0000"
-                android:onClick="showDialog" />
-
-            <!--Right Group 1-->
-            <Button
-                android:id="@+id/s5c5350eca2b1de00000ed7a6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="50dp"
-                android:layout_toEndOf="@id/s5c53504ea2b1de00000ed7a4"
-                android:backgroundTint="#99FF0000"
-                android:onClick="showDialog" />
-
-            <Button
-                android:id="@+id/s5c57245fd347320000f51d0a"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/s5c5350eca2b1de00000ed7a6"
-                android:layout_marginStart="100dp"
-                android:layout_toEndOf="@id/s5c535099a2b1de00000ed7a5"
-                android:backgroundTint="#99FF0000"
-                android:onClick="showDialog" />
-
-            <Button
-                android:id="@+id/spot13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/s5c57245fd347320000f51d0a"
-                android:layout_marginStart="100dp"
-                android:layout_toEndOf="@id/spot08"
-                android:backgroundTint="#99008000"
-                android:onClick="showDialog" />
-
-            <Button
-                android:id="@+id/spot14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/spot13"
-                android:layout_marginStart="100dp"
-                android:layout_toEndOf="@id/spot09"
-                android:backgroundTint="#99008000"
-                android:onClick="showDialog" />
-
-            <Button
-                android:id="@+id/spot15"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/spot14"
-                android:layout_marginStart="100dp"
-                android:layout_toEndOf="@id/spot10"
-                android:backgroundTint="#99FF0000"
-                android:onClick="showDialog" />
+                android:onClick="showDialog"
+                android:text="1,5"/>
 
             <!--Left Group 2-->
             <Button
-                android:id="@+id/spot16"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:id="@+id/s5c57245fd347320000f51d0a"
+                android:layout_width="225dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="200dp"
+                android:layout_toEndOf="@id/s5c4946c9ac8f790000f001cf"
+                android:backgroundTint="#99008000"
+                android:onClick="showDialog"
+                android:text="2,1"/>
+
+            <Button
+                android:id="@+id/s5c534fd3a2b1de00000ed7a3"
+                android:layout_width="225dp"
+                android:layout_height="100dp"
+                android:layout_below="@id/s5c57245fd347320000f51d0a"
+                android:layout_toEndOf="@id/s5c4be566bc01840000b851d3"
+                android:backgroundTint="#99FF0000"
+                android:onClick="showDialog"
+                android:text="2,2"/>
+
+            <Button
+                android:id="@+id/s5c5350eca2b1de00000ed7a6"
+                android:layout_width="225dp"
+                android:layout_height="100dp"
+                android:layout_below="@id/s5c534fd3a2b1de00000ed7a3"
+                android:layout_toEndOf="@id/s5c535099a2b1de00000ed7a5"
+                android:backgroundTint="#99008000"
+                android:onClick="showDialog"
+                android:text="2,3"/>
+
+            <Button
+                android:id="@+id/spot09"
+                android:layout_width="225dp"
+                android:layout_height="90dp"
+                android:layout_below="@id/s5c5350eca2b1de00000ed7a6"
+                android:layout_toEndOf="@id/spot04"
+                android:backgroundTint="#99008000"
+                android:onClick="showDialog"
+                android:text="2,4"/>
+
+            <Button
+                android:id="@+id/spot10"
+                android:layout_width="225dp"
+                android:layout_height="90dp"
+                android:layout_below="@id/spot09"
+                android:layout_toEndOf="@id/spot05"
+                android:backgroundTint="#99FF0000"
+                android:onClick="showDialog"
+                android:text="2,5"/>
+
+            <!--Right Group 1-->
+            <Button
+                android:id="@+id/spot11"
+                android:layout_width="225dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="205dp"
+                android:layout_marginTop="205dp"
+                android:layout_toEndOf="@id/s5c57245fd347320000f51d0a"
+                android:backgroundTint="#99FF0000"
+                android:onClick="showDialog"
+                android:text="3,1"/>
+
+            <Button
+                android:id="@+id/spot12"
+                android:layout_width="225dp"
+                android:layout_height="100dp"
+                android:layout_below="@id/spot11"
+                android:layout_marginStart="205dp"
+                android:layout_toEndOf="@id/s5c534fd3a2b1de00000ed7a3"
+                android:backgroundTint="#99FF0000"
+                android:onClick="showDialog"
+                android:text="3,2"/>
+
+            <Button
+                android:id="@+id/s5c53504ea2b1de00000ed7a4"
+                android:layout_width="225dp"
+                android:layout_height="95dp"
+                android:layout_below="@id/spot12"
+                android:layout_marginStart="205dp"
                 android:layout_toEndOf="@id/s5c5350eca2b1de00000ed7a6"
                 android:backgroundTint="#99008000"
-                android:onClick="showDialog" />
+                android:onClick="showDialog"
+                android:text="3,3"/>
+
+            <Button
+                android:id="@+id/spot14"
+                android:layout_width="225dp"
+                android:layout_height="95dp"
+                android:layout_below="@id/s5c53504ea2b1de00000ed7a4"
+                android:layout_marginStart="205dp"
+                android:layout_toEndOf="@id/spot09"
+                android:backgroundTint="#99008000"
+                android:onClick="showDialog"
+                android:text="3,4"/>
+
+            <Button
+                android:id="@+id/spot15"
+                android:layout_width="225dp"
+                android:layout_height="95dp"
+                android:layout_below="@id/spot14"
+                android:layout_marginStart="205dp"
+                android:layout_toEndOf="@id/spot10"
+                android:backgroundTint="#99FF0000"
+                android:onClick="showDialog"
+                android:text="3,5"/>
+
+            <!--Right Group 2-->
+            <Button
+                android:id="@+id/spot16"
+                android:layout_width="220dp"
+                android:layout_height="90dp"
+                android:layout_marginTop="205dp"
+                android:layout_toEndOf="@id/spot11"
+                android:backgroundTint="#99008000"
+                android:onClick="showDialog"
+                android:text="4,1"/>
 
             <Button
                 android:id="@+id/spot17"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="220dp"
+                android:layout_height="100dp"
                 android:layout_below="@id/spot16"
-                android:layout_toEndOf="@id/s5c57245fd347320000f51d0a"
+                android:layout_toEndOf="@id/spot12"
                 android:backgroundTint="#99FF0000"
-                android:onClick="showDialog" />
+                android:onClick="showDialog"
+                android:text="4,2"/>
 
             <Button
                 android:id="@+id/spot18"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="220dp"
+                android:layout_height="95dp"
                 android:layout_below="@id/spot17"
-                android:layout_toEndOf="@id/spot13"
+                android:layout_toEndOf="@id/s5c53504ea2b1de00000ed7a4"
                 android:backgroundTint="#99008000"
-                android:onClick="showDialog" />
+                android:onClick="showDialog"
+                android:text="4,3"/>
 
             <Button
                 android:id="@+id/spot19"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="220dp"
+                android:layout_height="95dp"
                 android:layout_below="@id/spot18"
                 android:layout_toEndOf="@id/spot14"
                 android:backgroundTint="#99008000"
-                android:onClick="showDialog" />
+                android:onClick="showDialog"
+                android:text="4,4"/>
 
             <Button
                 android:id="@+id/spot20"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="220dp"
+                android:layout_height="95dp"
                 android:layout_below="@id/spot19"
                 android:layout_toEndOf="@id/spot15"
                 android:backgroundTint="#99FF0000"
-                android:onClick="showDialog" />
+                android:onClick="showDialog"
+                android:text="4,5"/>
 
         </RelativeLayout>
 
