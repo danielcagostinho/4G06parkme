@@ -42,7 +42,7 @@
                 android:layout_marginTop="200dp"
                 android:backgroundTint="#99FF0000"
                 android:onClick="showDialog"
-                android:text="1,1"/>
+                android:text="1,1" />
 
 
             <Button
@@ -53,7 +53,7 @@
                 android:layout_marginStart="135dp"
                 android:backgroundTint="#99FF0000"
                 android:onClick="showDialog"
-                android:text="1,2"/>
+                android:text="1,2" />
 
             <Button
                 android:id="@+id/s5c535099a2b1de00000ed7a5"

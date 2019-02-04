@@ -7,7 +7,7 @@
     <!-- Strings related to Settings -->
 
     <!-- Example General settings -->
-    <string name="pref_header_general">Parking Spot Recommendation Preferences</string>
+    <string name="pref_header_general">Preferences</string>
 
     <string name="pref_title_social_recommendations">Accessibility Spot Required</string>
     <string name="pref_description_social_recommendations">Select if you require an accessible spot, and have the required pass.

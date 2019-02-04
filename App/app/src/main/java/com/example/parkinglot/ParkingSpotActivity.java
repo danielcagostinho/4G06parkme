@@ -61,8 +61,6 @@ public class ParkingSpotActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parking_spot);
         setTitle("Parking Spots");
-        //Toolbar toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
         setupActionBar();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         SharedPreferences mSettings = getApplicationContext().getSharedPreferences("Settings", Context.MODE_PRIVATE);
@@ -143,12 +141,9 @@ public class ParkingSpotActivity extends AppCompatActivity {
     private void updateView(Context context, SharedPreferences mPref){
             //parse request
         String lot_name = "5c49470d78dea5feb9d02a2c";
-        //parseInfo(context, lot_name );
 
         for (int i = 0; i < parkingSpots.size(); i++){
             if (parkingSpots.get(i).occupancy.equals("false")){
-                //Log.d(LOG_TAG, parkingSpots.get(i).id);
-                //Log.d(LOG_TAG, parkingSpots.get(i).accessibility);
                 if (parkingSpots.get(i).accessibility.equals("true")){
                     updateColor("s"+parkingSpots.get(i).id, android.R.color.holo_blue_dark);
                 }
@@ -158,8 +153,6 @@ public class ParkingSpotActivity extends AppCompatActivity {
 
             }else{
                 updateColor("s"+parkingSpots.get(i).id, android.R.color.darker_gray);
-                //Log.d(LOG_TAG, parkingSpots.get(i).id);
-                //Log.d(LOG_TAG, parkingSpots.get(i).accessibility);
             }
 
 
@@ -176,14 +169,11 @@ public class ParkingSpotActivity extends AppCompatActivity {
                 // get res
                 JSONObject response = new JSONObject(res);
                 JSONArray parkingSpotsArray = response.getJSONArray("parkingspaces");
-                //ArrayList<ParkingLotItem> parkingLotItems = new ArrayList<>();
 
                 // loop through each lot
                 for (int i = 0; i < parkingSpotsArray.length(); i++) {
 
                     JSONObject spot = (JSONObject) parkingSpotsArray.get(i);
-                    //JSONObject parkingSpotID = spot.getJSONObject("id");
-                    //JSONObject accessible = spot.getJSONObject("accessible");
                     String id = spot.getString("id");
                     String accessible = (spot.has("accessible") ? spot.getString("accessible") : "false");
                     String occupancy = spot.getString("occupancy");
@@ -193,10 +183,6 @@ public class ParkingSpotActivity extends AppCompatActivity {
                             accessible,
                             occupancy);
                     parkingSpots.add(parkingSpot);
-                    //put shit here
-
-                    Log.d(LOG_TAG,  id);
-
                 }
                 showBestSpot(context, mSettings, "5c49470d78dea5feb9d02a2c");
 
@@ -213,16 +199,12 @@ public class ParkingSpotActivity extends AppCompatActivity {
     }
 
     public void showBestSpot(Context context, SharedPreferences mPref, String lotname){
-        ///String bestId = "";
+
         requestor.getBestSpot(context, mPref, lotname ,(String res) -> {
             try {
                 // get res
                 JSONObject response = new JSONObject(res);
                 String spot_rec = response.getString("id");
-
-                //JSONArray bestSpot = response.getJSONArray("id");
-                //ArrayList<ParkingLotItem> parkingLotItems = new ArrayList<>();
-                //JSONObject spot = (JSONObject) bestSpot.get(0);
 
                 recommended = "s"+ spot_rec;
                 updateView(context, mPref);
