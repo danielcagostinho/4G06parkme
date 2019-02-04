@@ -19,16 +19,19 @@ import com.mapbox.mapboxsdk.geometry.LatLng;
 public class Requestor {
 
     RequestQueue queue;
+    Context context;
 
     public Requestor(Context context) {
         queue = Volley.newRequestQueue(context);
-
+        this.context = context;
     }
 
     // make a basic get request
     private void makeGETRequest(String url, Response.Listener<String> onResponse, @Nullable Response.ErrorListener OnErrorResponse) {
-        url = RequestorConstants.REQUEST_BASE + url;
+        SharedPreferences mSettings= PreferenceManager.getDefaultSharedPreferences(context);
+        url = mSettings.getString("http", "") + url;
         // Request a string response from the provided URL.
+        Log.d(MapsActivity.TAG, "get:" + url);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, onResponse, OnErrorResponse);
         Log.d(MapsActivity.TAG, "get url " + url);
         // Add the request to the RequestQueue.
@@ -40,12 +43,12 @@ public class Requestor {
         makeGETRequest(String.format("parkinglots/radius?latitude=%s&longitude=%s&radius=%s",currentPosition.getLatitude(),currentPosition.getLongitude(),radius), success, failure);
     }
     public void getBestSpot(Context context, SharedPreferences sharedPreferences, String lotname, Response.Listener<String> success, Response.ErrorListener failure){
-        SharedPreferences mSharedPreference= PreferenceManager.getDefaultSharedPreferences(context);
-        String access = Boolean.toString(mSharedPreference.getBoolean("access_switch", false));
-        String prox = mSharedPreference.getString("spot_pref", "0");
+        SharedPreferences mSharedPreferences= PreferenceManager.getDefaultSharedPreferences(context);
+        String access = Boolean.toString(mSharedPreferences.getBoolean("access_switch", false));
+        String prox = mSharedPreferences.getString("spot_pref", "0");
         makeGETRequest(String.format("parkinglot/%s/parkingspaces/best?accessible=%s&preference=%s", lotname, access, prox ),success, failure);
     }
-    public void getLotInfo(String lot, Response.Listener<String> success, Response.ErrorListener failure){
+    public void getLotInfo(String lot, SharedPreferences sharedPreferences,  Response.Listener<String> success, Response.ErrorListener failure){
         makeGETRequest(String.format("parkinglot/%s/parkingspaces/all", lot),success, failure);
     }
 }

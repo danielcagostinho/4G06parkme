@@ -9,4 +9,11 @@
     <color name="mapboxPink">#ee4e8b</color>
     <color name="mapboxYellow">#d9d838</color>
     <color name="mapboxRed">#b43b71</color>
+    <color name = "myLightGray">#99C9C9C9</color>
+    <color name="blockspot">@color/myLightGray</color>
+    <color name = "myGreen">#9905AC05</color>
+    <color name="openspot">@color/myGreen</color>
+    <color name = "myBlue">#4264fb</color>
+    <color name="accessspot">@color/myBlue</color>
+
 </resources>

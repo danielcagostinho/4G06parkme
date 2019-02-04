@@ -30,4 +30,12 @@
         android:positiveButtonText="@null"
         android:title="@string/spot_prox" />
 
+    <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue="put http server"
+        android:key="http"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="Http Server" />
 </PreferenceScreen>
