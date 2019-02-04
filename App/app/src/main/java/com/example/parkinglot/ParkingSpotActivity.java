@@ -110,8 +110,10 @@ public class ParkingSpotActivity extends AppCompatActivity {
 
     public void showDialog(View view){
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle("Parking Spot #");
-        alert.setMessage("show some information here");
+        Button b = (Button) view;
+        String spotNumber = b.getText().toString();
+        alert.setTitle("Parking Spot #" + spotNumber);
+        alert.setMessage("Would you like to save this spot?");
         alert.setPositiveButton("Save Spot", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
