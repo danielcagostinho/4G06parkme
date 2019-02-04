@@ -40,7 +40,7 @@
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="50dp"
                 android:backgroundTint="#99FF0000"
-                android:onClick="updateColor" />
+                android:onClick="showDialog" />
 
             <Button
                 android:id="@+id/s5c4be566bc01840000b851d3"
