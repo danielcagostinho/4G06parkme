@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 
@@ -49,7 +50,7 @@ public class ParkingSpotActivity extends AppCompatActivity {
     private ArrayList <ParkingSpot> parkingSpots;
 
     private String recommended;
-    private String savedSpot;
+    private String savedSpot = "0";
 
     private Timer mTimer1;
     private TimerTask mTt1;
@@ -68,12 +69,12 @@ public class ParkingSpotActivity extends AppCompatActivity {
         requestor = new Requestor(getApplicationContext());
 
         //poll
-        startTimer();
+        startTimer(mSettings);
 
         runOnUiThread(new Runnable(){
             @Override
             public void run(){
-                parseInfo(getApplicationContext(),"5c49470d78dea5feb9d02a2c" );
+                parseInfo(getApplicationContext(), getApplicationContext().getSharedPreferences("Settings", Context.MODE_PRIVATE) ,"5c49470d78dea5feb9d02a2c" );
             }
         });
 
@@ -86,13 +87,13 @@ public class ParkingSpotActivity extends AppCompatActivity {
             mTimer1.purge();
         }
     }
-    private void startTimer(){
+    private void startTimer(SharedPreferences sharedPreferences){
         mTimer1 = new Timer();
         mTt1 = new TimerTask(){
             public void run(){
                 mTimerHandler.post(new Runnable(){
                     public void run(){
-                        parseInfo(getApplicationContext(),"5c49470d78dea5feb9d02a2c" );
+                        parseInfo(getApplicationContext(), sharedPreferences,"5c49470d78dea5feb9d02a2c" );
                     }
                 });
             }
@@ -145,14 +146,14 @@ public class ParkingSpotActivity extends AppCompatActivity {
         for (int i = 0; i < parkingSpots.size(); i++){
             if (parkingSpots.get(i).occupancy.equals("false")){
                 if (parkingSpots.get(i).accessibility.equals("true")){
-                    updateColor("s"+parkingSpots.get(i).id, android.R.color.holo_blue_dark);
+                    updateColor("s"+parkingSpots.get(i).id,  ContextCompat.getColor(context, R.color.accessspot));
                 }
                 else{
-                    updateColor("s"+parkingSpots.get(i).id, android.R.color.holo_green_dark);
+                    updateColor("s"+parkingSpots.get(i).id, ContextCompat.getColor(context, R.color.openspot));
                 }
 
             }else{
-                updateColor("s"+parkingSpots.get(i).id, android.R.color.darker_gray);
+                updateColor("s"+parkingSpots.get(i).id, ContextCompat.getColor(context, R.color.blockspot));
             }
 
 
@@ -160,11 +161,11 @@ public class ParkingSpotActivity extends AppCompatActivity {
         updateColor(recommended, android.R.color.holo_orange_light);
     }
 
-    private void parseInfo(Context context, String lot_name){
-        SharedPreferences mSettings = getApplicationContext().getSharedPreferences("Settings", Context.MODE_PRIVATE);
+    private void parseInfo(Context context, SharedPreferences sharedPreferences, String lot_name){
+        //SharedPreferences mSettings = getApplicationContext().getSharedPreferences("Settings", Context.MODE_PRIVATE);
         parkingSpots = new ArrayList<>();
 
-        requestor.getLotInfo(lot_name ,(String res) -> {
+        requestor.getLotInfo(lot_name, sharedPreferences ,(String res) -> {
             try {
                 // get res
                 JSONObject response = new JSONObject(res);
@@ -184,7 +185,7 @@ public class ParkingSpotActivity extends AppCompatActivity {
                             occupancy);
                     parkingSpots.add(parkingSpot);
                 }
-                showBestSpot(context, mSettings, "5c49470d78dea5feb9d02a2c");
+                showBestSpot(context, sharedPreferences, "5c49470d78dea5feb9d02a2c");
 
             } catch (JSONException e) {
                 Log.d(LOG_TAG, "onResponse JSON Error: " + e);
@@ -205,8 +206,12 @@ public class ParkingSpotActivity extends AppCompatActivity {
                 // get res
                 JSONObject response = new JSONObject(res);
                 String spot_rec = response.getString("id");
+                if (!savedSpot.equals("0")){
 
-                recommended = "s"+ spot_rec;
+                recommended = "s"+ spot_rec;}
+                else{
+                    recommended = savedSpot;
+                }
                 updateView(context, mPref);
                 Log.d(LOG_TAG, "Recommended: " + recommended);
             } catch (JSONException e) {
@@ -225,6 +230,7 @@ public class ParkingSpotActivity extends AppCompatActivity {
     public void showDialog(View view){
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         Button b = (Button) view;
+        String tag = b.getTag().toString();
         String spotNumber = b.getText().toString();
         alert.setTitle("Parking Spot #" + spotNumber);
         alert.setMessage("Would you like to save this spot?");
@@ -234,11 +240,13 @@ public class ParkingSpotActivity extends AppCompatActivity {
 
                 ViewCompat.setBackgroundTintList(view, ContextCompat.getColorStateList(ParkingSpotActivity.this, android.R.color.holo_orange_light));
                 //updateColor("s5c4946c9ac8f790000f001cf", android.R.color.holo_purple);
-
                 //ViewCompat.setBackgroundTintList(view, ContextCompat.getColorStateList(ParkingSpotActivity.this, android.R.color.holo_blue_light));
-
                 //Toast.makeText(ParkingSpotActivity.this, "Spot Saved", Toast.LENGTH_SHORT).show();
-                savedSpot = Integer.toString(view.getId());
+
+                SharedPreferences mSharedPreferences= PreferenceManager.getDefaultSharedPreferences(ParkingSpotActivity.this);
+                savedSpot = tag;
+                mSharedPreferences.edit().putString("saved_spot", savedSpot);
+                Log.d(LOG_TAG, savedSpot);
             }
         });
         alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

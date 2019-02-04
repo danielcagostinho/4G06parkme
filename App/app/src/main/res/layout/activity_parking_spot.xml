@@ -36,32 +36,35 @@
             <!--Left Group 1-->
             <Button
                 android:id="@+id/s5c4946c9ac8f790000f001cf"
+                android:tag="s5c4946c9ac8f790000f001cf"
                 android:layout_width="225dp"
                 android:layout_height="100dp"
                 android:layout_marginStart="135dp"
                 android:layout_marginTop="200dp"
-                android:backgroundTint="#99FF0000"
+                android:backgroundTint="#99C9C9C9"
                 android:onClick="showDialog"
                 android:text="1,1" />
 
 
             <Button
                 android:id="@+id/s5c4be566bc01840000b851d3"
+                android:tag="s5c4be566bc01840000b851d3"
                 android:layout_width="225dp"
                 android:layout_height="100dp"
                 android:layout_below="@id/s5c4946c9ac8f790000f001cf"
                 android:layout_marginStart="135dp"
-                android:backgroundTint="#99FF0000"
+                android:backgroundTint="#99C9C9C9"
                 android:onClick="showDialog"
                 android:text="1,2" />
 
             <Button
                 android:id="@+id/s5c535099a2b1de00000ed7a5"
+                android:tag="s5c535099a2b1de00000ed7a5"
                 android:layout_width="225dp"
                 android:layout_height="100dp"
                 android:layout_below="@id/s5c4be566bc01840000b851d3"
                 android:layout_marginStart="135dp"
-                android:backgroundTint="#99008000"
+                android:backgroundTint="#9905AC05"
                 android:onClick="showDialog"
                 android:text="1,3"/>
 
@@ -71,7 +74,7 @@
                 android:layout_height="90dp"
                 android:layout_below="@id/s5c535099a2b1de00000ed7a5"
                 android:layout_marginStart="135dp"
-                android:backgroundTint="#99008000"
+                android:backgroundTint="#9905AC05"
                 android:onClick="showDialog"
                 android:text="1,4"/>
 
@@ -81,38 +84,41 @@
                 android:layout_height="90dp"
                 android:layout_below="@id/spot04"
                 android:layout_marginStart="135dp"
-                android:backgroundTint="#99FF0000"
+                android:backgroundTint="#99C9C9C9"
                 android:onClick="showDialog"
                 android:text="1,5"/>
 
             <!--Left Group 2-->
             <Button
                 android:id="@+id/s5c57245fd347320000f51d0a"
+                android:tag="s5c57245fd347320000f51d0a"
                 android:layout_width="225dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="200dp"
                 android:layout_toEndOf="@id/s5c4946c9ac8f790000f001cf"
-                android:backgroundTint="#99008000"
+                android:backgroundTint="#9905AC05"
                 android:onClick="showDialog"
                 android:text="2,1"/>
 
             <Button
                 android:id="@+id/s5c534fd3a2b1de00000ed7a3"
+                android:tag="s5c534fd3a2b1de00000ed7a3"
                 android:layout_width="225dp"
                 android:layout_height="100dp"
                 android:layout_below="@id/s5c57245fd347320000f51d0a"
                 android:layout_toEndOf="@id/s5c4be566bc01840000b851d3"
-                android:backgroundTint="#99FF0000"
+                android:backgroundTint="#99C9C9C9"
                 android:onClick="showDialog"
                 android:text="2,2"/>
 
             <Button
                 android:id="@+id/s5c5350eca2b1de00000ed7a6"
+                android:tag="s5c5350eca2b1de00000ed7a6"
                 android:layout_width="225dp"
                 android:layout_height="100dp"
                 android:layout_below="@id/s5c534fd3a2b1de00000ed7a3"
                 android:layout_toEndOf="@id/s5c535099a2b1de00000ed7a5"
-                android:backgroundTint="#99008000"
+                android:backgroundTint="#9905AC05"
                 android:onClick="showDialog"
                 android:text="2,3"/>
 
@@ -122,7 +128,7 @@
                 android:layout_height="90dp"
                 android:layout_below="@id/s5c5350eca2b1de00000ed7a6"
                 android:layout_toEndOf="@id/spot04"
-                android:backgroundTint="#99008000"
+                android:backgroundTint="#9905AC05"
                 android:onClick="showDialog"
                 android:text="2,4"/>
 
@@ -132,7 +138,7 @@
                 android:layout_height="90dp"
                 android:layout_below="@id/spot09"
                 android:layout_toEndOf="@id/spot05"
-                android:backgroundTint="#99FF0000"
+                android:backgroundTint="#99C9C9C9"
                 android:onClick="showDialog"
                 android:text="2,5"/>
 
@@ -144,7 +150,7 @@
                 android:layout_marginStart="205dp"
                 android:layout_marginTop="205dp"
                 android:layout_toEndOf="@id/s5c57245fd347320000f51d0a"
-                android:backgroundTint="#99FF0000"
+                android:backgroundTint="#99C9C9C9"
                 android:onClick="showDialog"
                 android:text="3,1"/>
 
@@ -155,18 +161,19 @@
                 android:layout_below="@id/spot11"
                 android:layout_marginStart="205dp"
                 android:layout_toEndOf="@id/s5c534fd3a2b1de00000ed7a3"
-                android:backgroundTint="#99FF0000"
+                android:backgroundTint="#99C9C9C9"
                 android:onClick="showDialog"
                 android:text="3,2"/>
 
             <Button
                 android:id="@+id/s5c53504ea2b1de00000ed7a4"
+                android:tag="s5c53504ea2b1de00000ed7a4"
                 android:layout_width="225dp"
                 android:layout_height="95dp"
                 android:layout_below="@id/spot12"
                 android:layout_marginStart="205dp"
                 android:layout_toEndOf="@id/s5c5350eca2b1de00000ed7a6"
-                android:backgroundTint="#99008000"
+                android:backgroundTint="#9905AC05"
                 android:onClick="showDialog"
                 android:text="3,3"/>
 
@@ -177,7 +184,7 @@
                 android:layout_below="@id/s5c53504ea2b1de00000ed7a4"
                 android:layout_marginStart="205dp"
                 android:layout_toEndOf="@id/spot09"
-                android:backgroundTint="#99008000"
+                android:backgroundTint="#9905AC05"
                 android:onClick="showDialog"
                 android:text="3,4"/>
 
@@ -188,7 +195,7 @@
                 android:layout_below="@id/spot14"
                 android:layout_marginStart="205dp"
                 android:layout_toEndOf="@id/spot10"
-                android:backgroundTint="#99FF0000"
+                android:backgroundTint="#99C9C9C9"
                 android:onClick="showDialog"
                 android:text="3,5"/>
 
@@ -199,7 +206,7 @@
                 android:layout_height="90dp"
                 android:layout_marginTop="205dp"
                 android:layout_toEndOf="@id/spot11"
-                android:backgroundTint="#99008000"
+                android:backgroundTint="#9905AC05"
                 android:onClick="showDialog"
                 android:text="4,1"/>
 
@@ -209,7 +216,7 @@
                 android:layout_height="100dp"
                 android:layout_below="@id/spot16"
                 android:layout_toEndOf="@id/spot12"
-                android:backgroundTint="#99FF0000"
+                android:backgroundTint="#99C9C9C9"
                 android:onClick="showDialog"
                 android:text="4,2"/>
 
@@ -219,7 +226,7 @@
                 android:layout_height="95dp"
                 android:layout_below="@id/spot17"
                 android:layout_toEndOf="@id/s5c53504ea2b1de00000ed7a4"
-                android:backgroundTint="#99008000"
+                android:backgroundTint="#9905AC05"
                 android:onClick="showDialog"
                 android:text="4,3"/>
 
@@ -229,7 +236,7 @@
                 android:layout_height="95dp"
                 android:layout_below="@id/spot18"
                 android:layout_toEndOf="@id/spot14"
-                android:backgroundTint="#99008000"
+                android:backgroundTint="#9905AC05"
                 android:onClick="showDialog"
                 android:text="4,4"/>
 
@@ -239,7 +246,7 @@
                 android:layout_height="95dp"
                 android:layout_below="@id/spot19"
                 android:layout_toEndOf="@id/spot15"
-                android:backgroundTint="#99FF0000"
+                android:backgroundTint="#99C9C9C9"
                 android:onClick="showDialog"
                 android:text="4,5"/>
 
