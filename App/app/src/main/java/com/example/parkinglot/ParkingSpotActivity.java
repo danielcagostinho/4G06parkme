@@ -242,14 +242,20 @@ public class ParkingSpotActivity extends AppCompatActivity {
 
     public void showDialog(View view){
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle("Parking Spot #");
-        alert.setMessage("show some information here");
+        Button b = (Button) view;
+        String spotNumber = b.getText().toString();
+        alert.setTitle("Parking Spot #" + spotNumber);
+        alert.setMessage("Would you like to save this spot?");
         alert.setPositiveButton("Save Spot", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+
                 ViewCompat.setBackgroundTintList(view, ContextCompat.getColorStateList(ParkingSpotActivity.this, android.R.color.holo_orange_light));
                 //updateColor("s5c4946c9ac8f790000f001cf", android.R.color.holo_purple);
-                Toast.makeText(ParkingSpotActivity.this, "Spot Saved", Toast.LENGTH_SHORT).show();
+
+                //ViewCompat.setBackgroundTintList(view, ContextCompat.getColorStateList(ParkingSpotActivity.this, android.R.color.holo_blue_light));
+
+                //Toast.makeText(ParkingSpotActivity.this, "Spot Saved", Toast.LENGTH_SHORT).show();
                 savedSpot = Integer.toString(view.getId());
             }
         });
