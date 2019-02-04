@@ -10,25 +10,22 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.parkinglot.Components.RequestorConstants;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 
 
 
 public class Requestor {
 
-    final String REQUEST_BASE = "http://10.0.0.2:8000/api/";
-
     RequestQueue queue;
 
     public Requestor(Context context) {
         queue = Volley.newRequestQueue(context);
-
-
     }
 
     // make a basic get request
     private void makeGETRequest(String url, Response.Listener<String> onResponse, @Nullable Response.ErrorListener OnErrorResponse) {
-        url =REQUEST_BASE + url ;
+        url = RequestorConstants.REQUEST_BASE + url;
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, onResponse, OnErrorResponse);
 
