@@ -11,7 +11,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.parkinglot.Components.RequestorConstants;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 
 
@@ -29,7 +28,7 @@ public class Requestor {
     // make a basic get request
     private void makeGETRequest(String url, Response.Listener<String> onResponse, @Nullable Response.ErrorListener OnErrorResponse) {
         SharedPreferences mSettings= PreferenceManager.getDefaultSharedPreferences(context);
-        url = mSettings.getString("http", "") + url;
+        url = mSettings.getString("http", "") + "/api/" + url;
         // Request a string response from the provided URL.
         Log.d(MapsActivity.TAG, "get:" + url);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, onResponse, OnErrorResponse);
