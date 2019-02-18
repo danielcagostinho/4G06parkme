@@ -37,6 +37,7 @@
                 android:value="com.example.parkinglot.MapsActivity" />
         </activity>
         <activity android:name=".ParkingSpotActivity"
+            android:noHistory="true"
             android:parentActivityName=".MapsActivity"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
