@@ -41,7 +41,7 @@ public class Requestor {
     public void GetParkingLots(LatLng currentPosition, double radius, Response.Listener<String> success, Response.ErrorListener failure) {
         makeGETRequest(String.format("parkinglots/radius?latitude=%s&longitude=%s&radius=%s",currentPosition.getLatitude(),currentPosition.getLongitude(),radius), success, failure);
     }
-    public void getBestSpot(Context context, SharedPreferences sharedPreferences, String lotname, Response.Listener<String> success, Response.ErrorListener failure){
+    public void getBestSpot(Context context, String lotname, Response.Listener<String> success, Response.ErrorListener failure){
         SharedPreferences mSharedPreferences= PreferenceManager.getDefaultSharedPreferences(context);
         String access = Boolean.toString(mSharedPreferences.getBoolean("access_switch", false));
         String prox = mSharedPreferences.getString("spot_pref", "0");

@@ -37,15 +37,17 @@ var getBestParkingSpace = function(parkinglot, preference, accessible) {
     var currentBestSpot = {}
     var currentClosestDistance = Infinity
     var entrance = parkinglot.entrance
+    accessible = (accessible === 'true')
     for(space of parkinglot.parking_spaces) {
-        
         // ignore occupant spots
         if (space.occupancy)
             continue
 
         // if they are not looking for accessible parking spaces skip
-        if (space.accessible && !accessible)
+        if (space.accessible && !accessible) {
             continue 
+        }
+            
         // use pythagorean lmao
         var diffX = Math.abs(entrance.x - space.position.x)
         var diffY = Math.abs(entrance.y - space.position.y)

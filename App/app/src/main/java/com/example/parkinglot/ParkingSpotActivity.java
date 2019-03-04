@@ -49,6 +49,8 @@ public class ParkingSpotActivity extends AppCompatActivity {
 
     private ArrayList <ParkingSpot> parkingSpots;
 
+    private SharedPreferences mSettings;
+
     private String recommended;
     private String savedSpot = "0";
 
@@ -64,8 +66,9 @@ public class ParkingSpotActivity extends AppCompatActivity {
         setTitle("Parking Spots");
         setupActionBar();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        SharedPreferences mSettings = getApplicationContext().getSharedPreferences("Settings", Context.MODE_PRIVATE);
-
+        mSettings= PreferenceManager.getDefaultSharedPreferences(ParkingSpotActivity.this);
+        mSettings.getString("saved_spot", "0");
+        parkingSpots = new ArrayList<>();
         requestor = new Requestor(getApplicationContext());
 
         //poll
@@ -76,6 +79,11 @@ public class ParkingSpotActivity extends AppCompatActivity {
             public void run(){
                 parseInfo(getApplicationContext(),"5c49470d78dea5feb9d02a2c" );
             }
+
+        //runOnUiThread(() -> {
+        //    Log.d(MapsActivity.TAG, "running update...");
+        //    parseInfo(getApplicationContext(),"5c49470d78dea5feb9d02a2c" );
+
         });
 
     }
@@ -88,6 +96,7 @@ public class ParkingSpotActivity extends AppCompatActivity {
         }
     }
     private void startTimer(){
+
         SharedPreferences mSettings = getApplicationContext().getSharedPreferences("Settings", Context.MODE_PRIVATE);
         mTimer1 = new Timer();
         mTt1 = new TimerTask(){
@@ -96,6 +105,13 @@ public class ParkingSpotActivity extends AppCompatActivity {
                     public void run(){
                         parseInfo(getApplicationContext() ,"5c49470d78dea5feb9d02a2c" );
                     }
+
+        //mTimer1 = new Timer();
+        //mTt1 = new TimerTask(){
+        //    public void run(){
+        //        mTimerHandler.post(() -> {
+        //            parseInfo(getApplicationContext(),"5c49470d78dea5feb9d02a2c" );
+
                 });
             }
 
@@ -140,21 +156,31 @@ public class ParkingSpotActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void updateView(Context context, SharedPreferences mPref){
+    private void updateView(Context context){
             //parse request
         String lot_name = "5c49470d78dea5feb9d02a2c";
-
         for (int i = 0; i < parkingSpots.size(); i++){
+
             if (parkingSpots.get(i).occupancy.equals("false")){
                 if (parkingSpots.get(i).accessibility.equals("true")){
                     updateColor("s"+parkingSpots.get(i).id,  android.R.);
+
+            //boolean isUserAccessible = mSettings.getBoolean("access_switch", false);
+            //boolean isSpotAccessible = parkingSpots.get(i).accessibility.equals("true");
+            //if (parkingSpots.get(i).occupancy.equals("false") || !(!isUserAccessible && isSpotAccessible)){
+            //    if (isSpotAccessible){
+            //        if (isUserAccessible)
+            //            updateColor("s"+parkingSpots.get(i).id, android.R.color.holo_blue_dark);
+            //        else
+            //            updateColor("s"+parkingSpots.get(i).id, android.R.color.darker_gray);
+
                 }
                 else{
-                    updateColor("s"+parkingSpots.get(i).id, ContextCompat.getColor(context, R.color.openspot));
+                    updateColor("s"+parkingSpots.get(i).id, android.R.color.holo_green_dark);
                 }
 
             }else{
-                updateColor("s"+parkingSpots.get(i).id, ContextCompat.getColor(context, R.color.blockspot));
+                updateColor("s"+parkingSpots.get(i).id, android.R.color.darker_gray);
             }
 
 
@@ -166,9 +192,11 @@ public class ParkingSpotActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("Settings", Context.MODE_PRIVATE);
         parkingSpots = new ArrayList<>();
 
-        requestor.getLotInfo(lot_name, sharedPreferences ,(String res) -> {
+
+        requestor.getLotInfo(lot_name, mSettings ,(String res) -> {
             try {
                 // get res
+                parkingSpots.clear();
                 JSONObject response = new JSONObject(res);
                 JSONArray parkingSpotsArray = response.getJSONArray("parkingspaces");
 
@@ -186,7 +214,7 @@ public class ParkingSpotActivity extends AppCompatActivity {
                             occupancy);
                     parkingSpots.add(parkingSpot);
                 }
-                showBestSpot(context, sharedPreferences, "5c49470d78dea5feb9d02a2c");
+                showBestSpot(context, "5c49470d78dea5feb9d02a2c");
 
             } catch (JSONException e) {
                 Log.d(LOG_TAG, "onResponse JSON Error: " + e);
@@ -200,21 +228,20 @@ public class ParkingSpotActivity extends AppCompatActivity {
 
     }
 
-    public void showBestSpot(Context context, SharedPreferences mPref, String lotname){
+    public void showBestSpot(Context context, String lotname){
 
-        requestor.getBestSpot(context, mPref, lotname ,(String res) -> {
+        requestor.getBestSpot(context, lotname ,(String res) -> {
             try {
                 // get res
                 JSONObject response = new JSONObject(res);
                 String spot_rec = response.getString("id");
-                if (!savedSpot.equals("0")){
+                if (savedSpot.equals("0")){
 
                 recommended = "s"+ spot_rec;}
                 else{
                     recommended = savedSpot;
                 }
-                updateView(context, mPref);
-                Log.d(LOG_TAG, "Recommended: " + recommended);
+                updateView(context);
             } catch (JSONException e) {
                 Log.d(LOG_TAG, "onResponse JSON Error: " + e);
             } catch (Exception e) {
@@ -235,26 +262,16 @@ public class ParkingSpotActivity extends AppCompatActivity {
         String spotNumber = b.getText().toString();
         alert.setTitle("Parking Spot #" + spotNumber);
         alert.setMessage("Would you like to save this spot?");
-        alert.setPositiveButton("Save Spot", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+        alert.setPositiveButton("Save Spot", (DialogInterface dialog, int which) -> {
 
                 ViewCompat.setBackgroundTintList(view, ContextCompat.getColorStateList(ParkingSpotActivity.this, android.R.color.holo_orange_light));
-                //updateColor("s5c4946c9ac8f790000f001cf", android.R.color.holo_purple);
-                //ViewCompat.setBackgroundTintList(view, ContextCompat.getColorStateList(ParkingSpotActivity.this, android.R.color.holo_blue_light));
-                //Toast.makeText(ParkingSpotActivity.this, "Spot Saved", Toast.LENGTH_SHORT).show();
-
-                SharedPreferences mSharedPreferences= PreferenceManager.getDefaultSharedPreferences(ParkingSpotActivity.this);
                 savedSpot = tag;
-                mSharedPreferences.edit().putString("saved_spot", savedSpot);
+                mSettings.edit().putString("saved_spot", savedSpot).commit();
+                recommended = savedSpot;
                 Log.d(LOG_TAG, savedSpot);
-            }
         });
-        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(ParkingSpotActivity.this, "Cancelled", Toast.LENGTH_SHORT).show();
-            }
+        alert.setNegativeButton("Cancel", (DialogInterface dialog, int which) -> {
+            Toast.makeText(ParkingSpotActivity.this, "Cancelled", Toast.LENGTH_SHORT).show();
         });
         alert.create().show();
     }
@@ -263,6 +280,6 @@ public class ParkingSpotActivity extends AppCompatActivity {
         int mID = getResources().getIdentifier(id, "id", getBaseContext().getPackageName());
         Button mButton = findViewById(mID);
         Log.d(LOG_TAG, savedSpot);
-        ViewCompat.setBackgroundTintList(mButton, ContextCompat.getColorStateList(this, colour));
+        ViewCompat.setBackgroundTintList(mButton, ContextCompat.getColorStateList(ParkingSpotActivity.this, colour));
     }
 }
