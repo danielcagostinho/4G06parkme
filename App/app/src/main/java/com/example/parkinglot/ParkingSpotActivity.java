@@ -69,12 +69,12 @@ public class ParkingSpotActivity extends AppCompatActivity {
         requestor = new Requestor(getApplicationContext());
 
         //poll
-        startTimer(mSettings);
+        startTimer();
 
         runOnUiThread(new Runnable(){
             @Override
             public void run(){
-                parseInfo(getApplicationContext(), getApplicationContext().getSharedPreferences("Settings", Context.MODE_PRIVATE) ,"5c49470d78dea5feb9d02a2c" );
+                parseInfo(getApplicationContext(),"5c49470d78dea5feb9d02a2c" );
             }
         });
 
@@ -87,13 +87,14 @@ public class ParkingSpotActivity extends AppCompatActivity {
             mTimer1.purge();
         }
     }
-    private void startTimer(SharedPreferences sharedPreferences){
+    private void startTimer(){
+        SharedPreferences mSettings = getApplicationContext().getSharedPreferences("Settings", Context.MODE_PRIVATE);
         mTimer1 = new Timer();
         mTt1 = new TimerTask(){
             public void run(){
                 mTimerHandler.post(new Runnable(){
                     public void run(){
-                        parseInfo(getApplicationContext(), sharedPreferences,"5c49470d78dea5feb9d02a2c" );
+                        parseInfo(getApplicationContext() ,"5c49470d78dea5feb9d02a2c" );
                     }
                 });
             }
@@ -146,7 +147,7 @@ public class ParkingSpotActivity extends AppCompatActivity {
         for (int i = 0; i < parkingSpots.size(); i++){
             if (parkingSpots.get(i).occupancy.equals("false")){
                 if (parkingSpots.get(i).accessibility.equals("true")){
-                    updateColor("s"+parkingSpots.get(i).id,  ContextCompat.getColor(context, R.color.accessspot));
+                    updateColor("s"+parkingSpots.get(i).id,  android.R.);
                 }
                 else{
                     updateColor("s"+parkingSpots.get(i).id, ContextCompat.getColor(context, R.color.openspot));
@@ -161,8 +162,8 @@ public class ParkingSpotActivity extends AppCompatActivity {
         updateColor(recommended, android.R.color.holo_orange_light);
     }
 
-    private void parseInfo(Context context, SharedPreferences sharedPreferences, String lot_name){
-        //SharedPreferences mSettings = getApplicationContext().getSharedPreferences("Settings", Context.MODE_PRIVATE);
+    private void parseInfo(Context context, String lot_name){
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("Settings", Context.MODE_PRIVATE);
         parkingSpots = new ArrayList<>();
 
         requestor.getLotInfo(lot_name, sharedPreferences ,(String res) -> {
@@ -261,6 +262,7 @@ public class ParkingSpotActivity extends AppCompatActivity {
     public void updateColor(String id, int colour){
         int mID = getResources().getIdentifier(id, "id", getBaseContext().getPackageName());
         Button mButton = findViewById(mID);
+        Log.d(LOG_TAG, savedSpot);
         ViewCompat.setBackgroundTintList(mButton, ContextCompat.getColorStateList(this, colour));
     }
 }
