@@ -1,0 +1,35 @@
+\contentsline {section}{\numberline {1}Introduction}{5}{section.1}
+\contentsline {section}{\numberline {2}Scope}{5}{section.2}
+\contentsline {section}{\numberline {3}Context Diagram}{5}{section.3}
+\contentsline {section}{\numberline {4}Component Diagram}{6}{section.4}
+\contentsline {section}{\numberline {5}Database Design}{7}{section.5}
+\contentsline {section}{\numberline {6}Monitored and Controlled Variables}{7}{section.6}
+\contentsline {subsection}{\numberline {6.1}Monitored Variables}{8}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Controlled Variables}{9}{subsection.6.2}
+\contentsline {section}{\numberline {7}Constants}{9}{section.7}
+\contentsline {section}{\numberline {8}Behaviour Overview}{9}{section.8}
+\contentsline {section}{\numberline {9}Component Breakdown}{10}{section.9}
+\contentsline {subsection}{\numberline {9.1}Sensor Component (Module-HW-S)}{10}{subsection.9.1}
+\contentsline {subsection}{\numberline {9.2}Sensor Hub Component (Module-HW-A)}{10}{subsection.9.2}
+\contentsline {subsection}{\numberline {9.3}Sensor Server Component (Module-HW-P)}{11}{subsection.9.3}
+\contentsline {subsection}{\numberline {9.4}Database Component (Module-DB)}{11}{subsection.9.4}
+\contentsline {subsection}{\numberline {9.5}Web Server}{11}{subsection.9.5}
+\contentsline {subsubsection}{\numberline {9.5.1}Main (Module-SW-M)}{12}{subsubsection.9.5.1}
+\contentsline {subsubsection}{\numberline {9.5.2}Poller (Module-SW-P)}{12}{subsubsection.9.5.2}
+\contentsline {subsubsection}{\numberline {9.5.3}DBRequestor (Module-SW-DB)}{12}{subsubsection.9.5.3}
+\contentsline {subsubsection}{\numberline {9.5.4}AnalyticsController (Module-SW-AC)}{13}{subsubsection.9.5.4}
+\contentsline {subsubsection}{\numberline {9.5.5}ParkingLotsHandler (Module-SW-PLSH)}{13}{subsubsection.9.5.5}
+\contentsline {subsubsection}{\numberline {9.5.6}ParkingLotHandler (Module-SW-PLH)}{13}{subsubsection.9.5.6}
+\contentsline {subsubsection}{\numberline {9.5.7}AnalyticsHandler(Module-SW-AH)}{13}{subsubsection.9.5.7}
+\contentsline {subsubsection}{\numberline {9.5.8}ParkingLotsData (Module-SW-PLD)}{14}{subsubsection.9.5.8}
+\contentsline {subsection}{\numberline {9.6}App}{14}{subsection.9.6}
+\contentsline {subsubsection}{\numberline {9.6.1}Base (Module-SW-S-BV)}{14}{subsubsection.9.6.1}
+\contentsline {subsubsection}{\numberline {9.6.2}UserMain (Module-SW-S-UMV)}{15}{subsubsection.9.6.2}
+\contentsline {subsubsection}{\numberline {9.6.3}Settings (Module-SW-S-SV)}{15}{subsubsection.9.6.3}
+\contentsline {subsubsection}{\numberline {9.6.4}SessionController (Module-SW-S-SSC)}{15}{subsubsection.9.6.4}
+\contentsline {subsubsection}{\numberline {9.6.5}SettingsController (Module-SW-S-SEC)}{16}{subsubsection.9.6.5}
+\contentsline {subsubsection}{\numberline {9.6.6}NavigationView (Module-SW-S-NV)}{16}{subsubsection.9.6.6}
+\contentsline {subsubsection}{\numberline {9.6.7}ParkingLotView (Module-SW-S-PLV)}{16}{subsubsection.9.6.7}
+\contentsline {subsubsection}{\numberline {9.6.8}AnalyticsView (Module-SW-S-AV)}{17}{subsubsection.9.6.8}
+\contentsline {section}{\numberline {10}Normal Operation}{17}{section.10}
+\contentsline {section}{\numberline {11}Undesired Event Handling}{17}{section.11}
