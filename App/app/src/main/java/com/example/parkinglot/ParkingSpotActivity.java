@@ -163,7 +163,7 @@ public class ParkingSpotActivity extends AppCompatActivity {
 
             if (parkingSpots.get(i).occupancy.equals("false")){
                 if (parkingSpots.get(i).accessibility.equals("true")){
-                    updateColor("s"+parkingSpots.get(i).id,  android.R.);
+                    updateColor("s"+parkingSpots.get(i).id,  android.R.color.holo_blue_bright);
 
             //boolean isUserAccessible = mSettings.getBoolean("access_switch", false);
             //boolean isSpotAccessible = parkingSpots.get(i).accessibility.equals("true");
