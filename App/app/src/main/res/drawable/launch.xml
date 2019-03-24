@@ -10,7 +10,7 @@
   <item>
 
     <bitmap
-    android:src="@drawable/parkme2+"
+    android:src="@drawable/parkme2"
         android:gravity="center_vertical|center_horizontal"
          />
   </item>
