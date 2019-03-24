@@ -74,9 +74,16 @@ public class ParkingSpotActivity extends AppCompatActivity {
         //poll
         startTimer();
 
-        runOnUiThread(() -> {
-            Log.d(MapsActivity.TAG, "running update...");
-            parseInfo(getApplicationContext(),"5c49470d78dea5feb9d02a2c" );
+        runOnUiThread(new Runnable(){
+            @Override
+            public void run(){
+                parseInfo(getApplicationContext(),"5c49470d78dea5feb9d02a2c" );
+            }
+
+        //runOnUiThread(() -> {
+        //    Log.d(MapsActivity.TAG, "running update...");
+        //    parseInfo(getApplicationContext(),"5c49470d78dea5feb9d02a2c" );
+
         });
 
     }
@@ -89,11 +96,22 @@ public class ParkingSpotActivity extends AppCompatActivity {
         }
     }
     private void startTimer(){
+
+        SharedPreferences mSettings = getApplicationContext().getSharedPreferences("Settings", Context.MODE_PRIVATE);
         mTimer1 = new Timer();
         mTt1 = new TimerTask(){
             public void run(){
-                mTimerHandler.post(() -> {
-                    parseInfo(getApplicationContext(),"5c49470d78dea5feb9d02a2c" );
+                mTimerHandler.post(new Runnable(){
+                    public void run(){
+                        parseInfo(getApplicationContext() ,"5c49470d78dea5feb9d02a2c" );
+                    }
+
+        //mTimer1 = new Timer();
+        //mTt1 = new TimerTask(){
+        //    public void run(){
+        //        mTimerHandler.post(() -> {
+        //            parseInfo(getApplicationContext(),"5c49470d78dea5feb9d02a2c" );
+
                 });
             }
 
@@ -142,14 +160,20 @@ public class ParkingSpotActivity extends AppCompatActivity {
             //parse request
         String lot_name = "5c49470d78dea5feb9d02a2c";
         for (int i = 0; i < parkingSpots.size(); i++){
-            boolean isUserAccessible = mSettings.getBoolean("access_switch", false);
-            boolean isSpotAccessible = parkingSpots.get(i).accessibility.equals("true");
-            if (parkingSpots.get(i).occupancy.equals("false") || !(!isUserAccessible && isSpotAccessible)){
-                if (isSpotAccessible){
-                    if (isUserAccessible)
-                        updateColor("s"+parkingSpots.get(i).id, android.R.color.holo_blue_dark);
-                    else
-                        updateColor("s"+parkingSpots.get(i).id, android.R.color.darker_gray);
+
+            if (parkingSpots.get(i).occupancy.equals("false")){
+                if (parkingSpots.get(i).accessibility.equals("true")){
+                    updateColor("s"+parkingSpots.get(i).id,  android.R.);
+
+            //boolean isUserAccessible = mSettings.getBoolean("access_switch", false);
+            //boolean isSpotAccessible = parkingSpots.get(i).accessibility.equals("true");
+            //if (parkingSpots.get(i).occupancy.equals("false") || !(!isUserAccessible && isSpotAccessible)){
+            //    if (isSpotAccessible){
+            //        if (isUserAccessible)
+            //            updateColor("s"+parkingSpots.get(i).id, android.R.color.holo_blue_dark);
+            //        else
+            //            updateColor("s"+parkingSpots.get(i).id, android.R.color.darker_gray);
+
                 }
                 else{
                     updateColor("s"+parkingSpots.get(i).id, android.R.color.holo_green_dark);
@@ -165,6 +189,8 @@ public class ParkingSpotActivity extends AppCompatActivity {
     }
 
     private void parseInfo(Context context, String lot_name){
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("Settings", Context.MODE_PRIVATE);
+        parkingSpots = new ArrayList<>();
 
 
         requestor.getLotInfo(lot_name, mSettings ,(String res) -> {
@@ -253,6 +279,7 @@ public class ParkingSpotActivity extends AppCompatActivity {
     public void updateColor(String id, int colour){
         int mID = getResources().getIdentifier(id, "id", getBaseContext().getPackageName());
         Button mButton = findViewById(mID);
+        Log.d(LOG_TAG, savedSpot);
         ViewCompat.setBackgroundTintList(mButton, ContextCompat.getColorStateList(ParkingSpotActivity.this, colour));
     }
 }

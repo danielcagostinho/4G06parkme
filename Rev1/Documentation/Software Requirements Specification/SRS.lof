@@ -1,0 +1,5 @@
+\contentsline {figure}{\numberline {1}{\ignorespaces Context Diagram - showing data flow of the system.\relax }}{6}{figure.caption.5}
+\contentsline {figure}{\numberline {2}{\ignorespaces Functional Decomposition.\relax }}{8}{figure.caption.8}
+\contentsline {figure}{\numberline {3}{\ignorespaces Use Case diagram - a driver using the app to find and navigate to an available parking spot.\relax }}{9}{figure.caption.9}
+\contentsline {figure}{\numberline {4}{\ignorespaces Use Case diagram - a customer returning to their vehicle using the saved parking spot location.\relax }}{10}{figure.caption.10}
+\contentsline {figure}{\numberline {5}{\ignorespaces Use Case diagram - a user\IeC {\textquoteright }s personalized settings being changed. This affects the user\IeC {\textquoteright }s computed spot suggestion based on given choices and accessibility info.\relax }}{10}{figure.caption.11}
