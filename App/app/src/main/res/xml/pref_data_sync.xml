@@ -7,6 +7,15 @@
 
 
     <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue="put http server"
+        android:key="http"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="Http Server" />
+
+    <EditTextPreference
        android:defaultValue="0"
        android:key="saved_spot"
        android:maxLines="1"
