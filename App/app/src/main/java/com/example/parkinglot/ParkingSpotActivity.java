@@ -163,7 +163,7 @@ public class ParkingSpotActivity extends AppCompatActivity {
 
             if (parkingSpots.get(i).occupancy.equals("false")){
                 if (parkingSpots.get(i).accessibility.equals("true")){
-                    updateColor("s"+parkingSpots.get(i).id,  android.R.);
+                    updateColor("s"+parkingSpots.get(i).id,  android.R.color.holo_blue_dark);
 
             //boolean isUserAccessible = mSettings.getBoolean("access_switch", false);
             //boolean isSpotAccessible = parkingSpots.get(i).accessibility.equals("true");
@@ -255,25 +255,29 @@ public class ParkingSpotActivity extends AppCompatActivity {
 
     }
 
-    public void showDialog(View view){
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        Button b = (Button) view;
-        String tag = b.getTag().toString();
-        String spotNumber = b.getText().toString();
-        alert.setTitle("Parking Spot #" + spotNumber);
-        alert.setMessage("Would you like to save this spot?");
-        alert.setPositiveButton("Save Spot", (DialogInterface dialog, int which) -> {
+    public void showDialog(View view) {
+        try {
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            Button b = (Button) view;
+            String tag = b.getText().toString();
+            String spotNumber = b.getText().toString();
+            alert.setTitle("Parking Spot #" + spotNumber);
+            alert.setMessage("Would you like to save this spot?");
+            alert.setPositiveButton("Save Spot", (DialogInterface dialog, int which) -> {
 
                 ViewCompat.setBackgroundTintList(view, ContextCompat.getColorStateList(ParkingSpotActivity.this, android.R.color.holo_orange_light));
                 savedSpot = tag;
                 mSettings.edit().putString("saved_spot", savedSpot).commit();
                 recommended = savedSpot;
                 Log.d(LOG_TAG, savedSpot);
-        });
-        alert.setNegativeButton("Cancel", (DialogInterface dialog, int which) -> {
-            Toast.makeText(ParkingSpotActivity.this, "Cancelled", Toast.LENGTH_SHORT).show();
-        });
-        alert.create().show();
+            });
+            alert.setNegativeButton("Cancel", (DialogInterface dialog, int which) -> {
+                Toast.makeText(ParkingSpotActivity.this, "Cancelled", Toast.LENGTH_SHORT).show();
+            });
+            alert.create().show();
+        } catch (Exception e) {
+            Log.d(LOG_TAG, "onResponse Exception: " + e);
+        }
     }
 
     public void updateColor(String id, int colour){

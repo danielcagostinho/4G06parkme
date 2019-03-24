@@ -12,6 +12,8 @@
        android:maxLines="1"
        android:selectAllOnFocus="true"
        android:singleLine="true"
+       android:summary="Your Last Saved Spot is: "
+       android:title="Saved Spot"
         />
 
 
