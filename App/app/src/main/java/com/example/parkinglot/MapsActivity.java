@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PointF;
@@ -230,6 +231,7 @@ public class MapsActivity extends AppCompatActivity implements
     private void setUpNavigationButton() {
         navigationButton = findViewById(R.id.navigationBtn);
         navigationButton.setOnClickListener((View v) -> {
+            Log.d(TAG, "click nav btn");
             if (currentRoute == null)
                 return;
             NavigationLauncherOptions options = NavigationLauncherOptions.builder()
@@ -248,7 +250,7 @@ public class MapsActivity extends AppCompatActivity implements
         PointF screenPoint = mapBoxMap.getProjection().toScreenLocation(point);
         List<Feature> parkingIcons = mapBoxMap.queryRenderedFeatures(screenPoint, parkingLayerID);
         List<Feature> destinationIcons = mapBoxMap.queryRenderedFeatures(screenPoint, destinationLayerID);
-
+        Log.d(TAG, "" + navigationButton.isEnabled());
         if (!parkingIcons.isEmpty()) {
 
             // user clicked on a parking spot
@@ -263,11 +265,12 @@ public class MapsActivity extends AppCompatActivity implements
             currentRoute = lot.getRoute();
             drawRoute(currentRoute);
             listView.smoothScrollToPosition(index);
+            enableNavButton();
         } else if (!destinationIcons.isEmpty()) {
 
             // if we clicked on destination, remove marker
             removeDestinationMarker();
-            navigationButton.setEnabled(false);
+            disableNavButton();
             currentRoute = null;
             navigationMapRoute.removeRoute();
         } else {
@@ -278,7 +281,7 @@ public class MapsActivity extends AppCompatActivity implements
             addDestinationMarker(destinationPoint);
 
             getAndDrawRoute(destinationPoint);
-            navigationButton.setEnabled(true);
+            enableNavButton();
 }
 
         return true;
@@ -578,7 +581,7 @@ public class MapsActivity extends AppCompatActivity implements
 
         // enable the navigation button
         navigationMapRoute.addRoute(route);
-        navigationButton.setEnabled(true);
+        enableNavButton();
     }
 
     // helper function to get and draw a route
@@ -586,7 +589,7 @@ public class MapsActivity extends AppCompatActivity implements
         getRoute(point, (DirectionsRoute route) -> {
             currentRoute = route;
             drawRoute(route);
-        }, () -> navigationButton.setEnabled(false));
+        }, () -> disableNavButton());
     }
 
     // adds user inputted/searched destination marker
@@ -651,4 +654,13 @@ public class MapsActivity extends AppCompatActivity implements
         }
     }
 
+    private void enableNavButton() {
+        navigationButton.setEnabled(true);
+        navigationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.mapboxBlue)));
+    }
+
+    private void disableNavButton() {
+        navigationButton.setEnabled(false);
+        navigationButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.mapboxGrayLight)));
+    }
 }

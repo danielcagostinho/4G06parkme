@@ -1,6 +1,6 @@
 const DBReqestor = require("./DBRequestor")
 
-const pollTime = 3000;
+const pollTime = 1000;
 
 module.exports = {
 

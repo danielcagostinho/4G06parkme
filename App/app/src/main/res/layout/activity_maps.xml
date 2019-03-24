@@ -36,7 +36,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:clickable="true"
-            mapbox:backgroundTint="@color/mapboxBlue"
+            mapbox:backgroundTint="@color/mapboxGrayLight"
             mapbox:srcCompat="@drawable/ic_navigation" />
 
         <android.support.design.widget.FloatingActionButton
