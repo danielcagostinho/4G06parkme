@@ -8,4 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.Launcher">
+    <item name="android:windowBackground">@drawable/launch</item>
+    <!-- Optional, on Android 5+ you can modify the colorPrimaryDark color to match the windowBackground color for further branding-->
+    <!-- item name="colorPrimaryDark">@color/myLightGray</item-->
+
+    </style>
+
 </resources>

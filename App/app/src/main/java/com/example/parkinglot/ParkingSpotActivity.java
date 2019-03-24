@@ -116,7 +116,7 @@ public class ParkingSpotActivity extends AppCompatActivity {
             }
 
        };
-        mTimer1.schedule(mTt1, 1, 1000);
+        mTimer1.schedule(mTt1, 1, 1000 );
     }
 
     @Override

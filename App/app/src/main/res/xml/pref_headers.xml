@@ -14,7 +14,7 @@
 
     <header
         android:fragment="com.example.parkinglot.Components.SettingsActivity$DataSyncPreferenceFragment"
-        android:icon="@drawable/baseline_directions_car_white_24dp"
+        android:icon="@drawable/directions_car_black_48x48"
         android:title="Saved Spot Lcoation"/>
 
 </preference-headers>

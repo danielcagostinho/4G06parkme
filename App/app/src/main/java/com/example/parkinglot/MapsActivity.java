@@ -136,6 +136,7 @@ public class MapsActivity extends AppCompatActivity implements
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         PlaceAutocomplete.clearRecentHistory(this);
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token));
