@@ -2,7 +2,6 @@ import time
 import serial
 import csv
 import string
-import datetime
 from pymongo import MongoClient
 from random import randint
 from pprint import pprint
@@ -24,7 +23,9 @@ file = open ("dataFile.txt", "w")
 
 spotState = False;
 while True:
-    eventTime = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+
+    # gets current time in ms
+    eventTime = int(round(time.time()*1000))
 
     data = ser.readline()
 
