@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PointF;
 import android.location.Location;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -335,13 +336,14 @@ public class MapsActivity extends AppCompatActivity implements
         TextView empty= findViewById(R.id.empty);
         listView.setEmptyView(empty);
 
-//        listView.setOnItemClickListener( (AdapterView<?> parent, View view, int position, long id) -> {
-//            Log.d(TAG, "Clicking!!");
-//            // move to parking lot
+        // DOESN'T WORK RN
+        listView.setOnItemClickListener( (AdapterView<?> parent, View view, int position, long id) -> {
+            Log.d(TAG, "Clicking!!");
+            // move to parking lot
 //            ParkingLotItem parkingLot = parkingLots.get(position);
 //            LatLng parkingLotPosition = parkingLot.latlong;
 //            CameraTranslator.moveCamera(mapBoxMap, parkingLot.latlong);
-//        });
+        });
     }
 
     // enable location with map, ask for location permissions if not already
@@ -483,8 +485,10 @@ public class MapsActivity extends AppCompatActivity implements
                                         // add route as reference
                                         parkingLot.setRoute(route);
                                         // update list
+                                        Parcelable state = listView.onSaveInstanceState();
                                         parkingLotListView = new ParkingLotListView(parkingLotItems, getApplicationContext());
                                         listView.setAdapter(parkingLotListView);
+                                        listView.onRestoreInstanceState(state);
                                     },     // set parking route
                                     () -> {
                                         parkingLot.setRoute(null);
