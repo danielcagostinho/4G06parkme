@@ -270,6 +270,7 @@ public class ParkingSpotActivity extends AppCompatActivity {
                 mSettings.edit().putString("saved_spot", savedSpot).commit();
                 recommended = savedSpot;
                 Log.d(LOG_TAG, savedSpot);
+                Toast.makeText(ParkingSpotActivity.this, "Parking Spot Saved", Toast.LENGTH_SHORT).show();
             });
             alert.setNegativeButton("Cancel", (DialogInterface dialog, int which) -> {
                 Toast.makeText(ParkingSpotActivity.this, "Cancelled", Toast.LENGTH_SHORT).show();
