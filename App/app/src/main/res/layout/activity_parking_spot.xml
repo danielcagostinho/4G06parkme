@@ -257,7 +257,7 @@
                 android:layout_width="59dp"
                 android:layout_height="98dp"
                 android:layout_marginStart="128dp"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ffaaaaaa"
                 android:onClick="showDialog"
                 android:text="001" />
             <Button
@@ -265,7 +265,7 @@
                 android:layout_width="59dp"
                 android:layout_height="98dp"
                 android:layout_toEndOf="@id/dummy1"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ffaaaaaa"
                 android:onClick="showDialog"
                 android:text="002" />
             <Button
@@ -307,7 +307,7 @@
                 android:layout_height="98dp"
                 android:layout_marginStart="5dp"
                 android:layout_toEndOf="@id/dummy6"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="007" />
             <Button
@@ -348,7 +348,7 @@
                 android:layout_width="59dp"
                 android:layout_height="98dp"
                 android:layout_toEndOf="@id/dummy11"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="012" />
 
@@ -378,7 +378,7 @@
                 android:layout_height="117dp"
                 android:layout_marginTop="154dp"
                 android:layout_toEndOf="@id/dummy14"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="107" />
             <Button
@@ -387,7 +387,7 @@
                 android:layout_height="117dp"
                 android:layout_marginTop="154dp"
                 android:layout_toEndOf="@id/dummy15"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="108" />
             <Button
@@ -424,7 +424,7 @@
                 android:layout_height="117dp"
                 android:layout_marginTop="154dp"
                 android:layout_toEndOf="@id/dummy19"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="112" />
 
@@ -437,7 +437,7 @@
                 android:layout_marginStart="4dp"
                 android:layout_below="@id/dummy13"
                 android:layout_toEndOf="@id/spot17"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="205" />
             <Button
@@ -464,7 +464,7 @@
                 android:layout_height="117dp"
                 android:layout_below="@id/dummy16"
                 android:layout_toEndOf="@id/dummy23"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="208" />
             <Button
@@ -474,7 +474,7 @@
                 android:layout_below="@id/dummy17"
                 android:layout_marginStart="4dp"
                 android:layout_toEndOf="@id/dummy24"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="209" />
             <Button
@@ -501,7 +501,7 @@
                 android:layout_height="117dp"
                 android:layout_below="@id/dummy20"
                 android:layout_toEndOf="@id/dummy27"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="212" />
 
@@ -535,7 +535,7 @@
                 android:layout_below="@id/dummy23"
                 android:layout_toEndOf="@id/dummy30"
                 android:layout_marginTop="66dp"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="307" />
             <Button
@@ -586,7 +586,7 @@
                 android:layout_below="@id/dummy28"
                 android:layout_toEndOf="@id/dummy35"
                 android:layout_marginTop="66dp"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="312" />
 
@@ -626,7 +626,7 @@
                 android:layout_height="134dp"
                 android:layout_below="@id/dummy32"
                 android:layout_toEndOf="@id/dummy39"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="408" />
             <Button
@@ -768,7 +768,7 @@
                 android:layout_height="132dp"
                 android:layout_below="@id/spot10"
                 android:layout_toEndOf="@id/dummy53"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="602" />
             <Button
@@ -777,7 +777,7 @@
                 android:layout_height="132dp"
                 android:layout_below="@id/spot15"
                 android:layout_toEndOf="@id/dummy54"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="603" />
             <Button
@@ -842,7 +842,7 @@
                 android:layout_height="132dp"
                 android:layout_below="@id/dummy50"
                 android:layout_toEndOf="@id/dummy61"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="610" />
             <Button
@@ -883,7 +883,7 @@
                 android:layout_below="@id/dummy54"
                 android:layout_toEndOf="@id/dummy65"
                 android:layout_marginTop="82dp"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="702" />
             <Button
@@ -914,7 +914,7 @@
                 android:layout_marginStart="4dp"
                 android:layout_toEndOf="@id/dummy68"
                 android:layout_marginTop="82dp"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="705" />
             <Button
@@ -944,7 +944,7 @@
                 android:layout_below="@id/dummy60"
                 android:layout_marginTop="82dp"
                 android:layout_toEndOf="@id/dummy71"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="708" />
             <Button
@@ -955,7 +955,7 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="82dp"
                 android:layout_toEndOf="@id/dummy72"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="709" />
             <Button
@@ -965,7 +965,7 @@
                 android:layout_marginTop="82dp"
                 android:layout_below="@id/dummy62"
                 android:layout_toEndOf="@id/dummy73"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="710" />
             <Button
@@ -1005,7 +1005,7 @@
                 android:layout_height="132dp"
                 android:layout_below="@id/dummy66"
                 android:layout_toEndOf="@id/dummy77"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="802" />
             <Button
@@ -1023,7 +1023,7 @@
                 android:layout_height="132dp"
                 android:layout_below="@id/dummy68"
                 android:layout_toEndOf="@id/dummy79"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="804" />
             <Button
@@ -1117,7 +1117,7 @@
                 android:layout_height="110dp"
                 android:layout_toEndOf="@id/dummy89"
                 android:layout_marginTop="1484dp"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="902" />
             <Button
@@ -1154,14 +1154,14 @@
                 android:layout_height="110dp"
                 android:layout_toEndOf="@id/dummy93"
                 android:layout_marginTop="1484dp"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="906" />
             <Button
                 android:id="@+id/dummy95"
                 android:layout_width="60dp"
                 android:layout_height="110dp"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:layout_toEndOf="@id/dummy94"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="1484dp"
@@ -1211,7 +1211,7 @@
                 android:layout_width="116dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="100dp"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ffaaaaaa"
                 android:onClick="showDialog"
                 android:text="1001" />
             <Button
@@ -1260,7 +1260,7 @@
                 android:layout_width="116dp"
                 android:layout_height="60dp"
                 android:layout_below="@id/dummy105"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="1007" />
             <Button
@@ -1269,7 +1269,7 @@
                 android:layout_height="60dp"
                 android:layout_marginTop="8dp"
                 android:layout_below="@id/dummy106"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="1008" />
             <Button
@@ -1301,7 +1301,7 @@
                 android:layout_width="116dp"
                 android:layout_height="60dp"
                 android:layout_below="@id/dummy110"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="1012" />
             <Button
@@ -1318,7 +1318,7 @@
                 android:layout_height="60dp"
                 android:layout_marginTop="8dp"
                 android:layout_below="@id/dummy112"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="1014" />
             <Button
@@ -1351,7 +1351,7 @@
                 android:layout_height="60dp"
                 android:layout_marginTop="150dp"
                 android:layout_below="@id/dummy116"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="1018" />
 
@@ -1389,7 +1389,7 @@
                 android:layout_height="60dp"
                 android:layout_below="@id/dummy120"
                 android:layout_marginStart="970dp"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="1104" />
             <Button
@@ -1399,7 +1399,7 @@
                 android:layout_below="@id/dummy121"
                 android:layout_marginTop="4dp"
                 android:layout_marginStart="970dp"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="1105" />
             <Button
@@ -1435,7 +1435,7 @@
                 android:layout_height="60dp"
                 android:layout_below="@id/dummy125"
                 android:layout_marginStart="970dp"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="1109" />
             <Button
@@ -1462,7 +1462,7 @@
                 android:layout_height="60dp"
                 android:layout_below="@id/dummy128"
                 android:layout_marginStart="970dp"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="1112" />
             <Button
@@ -1472,7 +1472,7 @@
                 android:layout_below="@id/dummy129"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="970dp"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="1113" />
             <Button
@@ -1481,7 +1481,7 @@
                 android:layout_height="60dp"
                 android:layout_below="@id/dummy130"
                 android:layout_marginStart="970dp"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="1114" />
             <Button
@@ -1509,7 +1509,7 @@
                 android:layout_height="60dp"
                 android:layout_below="@id/dummy133"
                 android:layout_marginStart="970dp"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="1117" />
             <Button
@@ -1527,7 +1527,7 @@
                 android:layout_height="60dp"
                 android:layout_below="@id/dummy135"
                 android:layout_marginStart="970dp"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#ff669900"
                 android:onClick="showDialog"
                 android:text="1119" />
 
