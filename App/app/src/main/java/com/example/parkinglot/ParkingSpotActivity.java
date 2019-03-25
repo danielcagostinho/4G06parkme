@@ -259,7 +259,7 @@ public class ParkingSpotActivity extends AppCompatActivity {
         try {
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
             Button b = (Button) view;
-            String tag = b.getText().toString();
+            String tag = b.getTag().toString();
             String spotNumber = b.getText().toString();
             alert.setTitle("Parking Spot #" + spotNumber);
             alert.setMessage("Would you like to save this spot?");
